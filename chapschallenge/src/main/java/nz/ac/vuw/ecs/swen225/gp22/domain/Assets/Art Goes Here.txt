@@ -1,0 +1,2 @@
+images go in /main/resources/images/
+and are read with getClass().class.getResourceAsStream("/main/resources/images/"+filename);
