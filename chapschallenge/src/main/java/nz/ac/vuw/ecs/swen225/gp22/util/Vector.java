@@ -9,6 +9,41 @@ package nz.ac.vuw.ecs.swen225.gp22.util;
  * @author Bradley Cave
  */
 public record Vector(double x, double y) {
+    /**
+     * Gets a unit vector facing up
+     * 
+     * @return a unit vector facing up
+     */
+    public static Vector up() {
+        return new Vector(0, -1);
+    }
+
+    /**
+     * Gets a unit vector facing down
+     * 
+     * @return a unit vector facing down
+     */
+    public static Vector down() {
+        return new Vector(0, 1);
+    }
+
+    /**
+     * Gets a unit vector facing left
+     * 
+     * @return a unit vector facing left
+     */
+    public static Vector left() {
+        return new Vector(-1, 0);
+    }
+
+    /**
+     * Gets a unit vector facing right
+     * 
+     * @return a unit vector facing right
+     */
+    public static Vector right() {
+        return new Vector(1, 0);
+    }
 
     /**
      * Adds the specified x and y values to this vector.
