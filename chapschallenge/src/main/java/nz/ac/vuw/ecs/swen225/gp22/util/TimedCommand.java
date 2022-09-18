@@ -14,6 +14,11 @@ public class TimedCommand implements Runnable, Comparable<TimedCommand> {
         this.creationTime = Time.INSTANCE.getTimeSinceStart();
     }
 
+    public TimedCommand(Runnable command, long creationTime) {
+        this.command = command;
+        this.creationTime = creationTime;
+    }
+
     /**
      * Gets the time the command was created at since the start of the program.
      * 
