@@ -3,7 +3,9 @@ package nz.ac.vuw.ecs.swen225.gp22.util;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Map;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * A class that can be used to schedule tasks to loop or be run at a later time.
@@ -15,6 +17,7 @@ public enum Time {
 
     Map<String, Timer> loops = new HashMap<>();
     Map<String, Integer> loopTimeSteps = new HashMap<>();
+    Long startTime = System.currentTimeMillis();
 
     /**
      * Starts a loop that calls the given function a specified amount of times per
@@ -88,5 +91,31 @@ public enum Time {
             return loopTimeSteps.get(name);
         }
         return -1;
+    }
+
+    /**
+     * Gets the time since the start of the game in milliseconds.
+     * 
+     * @return The time since the start of the game.
+     */
+    public long getTimeSinceStart() {
+        return System.currentTimeMillis() - startTime;
+    }
+
+    /**
+     * Replays a list of timed commands maintaining the delay between each command.
+     * 
+     * @param commands The list of commands to replay.
+     */
+    public void playCommandSequence(List<TimedCommand> commands) {
+        Collections.sort(commands);
+        TimedCommand lastCommand = commands.get(0);
+        lastCommand.run();
+        for (int i = 1; i < commands.size(); i++) {
+            TimedCommand command = commands.get(i);
+            long delay = command.getCreationTime() - lastCommand.getCreationTime();
+            delayedInvoke(Math.toIntExact(delay), command);
+            lastCommand = command;
+        }
     }
 }
