@@ -26,6 +26,8 @@ public class Level {
     }
 
     public TileGrid map() {
-        return new TileGrid(map);
+        TileGrid copy = new TileGrid(map);
+        copy.initialise();
+        return copy;
     }
 }
