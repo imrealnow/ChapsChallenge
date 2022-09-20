@@ -8,7 +8,27 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Tile;
 
 public class Level {
     private List<Entity> entities = new ArrayList<Entity>();
-    private List<Tile> tiles = new ArrayList<Tile>();
+    private Tile[][] tiles;
+    String title;
+    int timelimit;
+    int chipsNeeded;
+
+    public Level(Tile[][] tiles, List<Entity> entities, String title, int time){
+        timelimit = time;
+        chipsNeeded = 0;
+        tiles = new Tile[tiles.length][tiles.length];
+        tiles.foreach(x-> {
+            x.foreach(y -> {
+                this.tiles[x][y] = tiles[x][y];
+            });
+        });
+        this.entities = new ArrayList<Entity>();
+        entities.foreach(e -> {
+            this.entities.add(e);
+            if (e instanceof Chip) chipsNeeded++;
+        });
+
+    }
 
     /**
      * Returns an arraylist of all entities in the current level.
@@ -18,10 +38,10 @@ public class Level {
     }
 
     /**
-     * Returns an arraylist of all tiles in the current level.
+     * Returns an array of all tiles in the current level.
      * This function may not be necessary.
      */
-    public List<Tile> getTiles() {
-        return Collections.unmodifiableList(tiles);
+    public Tile[][] getTiles() {
+        return tiles;
     }
 }
