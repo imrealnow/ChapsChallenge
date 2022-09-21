@@ -19,7 +19,7 @@ public class LevelXMLFactory implements XMLFactory<Level> {
         this.level = level;
     }
 
-    public File toXML(String path, String fileName) throws IOException {
+    public File toXML(String path) throws IOException {
         Document document = DocumentHelper.createDocument();
         // root level element
         Element root = document.addElement("level");
@@ -36,7 +36,7 @@ public class LevelXMLFactory implements XMLFactory<Level> {
         OutputFormat format = OutputFormat.createPrettyPrint();
         format.setEncoding("UTF-8");
         XMLWriter writer = new XMLWriter(format);
-        File file = new File(path + fileName + ".xml");
+        File file = new File(path + ".xml");
         try (FileOutputStream fos = new FileOutputStream(file)) {
             writer.setOutputStream(fos);
             writer.write(document);

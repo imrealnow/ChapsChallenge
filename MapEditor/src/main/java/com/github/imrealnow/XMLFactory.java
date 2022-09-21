@@ -11,5 +11,5 @@ import org.dom4j.DocumentException;
 public interface XMLFactory<T> {
     public T fromXML(File xmlFile) throws DocumentException;
 
-    public File toXML(String path, String fileName) throws IOException;
+    public File toXML(String path) throws IOException;
 }

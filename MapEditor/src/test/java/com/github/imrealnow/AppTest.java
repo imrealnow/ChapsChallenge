@@ -20,7 +20,7 @@ class AppTest {
             Level level = new Level(10, 10, "Test level", "Test level description");
             String levelTileGrid = level.map().toString();
             LevelXMLFactory factory = new LevelXMLFactory(level);
-            File xml = factory.toXML("", "test");
+            File xml = factory.toXML("test");
             Level level2 = factory.fromXML(xml);
             assertEquals(level.name(), level2.name(), "Level names should be the same");
             assertEquals(level.description(), level2.description(), "Level descriptions should be the same");
