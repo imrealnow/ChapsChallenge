@@ -13,11 +13,13 @@ public class Player implements Entity {
     public void update() {
 
     }
-    
-    public boolean tryMove(Vector newPos, Game game){
 
-        //TODO: Finish this.
-        if (game.getInteractablesAt(newPos).length() == 0) { return true;}
+    public boolean tryMove(Vector newPos, Game game) {
+
+        // TODO: Finish this.
+        if (game.getInteractablesAt(newPos).size() == 0) {
+            return true;
+        }
         return false;
     }
 }

@@ -13,21 +13,16 @@ public class Level {
     int timelimit;
     int chipsNeeded;
 
-    public Level(Tile[][] tiles, List<Entity> entities, String title, int time){
+    public Level(Tile[][] tiles, List<Entity> entities, String title, int time) {
         timelimit = time;
         chipsNeeded = 0;
-        tiles = new Tile[tiles.length][tiles.length];
-        tiles.foreach(x-> {
-            x.foreach(y -> {
-                this.tiles[x][y] = tiles[x][y];
-            });
-        });
+        this.tiles = tiles;
         this.entities = new ArrayList<Entity>();
-        entities.foreach(e -> {
+        entities.forEach(e -> {
             this.entities.add(e);
-            if (e instanceof Chip) chipsNeeded++;
+            if (e instanceof Chip)
+                chipsNeeded++;
         });
-
     }
 
     /**

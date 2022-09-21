@@ -3,11 +3,10 @@ package nz.ac.vuw.ecs.swen225.gp22.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Timer;
-import java.util.Vector;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Interactable;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
+import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 /**
  * Represents the Game object, which contains the current level and various

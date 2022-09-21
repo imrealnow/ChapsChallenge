@@ -1,7 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp22.domain.Elements;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
-import java.util.Vector;
+import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 /**
  * Represents an instance that is able to move around.
