@@ -1,0 +1,59 @@
+    // how to make an XML factory for an example recording class
+    XMLFactory<Recording> recordingFactory = new XMLFactory<Recording>() {
+        @Override
+        public Recording createFromXML(File xmlFile) throws DocumentException {
+            SAXReader reader = new SAXReader();
+            Document document = reader.read(xmlFile);
+            Element actions = document.getRootElement();
+            List<RecordingAction> actionList = new ArrayList<>();
+            // read values from each action element
+            for (Element action : actions.elements("action")) {
+                String type = action.attributeValue("type");
+                RecordingAction actionObject = new Action(type, direction);
+                actionList.add(actionObject);
+            }
+            // create and return recording
+            return new Recording(actionList);
+        }
+        @Override
+        public File createXML(String filePath, Recording objectToSave) throws IOException {
+            // create document
+            Document document = DocumentHelper.createDocument();
+            Element root = document.addElement("actions");
+            // add each action to the actions element
+            objectToSave.getActions().forEach(action -> {
+                Element actionElement = root.addElement("action");
+                actionElement.addAttribute("type", action.getType().toString());
+                actionElement.addAttribute("time", String.valueOf(action.getTime()));
+            });
+            // setup xml writer
+            OutputFormat format = OutputFormat.createPrettyPrint();
+            format.setEncoding("UTF-8");
+            XMLWriter writer = new XMLWriter(format);
+            if(!filePath.endsWith(".xml")) {
+                filePath += ".xml";
+            }
+            // write to file
+            File file = new File(path);
+            try (FileOutputStream fos = new FileOutputStream(file)) {
+                writer.setOutputStream(fos);
+                writer.write(document);
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+            return file;
+        }
+    };
+
+    // save and load recording
+    XMLSerializer serializer = new XMLSerializer();
+    File file = serializer.saveObjectToXML(parentJFrame, "Save recording", recordingFactory);
+    if (file != null) {
+        try {
+            Recording recording = recordingFactory.createFromXML(file);
+            // do something with the recording
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
