@@ -9,11 +9,10 @@ import java.awt.image.BufferedImage;
 public abstract class Tile {
     private final int x;
     private final int y;
+    private final Sprite sprite;
 
     /**
      * Constructs a tile at the specified position.
-     * This class is unfinished as Tiles should not be contructed without a sprite
-     * to represent them.
      * 
      * @param x
      * @param y
@@ -23,5 +22,5 @@ public abstract class Tile {
         this.y = y;
     }
 
-    public abstract BufferedImage getSprite();
+    public abstract Sprite getSprite();
 }
