@@ -1,4 +1,4 @@
-package nz.ac.vuw.ecs.swen225.gp22.domain;
+package nz.ac.vuw.ecs.swen225.gp22.domain.Objects.Entities;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
@@ -45,12 +45,9 @@ public class Player implements Entity {
         return Sprite.LegendDown;
     }
 
-    public boolean tryMove(Vector newPos) {
+    public boolean tryMove(Direction dir) {
 
-        //Force the player to move one tile at a time
-        if (position.distance(newPos) > 1){
-            return false;
-        }
+        Vector newPos = position.add(dir.vector());
 
         // TODO: Finish this.
         if (Game.getInteractablesAt(newPos).size() == 0) {

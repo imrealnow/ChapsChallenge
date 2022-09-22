@@ -22,7 +22,7 @@ public enum Direction {
      * 
      * @return the vector value of the direction.
      */
-    Vector vector() {
+    public Vector vector() {
         return vectorValue;
     }
 
