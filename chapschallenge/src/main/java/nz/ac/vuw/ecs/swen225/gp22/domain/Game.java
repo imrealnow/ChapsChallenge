@@ -12,7 +12,7 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
  * Represents the Game object, which contains the current level and various
  * stats related to the game.
  */
-public static class Game {
+public class Game {
     private static Level currentLevel;
     public static final String UPDATE_KEY = "updateLoop";
     public static final int UPDATE_PER_SECOND = 3;
@@ -57,12 +57,15 @@ public static class Game {
     public static List<Interactable> getInteractablesAt(Vector pos) {
         List<Interactable> is = new ArrayList<Interactable>();
 
-        level.getEntities().foreach(i -> {
+        currentLevel.getEntities().forEach(i -> {
             if ( i.getPosition().x() == pos.x() 
-                && i.getPosition().y()
-                && i instanceof Interactable) 
-                is.add(i);}); 
-        if (level.getTiles()[pos.x()][pos.y()] instanceof Interactable) is.add(level.getTiles()[pos.x()][pos.y()]);
+                && i.getPosition().y()  == pos.y()
+                && i instanceof Interactable intEnt) {
+                    is.add(intEnt);
+                }
+            }); 
+
+        if (currentLevel.getTiles()[(int)pos.x()][(int)pos.y()] instanceof Interactable intTile) is.add(intTile);
 
         return is;
     }
