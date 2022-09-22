@@ -28,25 +28,56 @@ public class ActionRecord {
         setTime(t);
     }
 
-
+    /**
+     * Action getter
+     * 
+     * @return
+     */
     public String getAction() {
         return action;
     }
 
+    /**
+     * Direction getter
+     * 
+     * @return
+     */
     public Direction getDirection() {
         return direction;
     }
 
+    /**
+     * Time getter
+     * 
+     * @return
+     */
     public Time getTime() {
         return time;
     }
 
+    /**
+     * Action setter
+     * 
+     * @param action
+     */
     public void setAction(String action) {
         this.action = action;
     }
+
+    /**
+     * Direction setter
+     * 
+     * @param direction
+     */
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
+
+    /**
+     * Time setter
+     * 
+     * @param time
+     */
     public void setTime(Time time) {
         this.time = time;
     }
