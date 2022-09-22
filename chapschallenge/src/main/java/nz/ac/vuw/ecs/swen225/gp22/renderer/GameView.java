@@ -30,7 +30,7 @@ public class GameView extends JPanel {
 
         Tile[][] tiles = level.getTiles();
         List<Entity> entities = level.getEntities();
-        Player player = (Player)entities.stream().filter((e) -> (e instanceof Player));
+        Player player = (Player)entities.stream().filter((e) -> (e instanceof Player)).findFirst().get();
 
         Vector camera = player.getVector();
 
