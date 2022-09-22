@@ -12,13 +12,13 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
  * Represents the Game object, which contains the current level and various
  * stats related to the game.
  */
-public class Game {
-    private Level currentLevel;
+public static class Game {
+    private static Level currentLevel;
     public static final String UPDATE_KEY = "updateLoop";
     public static final int UPDATE_PER_SECOND = 3;
 
     Game(Level level) {
-        this.currentLevel = level;
+        currentLevel = level;
         Time.INSTANCE.loop(UPDATE_KEY, UPDATE_PER_SECOND, () -> update());
     }
 
@@ -26,26 +26,44 @@ public class Game {
      * Called every frame, causing all of the relevant game elements to call their
      * update methods.
      */
-    public void update() {
+    public static void update() {
         currentLevel.getEntities().forEach(entity -> entity.update());
     }
 
     /**
      * Returns the current level.
      * 
-     * @return The currentl game level.
+     * @return The current game level.
      */
-    public Level getCurrentLevel() {
+    public static Level getLevel() {
         return currentLevel;
     }
 
-    public List<Interactable> getInteractablesAt(Vector pos) {
+    /**
+     * Set the new level.
+     * 
+     */
+    public static void setLevel(Level newLevel) {
+        currentLevel = newLevel;
+    }
+
+    /**
+     * Gets all the interactable elements at the given position.
+     * Typically used in tandem with onInteract(e).
+     * 
+     * @param pos
+     * @return A list of all interactable tiles at this position.
+     */
+    public static List<Interactable> getInteractablesAt(Vector pos) {
         List<Interactable> is = new ArrayList<Interactable>();
 
-        // TODO: Finish this.
-        // I will implement this later.
-        // Recuse through level entities and grids, returnin all interactables at
-        // (or around????) the specified position.
+        level.getEntities().foreach(i -> {
+            if ( i.getPosition().x() == pos.x() 
+                && i.getPosition().y()
+                && i instanceof Interactable) 
+                is.add(i);}); 
+        if (level.getTiles()[pos.x()][pos.y()] instanceof Interactable) is.add(level.getTiles()[pos.x()][pos.y()]);
+
         return is;
     }
 }
