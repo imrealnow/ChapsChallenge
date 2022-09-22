@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry excluding="nz/ac/vuw/ecs/swen225/gp22/domain/Assets/" kind="src" path="chapschallenge/src/main/java"/>
-	<classpathentry kind="src" path="chapschallenge/src/main/java/nz/ac/vuw/ecs/swen225/gp22/domain/Assets"/>
 	<classpathentry kind="src" path="chapschallenge/src/test/java"/>
 	<classpathentry kind="src" path="MapEditor/src/main/java"/>
 	<classpathentry kind="src" path="MapEditor/src/test/java"/>
