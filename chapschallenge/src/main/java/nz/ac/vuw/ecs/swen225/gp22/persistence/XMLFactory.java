@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.dom4j.DocumentException;
@@ -11,7 +12,7 @@ import org.dom4j.DocumentException;
  * @author Liam Green - greenliam
  */
 public interface XMLFactory<T> {
-    public T createFromXML(String xml) throws DocumentException;
+    public T createFromXML(File xmlFile) throws DocumentException;
 
-    public String createXML(T object) throws IOException;
+    public File createXML(String filePath, T objectToSave) throws IOException;
 }
