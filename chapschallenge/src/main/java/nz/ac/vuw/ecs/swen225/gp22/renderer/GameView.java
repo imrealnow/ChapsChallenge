@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Player;
+import nz.ac.vuw.ecs.swen225.gp22.domain.Objects.Entities.Player;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
@@ -48,6 +48,6 @@ public class GameView extends JPanel {
         double screenX = (x - c.x()) * imgSize;
         double screenY = (x - c.y()) * imgSize;
 
-        g.drawImage(image.getBufferedImage(), (int) screenX, (int) screenY, null);
+        g.drawImage(image.sprite, (int) screenX, (int) screenY, null);
     }
 }
