@@ -3,25 +3,51 @@ package nz.ac.vuw.ecs.swen225.gp22.util;
 import java.awt.image.BufferedImage;
 
 /**
- * A Sprite is a Buffered Image but with added capabilities.
- * Right now, the class is just a wrapper for BufferedImages,
- * but added expansion could occur in the future.
+ * All sprites are defined as Enumerators.
+ * Adapted from http://www.java2s.com/example/java-utility-method/bufferedimage-load/loadimage-file-file-b9b68.html
  * 
  * @author Bradley Cave
  */
-public class Sprite {
+public enum Sprite {
+    //Tiles
+        TileGrass,
+        TilePath,
+        TileInfo,
+        TileExit,
+    
+    //Grids
+        GridTree,
+        GridFence,
 
-    BufferedImage sprite;
+    //Locks
+        GridLockBlue,
+        GridLockRed,
+        GridLockYellow,
 
-    /*
-     * Constructs a sprite object.
-     * 
-     */
-    public Sprite(BufferedImage s) {
-        this.sprite = s;
+    //Keys
+        KeyBlue,
+        KeyRed,
+        KeyYellow,
+    
+    //Player
+        LegendDown,
+        LegendRight,
+        LegendUp,
+        LegendLeft,
+
+    //Special
+        Friend,
+        George;
+    
+    public BufferedImage sprite;
+
+    Sprite(){
+        try {
+            sprite = ImageIO.read("..\\..\\..\\..\\..\\..\\..\\..\\..\\resources\\images\\"+this.name()+".png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public BufferedImage getBufferedImage() {
-        return sprite;
-    }
+
 }
