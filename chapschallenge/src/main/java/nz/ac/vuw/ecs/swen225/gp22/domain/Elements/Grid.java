@@ -6,12 +6,10 @@ import java.awt.image.BufferedImage;
  * A Grid represents a 'solid' object that should stop the player from moving on
  * top of it if they try to.
  */
-public class Grid extends Tile implements Interactable {
+public abstract class Grid extends Tile implements Interactable {
 
   /**
-   * Constructs a grid at the specified position.
-   * This class is unfinished as grids should not be contructed without a sprite
-   * to represent them.
+   * Constructs a grid at the specified position.y
    * 
    * @param x
    * @param y
@@ -40,11 +38,9 @@ public class Grid extends Tile implements Interactable {
    * This method should be overridden in more complicated Objects, such as Key
    * Gates and the likes.
    */
-  public void onInteract(Entity e) {
-  }
+  public void onInteract(Entity e) {}
 
-  public BufferedImage getSprite() {
-    // TODO: Finish this. this is to fix compilation errors.
-    throw new UnsupportedOperationException("Not supported yet.");
+  public Sprite getSprite() {
+    throw new UnsupportedOperationException("Cannot invoke on generic Grid object!");
   }
 }
