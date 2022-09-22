@@ -33,18 +33,10 @@ public class Game {
     /**
      * Returns the current level.
      * 
-     * @return The current game level.
+     * @return The currentl game level.
      */
-    public Level getLevel() {
+    public Level getCurrentLevel() {
         return currentLevel;
-    }
-
-    /**
-     * Set the new level.
-     * 
-     */
-    public void setLevel(Level newLevel) {
-        this.currentLevel = newLevel;
     }
 
     public List<Interactable> getInteractablesAt(Vector pos) {
