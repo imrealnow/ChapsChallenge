@@ -1,10 +1,16 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
+
+import org.dom4j.Document;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
 
 /**
  * Utility class for creating a file chooser for saving and loading XML files.
@@ -14,6 +20,31 @@ import javax.swing.filechooser.FileFilter;
 public class XMLSerializer {
     enum FileAction {
         SAVE, LOAD
+    }
+
+    /**
+     * Writes a Dom4j document to an XML file.
+     * 
+     * @param document the document to write
+     * @param path     the path to write the document to
+     * @return the file that was written to
+     * @throws IOException if the file could not be written to
+     */
+    public static File writeDocumentToXML(Document document, String path) throws IOException {
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        format.setEncoding("UTF-8");
+        XMLWriter writer = new XMLWriter(format);
+        if (!path.endsWith(".xml")) {
+            path += ".xml";
+        }
+        File file = new File(path);
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            writer.setOutputStream(fos);
+            writer.write(document);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 
     /**
