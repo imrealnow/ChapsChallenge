@@ -34,35 +34,21 @@ public class GameView extends JPanel {
 
         Vector camera = player.getVector();
 
-        for (Tile[] tileList : tiles) {
-            for (Tile tile : tileList) {
-                drawTile(tile, g, camera);
+        for (int x = 0; x < tiles.length; x++) {
+            for (int y = 0; y < tiles[0].length; y++) {
+                draw(tiles[x][y].getImage(), g, camera, x, y);
             }
         }
 
-        entities.forEach((e) -> drawEntity(e, g, camera));
+        entities.forEach((e) -> draw(e.getImage(), e, g, camera, e.getVector().x(), e.getVector().y()));
 
     }
 
-    public void drawTile(Tile t, Graphics g, Vector c) {
-        Vector tileVector = t.getVector();
-        BufferedImage image = t.getImage();
+    public void draw(BufferedImage image, Graphics g, Vector c, double x, double y) {
 
-        double x = (tileVector.x()-c.x())*imgSize;
-        double y = (tileVector.y()-c.y())*imgSize;
+        double screenX = (x-c.x())*imgSize;
+        double screenY = (x-c.y())*imgSize;
 
-        g.drawImage(image, (int)x, (int)y, null);
-    }
-
-    public void drawEntity(Entity e, Graphics g, Vector c) {
-        Vector entityVector = e.getVector();
-        BufferedImage image = e.getImage();
-
-        double x = (entityVector.x()-c.x())*imgSize;
-        double y = (entityVector.y()-c.y())*imgSize;
-
-        g.drawImage(image, (int)x, (int)y, null);
-    }
-
-
+        g.drawImage(image, (int)screenX, (int)screenY, null);
+    } 
 }
