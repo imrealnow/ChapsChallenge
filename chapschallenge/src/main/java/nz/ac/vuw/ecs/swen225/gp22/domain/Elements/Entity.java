@@ -1,6 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp22.domain.Elements;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
+import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 /**
@@ -8,8 +9,8 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
  */
 public interface Entity extends Updateable {
     public boolean tryMove(Vector newPos, Game game);
-    
-    public BufferedImage getSprite();
+
+    public Sprite getSprite();
 
     public Vector getPosition();
 }
