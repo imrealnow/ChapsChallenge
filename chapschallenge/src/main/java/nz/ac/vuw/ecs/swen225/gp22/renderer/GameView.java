@@ -11,6 +11,7 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Player;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 public class GameView extends JPanel {
@@ -42,11 +43,11 @@ public class GameView extends JPanel {
 
     }
 
-    public void draw(BufferedImage image, Graphics g, Vector c, double x, double y) {
+    public void draw(Sprite image, Graphics g, Vector c, double x, double y) {
 
         double screenX = (x - c.x()) * imgSize;
         double screenY = (x - c.y()) * imgSize;
 
-        g.drawImage(image, (int) screenX, (int) screenY, null);
+        g.drawImage(image.getBufferedImage(), (int) screenX, (int) screenY, null);
     }
 }

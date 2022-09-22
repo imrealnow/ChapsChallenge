@@ -2,6 +2,8 @@ package nz.ac.vuw.ecs.swen225.gp22.domain.Elements;
 
 import java.awt.image.BufferedImage;
 
+import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
+
 /**
  * A Grid represents a 'solid' object that should stop the player from moving on
  * top of it if they try to.
@@ -27,7 +29,8 @@ public abstract class Grid extends Tile implements Interactable {
    * This method should be overridden in more complicated Objects, such as Key
    * Gates and the likes.
    */
-  public void onInteract(Entity e) {}
+  public void onInteract(Entity e) {
+  }
 
   public Sprite getSprite() {
     throw new UnsupportedOperationException("Cannot invoke on generic Grid object!");
