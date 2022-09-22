@@ -12,6 +12,8 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 /**
  * Factory for creating an XML element for a list of entities, and loading it
  * back
+ * 
+ * @author Liam Green - greenliam
  */
 public class EntityListElementFactory implements ElementFactory<List<Entity>> {
     // Entity factory
