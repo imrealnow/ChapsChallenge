@@ -7,17 +7,6 @@ import java.awt.image.BufferedImage;
  * top of it if they try to.
  */
 public abstract class Grid extends Tile implements Interactable {
-
-  /**
-   * Constructs a grid at the specified position.y
-   * 
-   * @param x
-   * @param y
-   */
-  public Grid(int x, int y) {
-    super(x, y);
-  }
-
   /**
    * Refer to Interactable for description.
    * 
