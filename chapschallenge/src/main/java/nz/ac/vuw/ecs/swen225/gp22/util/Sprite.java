@@ -1,6 +1,10 @@
 package nz.ac.vuw.ecs.swen225.gp22.util;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
  * All sprites are defined as Enumerators.
@@ -43,7 +47,7 @@ public enum Sprite {
 
     Sprite(){
         try {
-            sprite = ImageIO.read("..\\..\\..\\..\\..\\..\\..\\..\\..\\resources\\images\\"+this.name()+".png");
+            sprite = ImageIO.read(new File("..\\..\\..\\..\\..\\..\\..\\..\\..\\resources\\images\\"+this.name()+".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
