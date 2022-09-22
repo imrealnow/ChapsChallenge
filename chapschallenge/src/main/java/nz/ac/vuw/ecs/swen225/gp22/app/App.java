@@ -7,12 +7,21 @@ import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+/**
+ * Class used for setting up the application interface
+ *
+ * @author Jack Harrisson - harrisjack1
+ */
 public class App extends JFrame {
+    public static App INSTANCE;
+
     App() {
         assert SwingUtilities.isEventDispatchThread();
+        assert INSTANCE == null : "App instance already exists";
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         startScreen();
         setVisible(true);
+        INSTANCE = this;
     }
 
     private void startScreen() {
