@@ -34,7 +34,6 @@ public class Level {
 
     /**
      * Returns an array of all tiles in the current level.
-     * This function may not be necessary.
      */
     public Tile[][] getTiles() {
         return tiles;
