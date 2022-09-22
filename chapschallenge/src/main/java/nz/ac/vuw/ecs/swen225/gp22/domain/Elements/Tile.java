@@ -7,21 +7,7 @@ import java.awt.image.BufferedImage;
  * These are any tiles, whether or not the player has any collisions with them.
  */
 public abstract class Tile {
-    private final int x;
-    private final int y;
-
-    /**
-     * Constructs a tile at the specified position.
-     * This class is unfinished as Tiles should not be contructed without a sprite
-     * to represent them.
-     * 
-     * @param x
-     * @param y
-     */
-    public Tile(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public abstract BufferedImage getSprite();
+    private final Sprite sprite;
+    
+    public abstract Sprite getSprite();
 }
