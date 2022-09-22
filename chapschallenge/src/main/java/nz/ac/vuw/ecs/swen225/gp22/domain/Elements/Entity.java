@@ -8,4 +8,8 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
  */
 public interface Entity extends Updateable {
     public boolean tryMove(Vector newPos, Game game);
+    
+    public BufferedImage getSprite();
+
+    public Vector getPosition();
 }
