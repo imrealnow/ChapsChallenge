@@ -1,4 +1,4 @@
-package test.nz.ac.vuw.ecs.swen225.gp22.fuzz;
+package test.nz.ac.vuw.ecs.swen225.gp22;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dom4j.DocumentException;
-import org.junit.jupiter.*;
 import org.junit.jupiter.api.Test;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Entity;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Tile;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Objects.Grids.GridFence;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids.GridFence;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelFactory;
 
 public class PersistencyTests {

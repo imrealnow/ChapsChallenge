@@ -1,6 +1,5 @@
 package nz.ac.vuw.ecs.swen225.gp22.renderer;
 
-import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 
 import java.util.List;
@@ -8,9 +7,9 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Objects.Entities.Player;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Tile;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 

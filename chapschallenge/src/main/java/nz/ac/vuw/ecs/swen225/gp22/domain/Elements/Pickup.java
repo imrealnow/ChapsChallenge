@@ -13,11 +13,13 @@ public class Pickup implements Entity, Interactable {
     private Item item;
 
     @Override
-    public void update() {}
+    public void update() {
+    }
 
     @Override
     /*
      * Whether or not a given entity should be able to step on top of this Pickup.
+     * 
      * @returns Always returns true, as Pickups are not solid objects.
      */
     public boolean entityCanStep(Entity e) {
@@ -26,14 +28,14 @@ public class Pickup implements Entity, Interactable {
 
     @Override
     public void onInteract(Entity e) {
-        if (e instanceof Player p){
-            p.inventory().put(item,p.inventory().getOrDefault(item,0)+1);
+        if (e instanceof Player p) {
+            p.inventory().put(item, p.inventory().getOrDefault(item, 0) + 1);
         }
     }
 
     @Override
     public boolean tryMove(Direction dir) {
-        //Return false, pickups cannot move
+        // Return false, pickups cannot move
         return false;
     }
 
@@ -47,9 +49,8 @@ public class Pickup implements Entity, Interactable {
         return position;
     }
 
-    public Item getItemType(){
+    public Item getItemType() {
         return item;
     }
-
 
 }

@@ -1,6 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
-import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
 
 import java.util.List;
 
