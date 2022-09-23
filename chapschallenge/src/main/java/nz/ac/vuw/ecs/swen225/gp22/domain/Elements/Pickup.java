@@ -1,6 +1,6 @@
-package nz.ac.vuw.ecs.swen225.gp22.domain.Elements;
+package nz.ac.vuw.ecs.swen225.gp22.domain.elements;
 
-import nz.ac.vuw.ecs.swen225.gp22.domain.Objects.Entities.Player;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
 import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
