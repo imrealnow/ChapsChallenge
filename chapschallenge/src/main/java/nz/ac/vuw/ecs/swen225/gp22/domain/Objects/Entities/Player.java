@@ -1,14 +1,19 @@
 package nz.ac.vuw.ecs.swen225.gp22.domain.Objects.Entities;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Entity;
+
+import java.util.HashMap;
+
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
+import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Item;
 
 public class Player implements Entity {
     private Vector position;
     private Direction facing;
+    private HashMap<Item,Integer> inventory = new HashMap<>();
 
     public Player(Vector pos){
         this.position = pos;
@@ -21,6 +26,10 @@ public class Player implements Entity {
      */
     public void update() {
 
+    }
+
+    public HashMap<Item,Integer> inventory() {
+        return inventory;
     }
 
     public Vector getPosition() {
