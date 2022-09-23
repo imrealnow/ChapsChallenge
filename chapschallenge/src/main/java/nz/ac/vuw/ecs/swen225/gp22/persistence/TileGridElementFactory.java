@@ -1,6 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids.GridFence;
 
 import java.util.List;
 
@@ -15,10 +16,10 @@ import org.dom4j.Element;
 public class TileGridElementFactory implements ElementFactory<Tile[][]> {
     // Tile factory
     enum TileType {
-        WALL("Wall") {
+        GRIDFENCE("GridFence") {
             @Override
             public Tile createTile(int x, int y) {
-                return null;
+                return new GridFence();
             }
         };
 
@@ -52,7 +53,7 @@ public class TileGridElementFactory implements ElementFactory<Tile[][]> {
                 }
             }
         }
-        return null;
+        return root;
     }
 
     @Override

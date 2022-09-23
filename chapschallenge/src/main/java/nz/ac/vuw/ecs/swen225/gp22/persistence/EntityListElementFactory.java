@@ -6,7 +6,8 @@ import java.util.List;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 /**
@@ -21,13 +22,7 @@ public class EntityListElementFactory implements ElementFactory<List<Entity>> {
         PLAYER("Player") {
             @Override
             public Entity createEntity(int x, int y) {
-                return null;
-            }
-        },
-        CHIP("Chip") {
-            @Override
-            public Entity createEntity(int x, int y) {
-                return null;
+                return new Player(new Vector((double) x, (double) y));
             }
         };
 
@@ -60,7 +55,7 @@ public class EntityListElementFactory implements ElementFactory<List<Entity>> {
 
     @Override
     public List<Entity> createFromElement(Element element) {
-        List<Element> entities = element.elements("Entity");
+        List<Element> entities = element.elements();
         List<Entity> entityList = new ArrayList<>();
         for (Element entityElement : entities) {
             int x = Integer.parseInt(entityElement.attributeValue("x"));

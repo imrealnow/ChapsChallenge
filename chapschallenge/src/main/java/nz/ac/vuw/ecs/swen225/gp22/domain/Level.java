@@ -19,6 +19,7 @@ public class Level {
         timelimit = time;
         friendsNeeded = 0;
         this.tiles = tiles;
+        this.title = title;
         this.entities = new ArrayList<Entity>();
         entities.forEach(e -> {
             this.entities.add(e);
@@ -41,7 +42,7 @@ public class Level {
         return tiles;
     }
 
-       /**
+    /**
      * Returns the title of the current level.
      */
     public String getTitle() {
@@ -62,10 +63,12 @@ public class Level {
         return friendsNeeded;
     }
 
-    @Override 
+    @Override
     public boolean equals(Object o) {
-        if (o == this)  return true;
-        if (!(o instanceof Level)) return false;
+        if (o == this)
+            return true;
+        if (!(o instanceof Level))
+            return false;
 
         Level level = (Level) o;
         for (int i = 0; i < entities.size(); i++) {
@@ -75,7 +78,8 @@ public class Level {
         }
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[0].length; y++) {
-                if (!tiles[x][y].equals(level.getTiles()[x][y])) {
+                // compare dynamic class of each tile
+                if (!tiles[x][y].getClass().getSimpleName().equals(level.getTiles()[x][y].getClass().getSimpleName())) {
                     return false;
                 }
             }
