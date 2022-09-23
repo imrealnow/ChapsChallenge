@@ -40,4 +40,46 @@ public class Level {
     public Tile[][] getTiles() {
         return tiles;
     }
+
+       /**
+     * Returns the title of the current level.
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Returns the time limit of the current level.
+     */
+    public int getTimeLimit() {
+        return timelimit;
+    }
+
+    /**
+     * Returns the number of friends needed to complete the level
+     */
+    public int getFriendsNeeded() {
+        return friendsNeeded;
+    }
+
+    @Override 
+    public boolean equals(Object o) {
+        if (o == this)  return true;
+        if (!(o instanceof Level)) return false;
+
+        Level level = (Level) o;
+        for (int i = 0; i < entities.size(); i++) {
+            if (!entities.get(i).equals(level.entities.get(i))) {
+                return false;
+            }
+        }
+        for (int x = 0; x < tiles.length; x++) {
+            for (int y = 0; y < tiles[0].length; y++) {
+                if (!tiles[x][y].equals(level.getTiles()[x][y])) {
+                    return false;
+                }
+            }
+        }
+        return level.getTitle().equals(title) && level.getTimeLimit() == timelimit;
+    }
 }
