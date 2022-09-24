@@ -1,33 +1,82 @@
 package com.github.imrealnow;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Level {
-    private final String name;
-    private final String description;
-    private final TileGrid map;
+    private List<Entity> entities = new ArrayList<Entity>();
+    private Tile[][] tiles;
+    String title;
+    int timelimit;
 
-    public Level(int width, int height, String name, String description) {
-        this.map = new TileGrid(width, height, 1);
-        this.name = name;
-        this.description = description;
+    public Level(Tile[][] tiles, List<Entity> entities, String title, int timeLimit) {
+        this.timelimit = timeLimit;
+        this.tiles = tiles;
+        this.title = title;
+        this.entities = new ArrayList<Entity>();
     }
 
-    Level(String mapString, String name, String description) {
-        this.map = new TileGrid(mapString);
-        this.name = name;
-        this.description = description;
+    /**
+     * Returns an arraylist of all entities in the current level.
+     */
+    public List<Entity> getEntities() {
+        return Collections.unmodifiableList(entities);
     }
 
-    public String name() {
-        return name;
+    /**
+     * Returns an array of all tiles in the current level.
+     * 
+     * @return The 2d array of tiles of the level.
+     */
+    public Tile[][] getTiles() {
+        return tiles;
     }
 
-    public String description() {
-        return description;
+    /**
+     * Returns the title of the current level.
+     * 
+     * @param tiles The tiles to set the level to.
+     */
+    public void setTiles(Tile[][] tiles) {
+        this.tiles = tiles;
     }
 
-    public TileGrid map() {
-        TileGrid copy = new TileGrid(map);
-        copy.initialise();
-        return copy;
+    /**
+     * Returns the title of the current level.
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Returns the time limit of the current level.
+     */
+    public int getTimeLimit() {
+        return timelimit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Level))
+            return false;
+
+        Level level = (Level) o;
+        for (int i = 0; i < entities.size(); i++) {
+            if (!entities.get(i).equals(level.entities.get(i))) {
+                return false;
+            }
+        }
+        for (int x = 0; x < tiles.length; x++) {
+            for (int y = 0; y < tiles[0].length; y++) {
+                // compare dynamic class of each tile
+                if (!tiles[x][y].getClass().getSimpleName().equals(level.getTiles()[x][y].getClass().getSimpleName())) {
+                    return false;
+                }
+            }
+        }
+        return level.getTitle().equals(title) && level.getTimeLimit() == timelimit;
     }
 }

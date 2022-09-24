@@ -6,10 +6,28 @@ import java.io.IOException;
 import org.dom4j.DocumentException;
 
 /**
- * Interface for turning objects into XML files and back again.
+ * Interface used for creating an XML file for an object, and loading an object
+ * from an XML file.
+ * 
+ * @author Liam Green - greenliam
  */
 public interface XMLFactory<T> {
-    public T fromXML(File xmlFile) throws DocumentException;
+    /**
+     * Save an object of type T to an XML file.
+     * 
+     * @param filePath     the path to save the XML file to
+     * @param objectToSave the object to save
+     * @return the XML file that was saved to
+     * @throws IOException if the file could not be saved
+     */
+    public File createXML(String filePath, T objectToSave) throws IOException;
 
-    public File toXML(String path) throws IOException;
+    /**
+     * Load an object of type T from an XML file.
+     * 
+     * @param file the XML file to load from
+     * @return the object created from the XML file
+     * @throws DocumentException if the file could not be loaded
+     */
+    public T createFromXML(File file) throws DocumentException;
 }

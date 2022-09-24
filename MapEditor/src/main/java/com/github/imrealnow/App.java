@@ -1,5 +1,7 @@
 package com.github.imrealnow;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -10,7 +12,7 @@ public final class App {
     }
 
     private LevelEditor createEditor() {
-        LevelEditor editor = new LevelEditor(new Level(10, 10, "untitled-level", ""));
+        LevelEditor editor = new LevelEditor(new Level(Tile.blankGrid(17, 17), new ArrayList<Entity>(), "Untitled", 0));
         editor.initialiseGUI();
         editor.setVisible(true);
         editor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

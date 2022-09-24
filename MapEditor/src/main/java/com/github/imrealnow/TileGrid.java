@@ -7,53 +7,63 @@ import java.awt.*;
  * JPanel that holds tiles in a grid
  */
 public class TileGrid extends JPanel {
-    private int spacing;
+    private int spacing = 1;
     private int cols;
     private int rows;
     private TileComponent[][] tiles;
 
-    TileGrid(int cols, int rows, int borderWidth) {
+    TileGrid(int cols, int rows) {
         super(new GridLayout(cols, rows));
         this.cols = cols;
         this.rows = rows;
-        this.spacing = borderWidth;
         this.tiles = new TileComponent[cols][rows];
         initialise();
     }
 
-    TileGrid(String gridString) {
-        super();
-        String[] lines = gridString.split("\n");
-        String[] dimensions = lines[0].split(",");
-        this.cols = Integer.parseInt(dimensions[0]);
-        this.rows = Integer.parseInt(dimensions[1]);
-        setLayout(new GridLayout(cols, rows));
-        this.tiles = new TileComponent[rows][cols];
-        this.spacing = 1;
-        for (int y = 0; y < rows; y++) {
-            for (int x = 0; x < cols; x++) {
-                int c = Integer.parseInt(lines[y + 1].charAt(x) + "");
-                Tile tile = Tile.getFromId(c);
-                TileComponent tileComponent = new TileComponent(tile, this);
-                tiles[y][x] = tileComponent;
-                add(tileComponent);
-            }
-        }
-    }
-
-    TileGrid(TileGrid grid) {
-        this(grid.getRows(), grid.getCols(), grid.getSpacing());
-        for (int y = 0; y < grid.getRows(); y++) {
-            for (int x = 0; x < grid.getCols(); x++) {
-                TileComponent tileComponent = grid.getTile(x, y);
-                tiles[y][x] = tileComponent;
-                add(tileComponent);
+    TileGrid(Tile[][] tiles) {
+        this(tiles.length, tiles[0].length);
+        for (int x = 0; x < cols; x++) {
+            for (int y = 0; y < rows; y++) {
+                this.tiles[x][y].setTile(tiles[x][y]);
             }
         }
     }
 
     public TileComponent getTile(int x, int y) {
         return tiles[y][x];
+    }
+
+    public void setTiles(Tile[][] tiles) {
+        removeTileComponents();
+        rows = tiles.length;
+        cols = tiles[0].length;
+        initialise();
+        for (int x = 0; x < cols; x++) {
+            for (int y = 0; y < rows; y++) {
+                this.tiles[x][y].setTile(tiles[x][y]);
+            }
+        }
+        repaint();
+    }
+
+    public Tile[][] getTiles() {
+        Tile[][] tiles = new Tile[cols][rows];
+        for (int x = 0; x < cols; x++) {
+            for (int y = 0; y < rows; y++) {
+                tiles[x][y] = this.tiles[x][y].getTile();
+            }
+        }
+        return tiles;
+    }
+
+    private void removeTileComponents() {
+        if (tiles != null) {
+            for (int y = 0; y < rows; y++) {
+                for (int x = 0; x < cols; x++) {
+                    remove(this.tiles[x][y]);
+                }
+            }
+        }
     }
 
     public int getSpacing() {
@@ -90,39 +100,42 @@ public class TileGrid extends JPanel {
         return new Dimension(cellSize, cellSize);
     }
 
+    private Dimension getGridDimension() {
+        Dimension cellDimension = getCellDimension();
+        return new Dimension(
+                (cellDimension.width * cols) + (spacing * (cols + 1)),
+                (cellDimension.height * rows) + (spacing * (rows + 1)));
+    }
+
+    private Dimension getOffsetDimension() {
+        Dimension gridDimension = getGridDimension();
+        return new Dimension(
+                (getWidth() - gridDimension.width) / 2,
+                (getHeight() - gridDimension.height) / 2);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.darkGray);
-        g.drawRect(0, 0, getWidth(), getHeight());
+        g.fillRect(0, 0, getWidth(), getHeight());
+        Dimension offsetDimension = getOffsetDimension();
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < cols; x++) {
                 if (tiles[y][x] != null) {
-                    tiles[y][x].draw(g, x * (getCellDimension().width + spacing),
-                            y * (getCellDimension().height + spacing));
+                    tiles[y][x].draw(g, (int) offsetDimension.getWidth() + (x * (getCellDimension().width + spacing)),
+                            (int) offsetDimension.getHeight() + (y * (getCellDimension().height + spacing)));
                 }
             }
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(cols + "," + rows + "\n");
-        for (int y = 0; y < rows; y++) {
-            for (int x = 0; x < cols; x++) {
-                sb.append(tiles[y][x].getTile().getId());
-            }
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
-
     public TileComponent getTileFromMousePos(int x, int y) {
+        Dimension offsetDimension = getOffsetDimension();
         int cellWidth = getCellDimension().width + spacing;
         int cellHeight = getCellDimension().height + spacing;
-        int tileX = x / cellWidth;
-        int tileY = y / cellHeight;
+        int tileX = (x / cellWidth) - (int) (offsetDimension.getWidth() / cellWidth);
+        int tileY = (y / cellHeight) - (int) (offsetDimension.getHeight() / cellHeight);
         return tiles[tileY][tileX];
     }
 }

@@ -13,7 +13,7 @@ public class TileComponent extends JComponent {
     private final TileGrid gridPanel;
 
     public static TileComponent empty(TileGrid gridPanel) {
-        return new TileComponent(Tile.Empty, gridPanel);
+        return new TileComponent(Tile.Grass, gridPanel);
     }
 
     public Tile getTile() {
@@ -35,6 +35,5 @@ public class TileComponent extends JComponent {
         g.setColor(tile.getColor());
         g.fillRect(x, y, d.width, d.height);
         g.setColor(Color.black);
-        g.drawString(String.valueOf(tile.getSymbol()), 0, 0);
     }
 }

@@ -23,7 +23,7 @@ public class TilePalette extends JPanel {
         JPanel tilePanel = new JPanel(new GridLayout(tiles.length, 1));
         for (Tile tile : tiles) {
             TileSelection tileSelection = new TileSelection(tile, this);
-            this.tiles[tile.getId()] = tileSelection;
+            this.tiles[tile.ordinal()] = tileSelection;
             tilePanel.add(tileSelection);
         }
         add(tilePanel);
@@ -37,7 +37,7 @@ public class TilePalette extends JPanel {
         if (currentSelection != null) {
             currentSelection.unhighlight();
         }
-        currentSelection = tiles[selectedTile.getTile().getId()];
+        currentSelection = tiles[selectedTile.getTile().ordinal()];
         currentSelection.highlight();
         this.selectedTile = selectedTile.getTile();
     }
