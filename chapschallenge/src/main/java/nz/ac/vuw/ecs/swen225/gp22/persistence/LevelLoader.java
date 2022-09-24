@@ -29,7 +29,7 @@ public enum LevelLoader {
      * @throws DocumentException  if the file could not be loaded
      * @throws URISyntaxException if the file could not be found
      */
-    public Level loadLevel() {
+    public Level load() {
         try {
             File levelXML = new File(getClass().getResource(resourcePath).toURI());
             return levelFactory.createFromXML(levelXML);
