@@ -17,6 +17,7 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids.GridFence;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids.GridTree;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelFactory;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
 
@@ -50,5 +51,7 @@ public class PersistencyTests {
     public void testLevelLoader_1() {
         Level level = LevelLoader.Level1.load();
         assertEquals("Level 1", level.getTitle());
+        assertEquals(100, level.getTimeLimit());
+        assertEquals(GridTree.class, level.getTiles()[0][0].getClass());
     }
 }
