@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids.GridFence;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelFactory;
+import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
 
 public class PersistencyTests {
     @Test
@@ -32,7 +35,8 @@ public class PersistencyTests {
         LevelFactory factory = new LevelFactory();
         Level level2 = null;
         try {
-            File levelXML = factory.createXML("test.xml", level);
+            File file = factory.createXML("test.xml", level);
+            InputStream levelXML = new FileInputStream(file);
             level2 = factory.createFromXML(levelXML);
         } catch (IOException e) {
             fail("IOException thrown");
@@ -40,5 +44,11 @@ public class PersistencyTests {
             fail("DocumentException thrown");
         }
         assertEquals(level, level2);
+    }
+
+    @Test
+    public void testLevelLoader_1() {
+        Level level = LevelLoader.Level1.load();
+        assertEquals("Level 1", level.getTitle());
     }
 }
