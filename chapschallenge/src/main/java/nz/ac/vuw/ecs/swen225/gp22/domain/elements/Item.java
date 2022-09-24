@@ -19,6 +19,10 @@ public enum Item{
         @Override
         public Sprite sprite() { return Sprite.KeyYellow; }
     },
+    ItemKeySilver{
+        @Override
+        public Sprite sprite() { return Sprite.KeySilver; }
+    },
     ItemFriend{
         @Override
         public Sprite sprite() { return Sprite.Friend; }

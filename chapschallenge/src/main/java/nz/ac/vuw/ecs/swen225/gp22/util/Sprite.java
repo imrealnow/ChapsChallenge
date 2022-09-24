@@ -32,6 +32,7 @@ public enum Sprite {
         KeyBlue,
         KeyRed,
         KeyYellow,
+        KeySilver,
     
     //Player
         LegendDown,
