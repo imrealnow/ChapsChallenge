@@ -23,12 +23,15 @@ public class Game {
 
     public static Game getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new Game(LevelLoader.Level1.load());
+            throw new IllegalStateException("Game has not been initialized");
         }
         return INSTANCE;
     }
 
     Game(Level level) {
+        if (INSTANCE != null)
+            throw new IllegalStateException("Game already instantiated");
+        INSTANCE = this;
         currentLevel = level;
         Time.INSTANCE.loop(UPDATE_KEY, UPDATE_PER_SECOND, () -> update());
     }
