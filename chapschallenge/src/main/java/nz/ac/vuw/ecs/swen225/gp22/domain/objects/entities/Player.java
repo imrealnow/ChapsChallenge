@@ -1,6 +1,5 @@
 package nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities;
 
-
 import java.util.HashMap;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
@@ -12,9 +11,9 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 public class Player implements Entity {
     private Vector position;
     private Direction facing;
-    private HashMap<Item,Integer> inventory = new HashMap<>();
+    private HashMap<Item, Integer> inventory = new HashMap<>();
 
-    public Player(Vector pos){
+    public Player(Vector pos) {
         this.position = pos;
         this.facing = Direction.Down;
     }
@@ -27,7 +26,7 @@ public class Player implements Entity {
 
     }
 
-    public HashMap<Item,Integer> inventory() {
+    public HashMap<Item, Integer> inventory() {
         return inventory;
     }
 
@@ -58,7 +57,7 @@ public class Player implements Entity {
         Vector newPos = position.add(dir.vector());
 
         // TODO: Finish this.
-        if (Game.getInteractablesAt(newPos).size() == 0) {
+        if (Game.getInstance().getInteractablesAt(newPos).size() == 0) {
             position = newPos;
             facing = Direction.fromVector(newPos);
             return true;
