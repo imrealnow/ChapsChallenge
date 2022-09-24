@@ -292,5 +292,7 @@
     <Tile x="15" y="16" type="GridTree"/>
     <Tile x="16" y="16" type="GridTree"/>
   </TileGrid>
-  <Entities/>
+  <Entities>
+    <Entity x="8.0" y="7.0" type="Player"/>
+  </Entities>
 </Level>
