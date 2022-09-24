@@ -11,7 +11,6 @@ import javax.swing.JButton;
  */
 public class TileSelection extends JButton {
     private Tile tile;
-    private boolean selected;
     private final TilePalette palette;
 
     TileSelection(Tile tile, TilePalette palette) {
