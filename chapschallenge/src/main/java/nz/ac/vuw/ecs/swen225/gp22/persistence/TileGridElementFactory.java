@@ -1,7 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
-import nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids.GridFence;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids.*;
 
 import java.util.List;
 
@@ -20,6 +20,60 @@ public class TileGridElementFactory implements ElementFactory<Tile[][]> {
             @Override
             public Tile createTile(int x, int y) {
                 return new GridFence();
+            }
+        },
+        GRIDTREE("GridTree") {
+            @Override
+            public Tile createTile(int x, int y) {
+                return new GridTree();
+            }
+        },
+        GRIDLOCKBLUE("GridLockBlue") {
+            @Override
+            public Tile createTile(int x, int y) {
+                return new GridLockBlue();
+            }
+        },
+        GRIDLOCKRED("GridLockRed") {
+            @Override
+            public Tile createTile(int x, int y) {
+                return new GridLockRed();
+            }
+        },
+        // GRIDLOCKGREEN("GridLockGreen") {
+        // @Override
+        // public Tile createTile(int x, int y) {
+        // return new GridLockGreen();
+        // }
+        // },
+        GRIDLOCKYELLOW("GridLockYellow") {
+            @Override
+            public Tile createTile(int x, int y) {
+                return new GridLockYellow();
+            }
+        },
+        TILEEXIT("TileExit") {
+            @Override
+            public Tile createTile(int x, int y) {
+                return new TileExit();
+            }
+        },
+        TILEGRASS("TileGrass") {
+            @Override
+            public Tile createTile(int x, int y) {
+                return new TileGrass();
+            }
+        },
+        TILEINFO("TileInfo") {
+            @Override
+            public Tile createTile(int x, int y) {
+                return new TileInfo();
+            }
+        },
+        TILEPATH("TilePath") {
+            @Override
+            public Tile createTile(int x, int y) {
+                return new TilePath();
             }
         };
 

@@ -1,7 +1,9 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -37,9 +39,9 @@ public class LevelFactory implements XMLFactory<Level> {
     }
 
     @Override
-    public Level createFromXML(File xmlFile) throws DocumentException {
+    public Level createFromXML(InputStream xmlStream) throws DocumentException {
         SAXReader reader = new SAXReader();
-        Document document = reader.read(xmlFile);
+        Document document = reader.read(xmlStream);
         Element root = document.getRootElement();
         String name = root.attributeValue("Title");
         int timeLimit = Integer.parseInt(root.attributeValue("TimeLimit"));

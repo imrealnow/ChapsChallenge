@@ -1,8 +1,11 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -119,13 +122,19 @@ public class XMLSerializer {
      * @return the object loaded from the file
      */
     public <T> T loadObjectFromXML(JComponent parentComponent, String windowTitle, XMLFactory<T> factory) {
-        File xmlFile = showFileChooser(parentComponent, windowTitle, FileAction.LOAD);
-        if (xmlFile != null) {
-            try {
-                return factory.createFromXML(xmlFile);
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            FileInputStream xmlStream = new FileInputStream(
+                    showFileChooser(parentComponent, windowTitle, FileAction.LOAD));
+            if (xmlStream != null) {
+                try {
+                    return factory.createFromXML(xmlStream);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
         }
         return null;
     }
