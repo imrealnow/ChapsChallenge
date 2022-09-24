@@ -20,9 +20,9 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
  * @author Liam Green - greenliam
  */
 public class EntityElementFactoryRegistry {
-    private static Map<Class<? extends Entity>, Supplier<ElementFactory<? extends Entity>>> factories = new HashMap<>();
+    private static Map<Class<? extends Entity>, Supplier<ElementFactory<Entity>>> factories = new HashMap<>();
 
-    public static ElementFactory<? extends Entity> getFactory(Class<? extends Entity> clazz) {
+    public static ElementFactory<Entity> getFactory(Class<? extends Entity> clazz) {
         if (!factories.containsKey(clazz)) {
             EntityElementFactoryRegistry wrapper = new EntityElementFactoryRegistry();
             return wrapper.new DefaultEntityFactory();
@@ -31,7 +31,7 @@ public class EntityElementFactoryRegistry {
     }
 
     public static void registerFactory(Class<? extends Entity> clazz,
-            Supplier<ElementFactory<? extends Entity>> factory) {
+            Supplier<ElementFactory<Entity>> factory) {
         factories.put(clazz, factory);
     }
 
@@ -42,10 +42,10 @@ public class EntityElementFactoryRegistry {
      * @return the class of the entity
      */
     @SuppressWarnings("unchecked")
-    public static Class<? extends Entity> getClassFromElement(Element element) {
+    public static Class<Entity> getClassFromElement(Element element) {
         String className = element.attributeValue("type");
         try {
-            return (Class<? extends Entity>) Class
+            return (Class<Entity>) Class
                     .forName("nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities." + className);
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found: " + className);
@@ -60,7 +60,6 @@ public class EntityElementFactoryRegistry {
     /**
      * Element factory for entities. Tries to create an entity from the given
      * element, using the entity's class name to invoke a constructor.
-     * Hopefully, this shouldn't have to be used.
      * 
      * @author Liam Green - greenliam
      */

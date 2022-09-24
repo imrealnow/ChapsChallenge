@@ -43,11 +43,8 @@ public class EntityListElementFactory implements ElementFactory<List<Entity>> {
     public Element createElement(List<Entity> objectToConvert) {
         Element root = DocumentHelper.createElement("Entities");
         for (Entity entity : objectToConvert) {
-            Element entityElement = DocumentHelper.createElement("Entity");
-            Vector pos = entity.getPosition();
-            entityElement.addAttribute("x", Double.toString(pos.x()));
-            entityElement.addAttribute("y", Double.toString(pos.y()));
-            entityElement.addAttribute("type", entity.getClass().getSimpleName());
+            var factory = EntityElementFactoryRegistry.getFactory(entity.getClass());
+            Element entityElement = factory.createElement(entity);
             root.add(entityElement);
         }
         return root;
@@ -58,10 +55,9 @@ public class EntityListElementFactory implements ElementFactory<List<Entity>> {
         List<Element> entities = element.elements();
         List<Entity> entityList = new ArrayList<>();
         for (Element entityElement : entities) {
-            int x = Integer.parseInt(entityElement.attributeValue("x"));
-            int y = Integer.parseInt(entityElement.attributeValue("y"));
-            EntityType type = EntityType.fromKey(entityElement.attributeValue("type"));
-            Entity entity = type.createEntity(x, y);
+            Class<? extends Entity> entityClass = EntityElementFactoryRegistry.getClassFromElement(element);
+            var factory = EntityElementFactoryRegistry.getFactory(entityClass);
+            Entity entity = factory.createFromElement(entityElement);
             entityList.add(entity);
         }
         return entityList;

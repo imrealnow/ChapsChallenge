@@ -11,19 +11,20 @@ import nz.ac.vuw.ecs.swen225.gp22.persistence.ElementFactory;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.EntityElementFactoryRegistry;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
-public class PlayerElementFactory implements ElementFactory<Player> {
+public class PlayerElementFactory implements ElementFactory<Entity> {
     {
         EntityElementFactoryRegistry.registerFactory(Player.class,
-                (Supplier<ElementFactory<? extends Entity>>) () -> new PlayerElementFactory());
+                (Supplier<ElementFactory<Entity>>) () -> new PlayerElementFactory());
     }
 
     @Override
-    public Element createElement(Player objectToConvert) {
+    public Element createElement(Entity objectToConvert) {
+        Player player = (Player) objectToConvert;
         Element root = DocumentHelper.createElement("Player");
-        Vector pos = objectToConvert.getPosition();
+        Vector pos = player.getPosition();
         root.addAttribute("x", Double.toString(pos.x()));
         root.addAttribute("y", Double.toString(pos.y()));
-        root.addAttribute("type", objectToConvert.getClass().getSimpleName());
+        root.addAttribute("type", player.getClass().getSimpleName());
         return root;
     }
 

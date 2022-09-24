@@ -98,11 +98,11 @@ public class TileGridElementFactory implements ElementFactory<Tile[][]> {
         for (int y = 0; y < objectToConvert.length; y++) {
             for (int x = 0; x < objectToConvert[y].length; x++) {
                 Tile tile = objectToConvert[y][x];
+                var factory = TileElementFactoryRegistry.getFactory(tile.getClass());
                 if (tile != null) {
-                    Element tileElement = DocumentHelper.createElement("Tile");
+                    Element tileElement = factory.createElement(tile);
                     tileElement.addAttribute("x", Integer.toString(x));
                     tileElement.addAttribute("y", Integer.toString(y));
-                    tileElement.addAttribute("type", tile.getClass().getSimpleName());
                     root.add(tileElement);
                 }
             }
@@ -119,8 +119,9 @@ public class TileGridElementFactory implements ElementFactory<Tile[][]> {
         for (Element tileElement : tiles) {
             int x = Integer.parseInt(tileElement.attributeValue("x"));
             int y = Integer.parseInt(tileElement.attributeValue("y"));
-            TileType type = TileType.fromKey(tileElement.attributeValue("type"));
-            tileGrid[y][x] = type.createTile(x, y);
+            Class<? extends Tile> tileClass = TileElementFactoryRegistry.getClassFromElement(element);
+            var factory = TileElementFactoryRegistry.getFactory(tileClass);
+            tileGrid[y][x] = factory.createFromElement(tileElement);
         }
         return tileGrid;
     }

@@ -1,9 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 
 import org.dom4j.DocumentException;
 
