@@ -19,7 +19,7 @@ public class GameView extends JPanel {
 
     Level level;
 
-    GameView(Level level) {
+    public GameView(Level level) {
         this.level = level;
     }
 
@@ -42,7 +42,7 @@ public class GameView extends JPanel {
 
     }
 
-    public void draw(Sprite image, Graphics g, Vector c, double x, double y) {
+    private void draw(Sprite image, Graphics g, Vector c, double x, double y) {
 
         double screenX = (x - c.x()) * imgSize;
         double screenY = (x - c.y()) * imgSize;
