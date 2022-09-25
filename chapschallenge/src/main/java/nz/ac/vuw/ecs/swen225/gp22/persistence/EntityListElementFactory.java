@@ -55,7 +55,7 @@ public class EntityListElementFactory implements ElementFactory<List<Entity>> {
         List<Element> entities = element.elements();
         List<Entity> entityList = new ArrayList<>();
         for (Element entityElement : entities) {
-            Class<? extends Entity> entityClass = EntityElementFactoryRegistry.getClassFromElement(element);
+            Class<? extends Entity> entityClass = EntityElementFactoryRegistry.getClassFromElement(entityElement);
             var factory = EntityElementFactoryRegistry.getFactory(entityClass);
             Entity entity = factory.createFromElement(entityElement);
             entityList.add(entity);
