@@ -36,6 +36,9 @@ public class TileElementFactoryRegistry {
     @SuppressWarnings("unchecked")
     public static Class<Tile> getClassFromElement(Element element) {
         String className = element.attributeValue("type");
+        if (className == null) {
+            throw new IllegalArgumentException("Element has no type attribute");
+        }
         try {
             return (Class<Tile>) Class
                     .forName("nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids." + className);
@@ -59,6 +62,7 @@ public class TileElementFactoryRegistry {
         @Override
         public Element createElement(Tile tile) {
             Element tileElement = DocumentHelper.createElement("Tile");
+            System.out.println(tile.getClass().getSimpleName());
             tileElement.addAttribute("type", tile.getClass().getSimpleName());
             return tileElement;
         }

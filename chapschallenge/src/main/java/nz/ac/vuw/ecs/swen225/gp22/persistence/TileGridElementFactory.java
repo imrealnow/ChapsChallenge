@@ -112,14 +112,14 @@ public class TileGridElementFactory implements ElementFactory<Tile[][]> {
 
     @Override
     public Tile[][] createFromElement(Element element) {
-        List<Element> tiles = element.elements("Tile");
+        List<Element> tiles = element.elements();
         int width = Integer.parseInt(element.attributeValue("width"));
         int height = Integer.parseInt(element.attributeValue("height"));
         Tile[][] tileGrid = new Tile[width][height];
         for (Element tileElement : tiles) {
             int x = Integer.parseInt(tileElement.attributeValue("x"));
             int y = Integer.parseInt(tileElement.attributeValue("y"));
-            Class<? extends Tile> tileClass = TileElementFactoryRegistry.getClassFromElement(element);
+            Class<? extends Tile> tileClass = TileElementFactoryRegistry.getClassFromElement(tileElement);
             var factory = TileElementFactoryRegistry.getFactory(tileClass);
             tileGrid[y][x] = factory.createFromElement(tileElement);
         }
