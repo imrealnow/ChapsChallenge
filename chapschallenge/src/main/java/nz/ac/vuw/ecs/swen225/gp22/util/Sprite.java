@@ -3,52 +3,59 @@ package nz.ac.vuw.ecs.swen225.gp22.util;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
 /**
  * All sprites are defined as Enumerators.
- * Adapted from http://www.java2s.com/example/java-utility-method/bufferedimage-load/loadimage-file-file-b9b68.html
+ * Adapted from
+ * http://www.java2s.com/example/java-utility-method/bufferedimage-load/loadimage-file-file-b9b68.html
  * 
  * @author Bradley Cave
  */
 public enum Sprite {
-    //Tiles
-        TileGrass,
-        TilePath,
-        TileInfo,
-        TileExit,
-    
-    //Grids
-        GridTree,
-        GridFence,
+    // Tiles
+    TileGrass("TileGrass.png"),
+    TilePath("TilePath.png"),
+    TileInfo("TileInfo.png"),
+    TileExit("TileExit.png"),
 
-    //Locks
-        GridLockBlue,
-        GridLockRed,
-        GridLockYellow,
+    // Grids
+    GridTree("GridTree.png"),
+    GridFence("GridFence.png"),
 
-    //Keys
-        KeyBlue,
-        KeyRed,
-        KeyYellow,
-        KeySilver,
-    
-    //Player
-        LegendDown,
-        LegendRight,
-        LegendUp,
-        LegendLeft,
+    // Locks
+    GridLockBlue("GridLockBlue.png"),
+    GridLockRed("GridLockRed.png"),
+    GridLockYellow("GridLockYellow.png"),
 
-    //Special
-        Friend,
-        George;
-    
+    // Keys
+    KeyBlue("KeyBlue.png"),
+    KeyRed("KeyRed.png"),
+    KeyYellow("KeyYellow.png"),
+    KeySilver("KeySilver.png"),
+
+    // Player
+    LegendDown("LegendDown.png"),
+    LegendRight("LegendRight.png"),
+    LegendUp("LegendUp.png"),
+    LegendLeft("LegendLeft.png"),
+
+    // Special
+    Friend("Friend.png"),
+    George("George.png");
+
     public BufferedImage sprite;
 
-    Sprite(){
+    Sprite(String fileName) {
         try {
-            sprite = ImageIO.read(new File("..\\..\\..\\..\\..\\..\\..\\..\\..\\resources\\images\\"+this.name()+".png"));
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("images/" + fileName);
+            if (inputStream == null) {
+                throw new RuntimeException("Could not find resource: " + fileName);
+            }
+            sprite = ImageIO.read(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }

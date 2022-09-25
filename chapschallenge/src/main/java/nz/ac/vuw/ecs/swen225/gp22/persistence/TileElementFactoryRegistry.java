@@ -62,7 +62,6 @@ public class TileElementFactoryRegistry {
         @Override
         public Element createElement(Tile tile) {
             Element tileElement = DocumentHelper.createElement("Tile");
-            System.out.println(tile.getClass().getSimpleName());
             tileElement.addAttribute("type", tile.getClass().getSimpleName());
             return tileElement;
         }
