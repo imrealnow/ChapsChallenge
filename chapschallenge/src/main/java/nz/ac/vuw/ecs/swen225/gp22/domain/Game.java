@@ -28,7 +28,7 @@ public class Game {
         return INSTANCE;
     }
 
-    Game(Level level) {
+    public Game(Level level) {
         if (INSTANCE != null)
             throw new IllegalStateException("Game already instantiated");
         INSTANCE = this;
