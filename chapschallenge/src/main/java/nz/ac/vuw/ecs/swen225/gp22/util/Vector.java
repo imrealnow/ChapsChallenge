@@ -68,6 +68,17 @@ public record Vector(double x, double y) {
     }
 
     /**
+     * Subtracts the specified x and y values from this vector.
+     * 
+     * @param x The amount to shift this vector by along the x axis.
+     * @param y The amount to shift this vector by along the y axis.
+     * @return A vector of this vectors old size, minus the specified x and y.
+     */
+    public Vector subtract(Vector o) {
+        return add(-o.x(), -o.y());
+    }
+
+    /**
      * Scales this vector by scaleX along the x axis, and scaleY along the y axis.
      * 
      * @param scaleX
