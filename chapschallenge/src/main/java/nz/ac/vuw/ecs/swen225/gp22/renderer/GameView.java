@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp22.renderer;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import java.util.List;
@@ -44,8 +45,9 @@ public class GameView extends JPanel {
 
     private void draw(Sprite image, Graphics g, Vector c, double x, double y) {
 
-        double screenX = (x - c.x()) * imgSize;
-        double screenY = (y - c.y()) * imgSize;
+        Dimension s = getSize();
+        double screenX = (x - c.x()) * imgSize + s.getWidth()/2 - imgSize/2;
+        double screenY = (y - c.y()) * imgSize + s.getHeight()/2 - imgSize/2;
 
         g.drawImage(image.sprite, (int) screenX, (int) screenY, null);
     }
