@@ -45,7 +45,7 @@ public class GameView extends JPanel {
     private void draw(Sprite image, Graphics g, Vector c, double x, double y) {
 
         double screenX = (x - c.x()) * imgSize;
-        double screenY = (x - c.y()) * imgSize;
+        double screenY = (y - c.y()) * imgSize;
 
         g.drawImage(image.sprite, (int) screenX, (int) screenY, null);
     }
