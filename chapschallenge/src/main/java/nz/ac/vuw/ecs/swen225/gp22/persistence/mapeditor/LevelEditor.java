@@ -1,4 +1,4 @@
-package com.github.imrealnow;
+package nz.ac.vuw.ecs.swen225.gp22.persistence.mapeditor;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -7,6 +7,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
+
+import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
+import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelFactory;
+import nz.ac.vuw.ecs.swen225.gp22.persistence.XMLSerializer;
 
 public class LevelEditor extends JFrame {
     private Level level;
@@ -67,7 +71,7 @@ public class LevelEditor extends JFrame {
             {
                 setText("Save Level");
                 addActionListener(e -> {
-                    level.setTiles(tileGrid.getTiles());
+                    level = new Level(tileGrid.getTiles(), level.getEntities(), level.getTitle(), level.getTimeLimit());
                     serializer.saveObjectToXML(this, "Save current level", new LevelFactory(), level);
                 });
             }

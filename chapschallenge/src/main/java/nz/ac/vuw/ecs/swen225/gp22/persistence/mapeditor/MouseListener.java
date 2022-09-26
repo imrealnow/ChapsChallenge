@@ -1,6 +1,9 @@
-package com.github.imrealnow;
+package nz.ac.vuw.ecs.swen225.gp22.persistence.mapeditor;
 
 import java.awt.event.MouseEvent;
+
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 public class MouseListener extends java.awt.event.MouseAdapter {
     private final TileGrid gridPanel;
@@ -13,7 +16,7 @@ public class MouseListener extends java.awt.event.MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        TileComponent tileComponent = gridPanel.getTileFromMousePos(e.getX(), e.getY());
+        TileComponent tileComponent = gridPanel.getTileAtScreenPosition(new Vector(e.getX(), e.getY()));
         if (tileComponent != null) {
             Tile selectedTile = palette.getSelectedTile();
             if (selectedTile != null) {

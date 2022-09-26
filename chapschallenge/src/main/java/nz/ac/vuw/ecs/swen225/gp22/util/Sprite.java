@@ -50,12 +50,8 @@ public enum Sprite {
 
     Sprite(String fileName) {
         try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("images/" + fileName);
-            if (inputStream == null) {
-                throw new RuntimeException("Could not find resource: " + fileName);
-            }
-            sprite = ImageIO.read(inputStream);
+            File file = new File(getClass().getResource("/images/" + fileName).getFile());
+            sprite = ImageIO.read(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
