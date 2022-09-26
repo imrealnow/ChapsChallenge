@@ -2,10 +2,12 @@ package nz.ac.vuw.ecs.swen225.gp22.persistence.mapeditor;
 
 import java.awt.event.MouseEvent;
 
+import javax.swing.event.MouseInputAdapter;
+
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
-public class MouseListener extends java.awt.event.MouseAdapter {
+public class MouseListener extends MouseInputAdapter {
     private final TileGrid gridPanel;
     private final TilePalette palette;
 

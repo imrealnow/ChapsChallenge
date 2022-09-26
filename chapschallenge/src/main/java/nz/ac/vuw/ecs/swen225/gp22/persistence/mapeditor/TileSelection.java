@@ -3,6 +3,8 @@ package nz.ac.vuw.ecs.swen225.gp22.persistence.mapeditor;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
@@ -17,14 +19,22 @@ public class TileSelection extends JButton {
     private final TilePalette palette;
 
     TileSelection(Tile tile, int index, TilePalette palette) {
-        super(tile.getClass().getSimpleName());
+        super(new ImageIcon(tile.getSprite().sprite));
+        setBorder(BorderFactory.createEmptyBorder());
+        setToolTipText(tile.getClass().getSimpleName());
+        setContentAreaFilled(false);
         this.index = index;
         this.tile = tile;
         this.palette = palette;
-        setPreferredSize(new Dimension(getWidth(), 60));
+        setSize(32, 32);
         addActionListener(e -> {
             palette.setSelectedTile(this);
         });
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(32, 32);
     }
 
     public int index() {
@@ -40,10 +50,10 @@ public class TileSelection extends JButton {
     }
 
     public void highlight() {
-        setBackground(new Color(83, 158, 219));
+        setBorder(BorderFactory.createLineBorder(new Color(77, 166, 255), 3));
     }
 
     public void unhighlight() {
-        setBackground(null);
+        setBorder(BorderFactory.createEmptyBorder());
     }
 }

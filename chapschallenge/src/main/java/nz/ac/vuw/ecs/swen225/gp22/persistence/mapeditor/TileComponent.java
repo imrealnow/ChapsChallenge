@@ -1,6 +1,5 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence.mapeditor;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 
@@ -15,6 +14,11 @@ public class TileComponent extends JComponent {
     private Tile tile;
     private final TileGrid gridPanel;
 
+    TileComponent(Tile tile, TileGrid gridPanel) {
+        this.tile = tile;
+        this.gridPanel = gridPanel;
+    }
+
     public static TileComponent empty(TileGrid gridPanel) {
         return new TileComponent(new TileGrass(), gridPanel);
     }
@@ -25,11 +29,6 @@ public class TileComponent extends JComponent {
 
     public void setTile(Tile tile) {
         this.tile = tile;
-    }
-
-    TileComponent(Tile tile, TileGrid gridPanel) {
-        this.tile = tile;
-        this.gridPanel = gridPanel;
     }
 
     public void draw(Graphics g, int x, int y, int width, int height) {
