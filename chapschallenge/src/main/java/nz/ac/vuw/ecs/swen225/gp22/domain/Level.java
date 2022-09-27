@@ -33,6 +33,13 @@ public class Level {
     }
 
     /**
+     * Returns the player object
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
      * Returns an arraylist of all entities in the current level.
      */
     public List<Entity> getEntities() {
