@@ -17,28 +17,6 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
  * @author Liam Green - greenliam
  */
 public class EntityListElementFactory implements ElementFactory<List<Entity>> {
-    // Entity factory
-    enum EntityType {
-        PLAYER("Player") {
-            @Override
-            public Entity createEntity(int x, int y) {
-                return new Player(new Vector((double) x, (double) y));
-            }
-        };
-
-        EntityType(String key) {
-            this.key = key;
-        }
-
-        String key;
-
-        public abstract Entity createEntity(int x, int y);
-
-        public static EntityType fromKey(String key) {
-            return EntityType.valueOf(key.toUpperCase());
-        }
-    }
-
     @Override
     public Element createElement(List<Entity> objectToConvert) {
         Element root = DocumentHelper.createElement("Entities");
