@@ -17,7 +17,7 @@ public class Level {
     int friendsNeeded;
     Player player;
 
-    public Level(Player player, Tile[][] tiles, List<Entity> entities, String title, int time) {
+    public Level(Tile[][] tiles, List<Entity> entities, String title, int time) {
         timelimit = time;
         friendsNeeded = 0;
         this.tiles = tiles;
@@ -27,9 +27,13 @@ public class Level {
             this.entities.add(e);
             if (e instanceof Pickup p && p.getItemType() == Item.ItemFriend)
                 friendsNeeded++;
+            if (e instanceof Player p) {
+                if (this.player != null) throw new IllegalArgumentException(
+                    "Cannot have more than one instance of player in Level");
+                this.player = p;
+            }
         });
-        if (player == null) throw new IllegalArgumentException();
-        this.player = player;
+        if (player == null) throw new IllegalArgumentException("No player found in Level");
     }
 
     /**
