@@ -10,6 +10,10 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
+import nz.ac.vuw.ecs.swen225.gp22.persistence.factories.entities.PickupElementFactory;
+import nz.ac.vuw.ecs.swen225.gp22.persistence.factories.entities.PlayerElementFactory;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 /**
@@ -21,6 +25,10 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
  */
 public class EntityElementFactoryRegistry {
     private static Map<Class<? extends Entity>, Supplier<ElementFactory<Entity>>> factories = new HashMap<>();
+    static {
+        factories.put(Player.class, (Supplier<ElementFactory<Entity>>) () -> new PlayerElementFactory());
+        factories.put(Pickup.class, (Supplier<ElementFactory<Entity>>) () -> new PickupElementFactory());
+    }
 
     public static ElementFactory<Entity> getFactory(Class<? extends Entity> clazz) {
         if (!factories.containsKey(clazz)) {
@@ -42,11 +50,10 @@ public class EntityElementFactoryRegistry {
      * @return the class of the entity
      */
     @SuppressWarnings("unchecked")
-    public static Class<Entity> getClassFromElement(Element element) {
+    public static Class<? extends Entity> getClassFromElement(Element element) {
         String className = element.attributeValue("type");
         try {
-            return (Class<Entity>) Class
-                    .forName("nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities." + className);
+            return (Class<? extends Entity>) Class.forName(className);
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found: " + className);
             e.printStackTrace();
@@ -70,7 +77,7 @@ public class EntityElementFactoryRegistry {
             Vector pos = entity.getPosition();
             entityElement.addAttribute("x", Double.toString(pos.x()));
             entityElement.addAttribute("y", Double.toString(pos.y()));
-            entityElement.addAttribute("type", entity.getClass().getSimpleName());
+            entityElement.addAttribute("type", entity.getClass().getName());
             return entityElement;
         }
 
