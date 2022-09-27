@@ -18,8 +18,13 @@ public abstract class Entity implements Updateable {
         return position;
     }
 
+<<<<<<< HEAD
     public void setPosition(Vector position) {
         this.position = position;
+=======
+    public void setPosition(Vector newPosition) {
+        this.position = newPosition;
+>>>>>>> e5ad625add9ab3af4db01cad5c9737eeca01ae64
     }
 
     public abstract boolean tryMove(Direction dir);
