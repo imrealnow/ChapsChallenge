@@ -310,7 +310,7 @@
     <Player x="13.0" y="8.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
     <Player x="10.0" y="7.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
     <Player x="3.0" y="8.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
-    <Player x="8.0" y="7.0" type="Player" />
+    <Player x="8.0" y="7.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player" />
     <Player x="10.0" y="8.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="1" />
   </Entities>
 </Level>

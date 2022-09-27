@@ -19,7 +19,7 @@ public class PlayerElementFactory implements ElementFactory<Entity> {
         Vector pos = player.getPosition();
         root.addAttribute("x", Double.toString(pos.x()));
         root.addAttribute("y", Double.toString(pos.y()));
-        root.addAttribute("type", player.getClass().getSimpleName());
+        root.addAttribute("type", player.getClass().getName());
         return root;
     }
 
