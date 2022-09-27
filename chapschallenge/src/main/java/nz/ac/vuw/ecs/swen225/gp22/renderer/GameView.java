@@ -35,7 +35,7 @@ public class GameView extends JPanel {
 
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[0].length; y++) {
-                draw(tiles[x][y].getSprite(), g, camera, (double) x, (double) y);
+                draw(tiles[y][x].getSprite(), g, camera, (double) x, (double) y);
             }
         }
 
