@@ -51,8 +51,7 @@ public enum Sprite {
 
     Sprite(String fileName) {
         try {
-            File file = new File(getClass().getResource("/images/" + fileName).getFile());
-            sprite = ImageIO.read(file);
+            sprite = ImageIO.read(getClass().getResource("/images/" + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
