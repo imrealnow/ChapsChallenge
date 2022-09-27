@@ -9,10 +9,6 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Item;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 
 public class Player extends Entity {
-<<<<<<< HEAD
-=======
-    private Vector position;
->>>>>>> e5ad625add9ab3af4db01cad5c9737eeca01ae64
     private Direction facing;
     private HashMap<Item, Integer> inventory = new HashMap<>();
 
