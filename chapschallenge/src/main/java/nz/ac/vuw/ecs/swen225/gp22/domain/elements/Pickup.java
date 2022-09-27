@@ -8,9 +8,17 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 /**
  * Represents an instance that can be picked up.
  */
-public class Pickup implements Entity, Interactable {
-    private Vector position;
+public class Pickup extends Entity implements Interactable {
     private Item item;
+
+    public Pickup(Vector position, Item item) {
+        super(position);
+        this.item = item;
+    }
+
+    public Item getItem() {
+        return item;
+    }
 
     @Override
     public void update() {
@@ -42,11 +50,6 @@ public class Pickup implements Entity, Interactable {
     @Override
     public Sprite getSprite() {
         return item.sprite();
-    }
-
-    @Override
-    public Vector getPosition() {
-        return position;
     }
 
     public Item getItemType() {
