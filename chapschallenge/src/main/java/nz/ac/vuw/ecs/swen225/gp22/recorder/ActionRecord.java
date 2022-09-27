@@ -5,7 +5,7 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
 
 /**
- * ActionRecorder records the different moves of the different characters as well as the time that move took place
+ * ActionRecord records the different moves of the different characters as well as the time that move took place
  * 
  * @author Julia Huijser - huijsejuli
  */
@@ -16,7 +16,7 @@ public class ActionRecord {
 
 
     /**
-     * ActionRecorder constructor
+     * ActionRecord constructor
      * 
      * @param a The action that took place
      * @param d The direction of the action
