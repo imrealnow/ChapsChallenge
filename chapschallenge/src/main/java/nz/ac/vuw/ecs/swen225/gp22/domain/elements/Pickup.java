@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp22.domain.elements;
 
+import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
 import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
@@ -38,6 +39,7 @@ public class Pickup extends Entity implements Interactable {
     public void onInteract(Entity e) {
         if (e instanceof Player p) {
             p.inventory().put(item, p.inventory().getOrDefault(item, 0) + 1);
+            Game.getInstance().getLevel().removeEntity(this);
         }
     }
 
