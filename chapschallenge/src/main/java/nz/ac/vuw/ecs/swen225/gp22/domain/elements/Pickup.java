@@ -8,9 +8,13 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 /**
  * Represents an instance that can be picked up.
  */
-public class Pickup implements Entity, Interactable {
+public class Pickup extends Entity implements Interactable {
     private Vector position;
     private Item item;
+
+    public Pickup(Vector pos){
+        super(pos);
+    }
 
     @Override
     public void update() {

@@ -8,13 +8,13 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Item;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 
-public class Player implements Entity {
+public class Player extends Entity {
     private Vector position;
     private Direction facing;
     private HashMap<Item, Integer> inventory = new HashMap<>();
 
     public Player(Vector pos) {
-        this.position = pos;
+        super(pos);
         this.facing = Direction.Down;
     }
 
