@@ -7,7 +7,7 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 public class GridLockSilver extends Grid {
     @Override
     public Sprite getSprite() {
-        return Sprite.GridLockYellow;
+        return Sprite.GridLockSilver;
     }
 
     @Override

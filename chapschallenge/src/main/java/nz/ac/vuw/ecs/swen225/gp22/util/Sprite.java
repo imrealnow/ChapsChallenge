@@ -29,6 +29,7 @@ public enum Sprite {
     GridLockBlue("GridLockBlue.png"),
     GridLockRed("GridLockRed.png"),
     GridLockYellow("GridLockYellow.png"),
+    GridLockSilver("GridLockSilver.png"),
 
     // Keys
     KeyBlue("KeyBlue.png"),
