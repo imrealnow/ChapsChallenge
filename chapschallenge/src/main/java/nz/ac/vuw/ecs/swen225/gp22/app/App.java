@@ -36,7 +36,7 @@ public class App extends JFrame implements KeyListener {
     Runnable closeStart = () -> {
     };
 
-    App() {
+    public App() {
         assert SwingUtilities.isEventDispatchThread();
         assert INSTANCE == null : "App instance already exists";
         actionController = new ActionController();
@@ -100,7 +100,7 @@ public class App extends JFrame implements KeyListener {
         pack();
     }
 
-    private void startLevel(Level selectedLevel) {
+    public void startLevel(Level selectedLevel) {
         closeStart.run();
         game.setLevel(selectedLevel);
         GameView level1 = new GameView(game.getLevel());
