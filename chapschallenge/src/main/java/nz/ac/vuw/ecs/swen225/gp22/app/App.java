@@ -28,12 +28,9 @@ import java.awt.event.KeyListener;
  */
 public class App extends JFrame implements KeyListener {
     public static App INSTANCE;
-    public ActionController actionController;
-    Level selectedLevel;
+    private ActionController actionController;
     private Game game;
-    private GameView gameView;
-    int time = 100;
-    Runnable closeStart = () -> {
+    private Runnable closeStart = () -> {
     };
 
     public App() {
@@ -46,6 +43,10 @@ public class App extends JFrame implements KeyListener {
         setJMenuBar(createMenuBar());
         setVisible(true);
         INSTANCE = this;
+    }
+
+    public ActionController getController() {
+        return actionController;
     }
 
     public void callAction(int keyCode) {
@@ -104,7 +105,6 @@ public class App extends JFrame implements KeyListener {
         closeStart.run();
         game.setLevel(selectedLevel);
         GameView level1 = new GameView(game.getLevel());
-        gameView = level1;
 
         addKeyListener(this);
         setFocusable(true);
