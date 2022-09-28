@@ -61,12 +61,12 @@ public class ActionRecord {
      * @param action
      * @return
      */
-    public static Bindings getActionKey(Bindings action){
+    public static String getActionKey(Bindings action){
         for(Entry<String, Bindings> entry : actionBinding.entrySet()){
-            if(entry.getValue().equals(action)){
-             return entry.getValue();
+            if(entry.value().equals(action)){
+             return entry.value();
             } else {
-                throw new IllegalArgumentException(action.getName() + " is not a valid action");
+                throw new IllegalArgumentException(action.name() + " is not a valid action");
             }
         }
     }   
