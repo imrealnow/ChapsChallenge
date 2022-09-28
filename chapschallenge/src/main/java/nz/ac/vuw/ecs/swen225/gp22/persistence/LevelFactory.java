@@ -30,8 +30,6 @@ public class LevelFactory implements XMLFactory<Level> {
                 Integer.toString(objectToSave.getTimeLimit()));
         Element tileGrid = tileGridElementFactory.createElement(objectToSave.getTiles());
         Element entityList = entityListElementFactory.createElement(objectToSave.getEntities());
-        System.out.println(tileGrid);
-        System.out.println(entityList);
         root.add(tileGrid);
         root.add(entityList);
         return XMLSerializer.writeDocumentToXML(document, filePath);

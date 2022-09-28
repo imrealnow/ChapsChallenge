@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.AWTEvent;
 
 /**
  * Tile palette that holds all the tiles and allows the user to select one
@@ -33,12 +34,14 @@ public class TilePalette extends JPanel {
             new GridTree()
     };
     private Tile selectedTile;
-    private final TileSelection[] tiles;
     private TileSelection currentSelection;
+    private final TileSelection[] tiles;
+    private final TileGrid tileGrid;
 
-    TilePalette() {
+    TilePalette(TileGrid tileGrid) {
         super();
         this.tiles = new TileSelection[TILE_TYPES.length];
+        this.tileGrid = tileGrid;
         add(createTilePanel());
     }
 
@@ -73,5 +76,12 @@ public class TilePalette extends JPanel {
         currentSelection = tiles[selectedTile.index()];
         currentSelection.highlight();
         this.selectedTile = selectedTile.getTile();
+    }
+
+    public void onGridClick(TileComponent tileComponent, AWTEvent e) {
+        if (selectedTile != null) {
+            tileComponent.setTile(selectedTile);
+            tileGrid.repaint();
+        }
     }
 }

@@ -1,6 +1,8 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.dom4j.DocumentException;
 
@@ -20,6 +22,7 @@ public enum LevelLoader {
 
     private String resourcePath;
     private static LevelFactory levelFactory = new LevelFactory();
+    private static Set<Level> loadedLevels;
 
     /**
      * Loads a predefined game level.
@@ -40,5 +43,20 @@ public enum LevelLoader {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * Loads all predefined game levels.
+     * 
+     * @return a copy of the set of levels loaded from the XML files
+     */
+    public static Set<Level> loadAll() {
+        if (loadedLevels == null) {
+            loadedLevels = new HashSet<>();
+            for (LevelLoader levelLoader : LevelLoader.values()) {
+                loadedLevels.add(levelLoader.load());
+            }
+        }
+        return Set.copyOf(loadedLevels);
     }
 }

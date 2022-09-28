@@ -5,15 +5,18 @@ import java.util.Collections;
 import java.util.List;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Item;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup;
 
 public class Level {
     private List<Entity> entities = new ArrayList<Entity>();
+    private List<Entity> removedEntitiesCache = new ArrayList<Entity>();
     private Tile[][] tiles;
     String title;
     int timelimit;
     int friendsNeeded;
+    Player player;
 
     public Level(Tile[][] tiles, List<Entity> entities, String title, int time) {
         timelimit = time;
@@ -25,7 +28,40 @@ public class Level {
             this.entities.add(e);
             if (e instanceof Pickup p && p.getItemType() == Item.ItemFriend)
                 friendsNeeded++;
+            if (e instanceof Player p) {
+                if (this.player != null) throw new IllegalArgumentException(
+                    "Cannot have more than one instance of player in Level");
+                this.player = p;
+            }
         });
+        if (player == null) throw new IllegalArgumentException("No player found in Level");
+    }
+
+    public void morphTile(Tile oldTile, Tile newTile){
+        for (int x = 0; x < tiles.length; x++) {
+            for (int y = 0; y < tiles[0].length; y++) {
+                if (tiles[x][y] == oldTile) {
+                    tiles[x][y] = newTile;
+                    return;
+                }
+            }
+        }    
+    }
+
+    public void removeEntity(Entity e){
+        removedEntitiesCache.add(e);
+    }
+
+    public void flushEntityCache(){
+        entities.removeAll(removedEntitiesCache);
+        removedEntitiesCache = new ArrayList<Entity>();
+    }
+
+    /**
+     * Returns the player object
+     */
+    public Player getPlayer() {
+        return player;
     }
 
     /**

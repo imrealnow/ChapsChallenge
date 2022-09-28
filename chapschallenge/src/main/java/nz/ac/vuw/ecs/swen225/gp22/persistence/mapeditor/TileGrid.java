@@ -4,26 +4,38 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseWheelEvent;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 
 /**
  * JPanel that holds tiles in a grid
  */
 public class TileGrid extends JPanel {
+    // constants
+    private static final int CELL_SIZE = 32;
+    // grid
     private int cols;
     private int rows;
+    // drawing
+    private LevelToolbar.Tool currentTool;
     private double zoomLevel = 0.5;
-    private int cellSize = 32;
     private Vector viewTarget;
+    // objects
     private TileComponent[][] tiles;
+    private Map<Vector, EntityComponent> entities = new HashMap<>();
 
     TileGrid(int cols, int rows) {
-        super(new GridLayout(cols, rows));
+        super();
+        setLayout(null);
         this.cols = cols;
         this.rows = rows;
         this.tiles = new TileComponent[cols][rows];
@@ -43,6 +55,41 @@ public class TileGrid extends JPanel {
         }
     }
 
+    public void setTool(LevelToolbar.Tool tool) {
+        this.currentTool = tool;
+        if (tool == LevelToolbar.Tool.ENTITY) {
+            setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+            for (EntityComponent entityComponent : entities.values()) {
+                entityComponent.setVisible(true);
+            }
+        } else {
+            setCursor(Cursor.getDefaultCursor());
+            for (EntityComponent entityComponent : entities.values()) {
+                entityComponent.setVisible(false);
+            }
+        }
+        repaint();
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    public void initialise() {
+        tiles = new TileComponent[rows][cols];
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                TileComponent tile = TileComponent.empty(this, new Vector(x, y));
+                tiles[y][x] = tile;
+                add(tile);
+            }
+        }
+    }
+
     public void setTiles(Tile[][] tiles) {
         removeTileComponents();
         rows = tiles.length;
@@ -57,7 +104,7 @@ public class TileGrid extends JPanel {
     }
 
     public Tile[][] getTiles() {
-        Tile[][] tiles = new Tile[cols][rows];
+        Tile[][] tiles = new Tile[rows][cols];
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < cols; x++) {
                 tiles[y][x] = this.tiles[y][x].getTile();
@@ -66,31 +113,70 @@ public class TileGrid extends JPanel {
         return tiles;
     }
 
+    public void addEntity(Entity entity, Vector position) {
+        EntityComponent entityComponent = new EntityComponent(entity, this);
+        entities.put(position, entityComponent);
+        add(entityComponent);
+        setComponentZOrder(entityComponent, 0);
+        Vector screenPosition = getScreenPos(position).add(getOffset());
+        entityComponent.setBounds((int) screenPosition.x(), (int) screenPosition.y(), getCellSize(), getCellSize());
+        repaint();
+    }
+
+    public void removeEntity(Vector position) {
+        EntityComponent entityComponent = entities.remove(position);
+        if (entityComponent != null) {
+            remove(entityComponent);
+            repaint();
+        }
+    }
+
+    public Entity getEntity(Vector position) {
+        EntityComponent entityComponent = entities.get(position);
+        if (entityComponent != null) {
+            return entityComponent.getEntity();
+        }
+        return null;
+    }
+
+    public void setEntity(Vector position, Entity entity) {
+        EntityComponent entityComponent = entities.get(position);
+        if (entityComponent != null) {
+            entityComponent.setEntity(entity);
+            repaint();
+        }
+    }
+
+    public void setEntities(List<Entity> entities) {
+        removeEntityComponents();
+        for (Entity entity : entities) {
+            addEntity(entity, entity.getPosition());
+        }
+    }
+
+    public List<Entity> getEntities() {
+        List<Entity> entities = new ArrayList<>();
+        for (EntityComponent entity : this.entities.values()) {
+            entities.add(entity.getEntity());
+        }
+        return entities;
+    }
+
+    private void removeEntityComponents() {
+        if (entities.size() > 0) {
+            for (EntityComponent entity : entities.values()) {
+                remove(entity);
+            }
+        }
+        entities.clear();
+    }
+
     private void removeTileComponents() {
         if (tiles != null) {
             for (int y = 0; y < rows; y++) {
                 for (int x = 0; x < cols; x++) {
-                    remove(this.tiles[x][y]);
+                    remove(this.tiles[y][x]);
                 }
-            }
-        }
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public int getCols() {
-        return cols;
-    }
-
-    public void initialise() {
-        tiles = new TileComponent[cols][rows];
-        for (int y = 0; y < rows; y++) {
-            for (int x = 0; x < cols; x++) {
-                TileComponent tile = TileComponent.empty(this);
-                tiles[y][x] = tile;
-                add(tile);
             }
         }
     }
@@ -153,8 +239,16 @@ public class TileGrid extends JPanel {
             for (int x = 0; x < cols; x++) {
                 Vector screenPos = getScreenPos(new Vector(x, y)).add(getOffset());
                 TileComponent tile = tiles[y][x];
-                tile.draw(g, (int) screenPos.x(), (int) screenPos.y(), getCellSize(), getCellSize());
                 tile.setBounds((int) screenPos.x(), (int) screenPos.y(), getCellSize(), getCellSize());
+                tile.draw(g);
+                if (currentTool == LevelToolbar.Tool.ENTITY) {
+                    if (entities.containsKey(new Vector(x, y))) {
+                        EntityComponent entity = entities.get(new Vector(x, y));
+                        setComponentZOrder(entity, 0);
+                        entity.setBounds((int) screenPos.x(), (int) screenPos.y(), getCellSize(), getCellSize());
+                        entity.draw(g);
+                    }
+                }
             }
         }
     }

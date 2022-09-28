@@ -2,297 +2,315 @@
 
 <Level Title="Level 1" TimeLimit="100">
   <TileGrid width="17" height="17">
-    <Tile x="0" y="0" type="GridTree"/>
-    <Tile x="1" y="0" type="GridTree"/>
-    <Tile x="2" y="0" type="GridTree"/>
-    <Tile x="3" y="0" type="GridTree"/>
-    <Tile x="4" y="0" type="GridTree"/>
-    <Tile x="5" y="0" type="GridTree"/>
-    <Tile x="6" y="0" type="GridTree"/>
-    <Tile x="7" y="0" type="GridTree"/>
-    <Tile x="8" y="0" type="GridTree"/>
-    <Tile x="9" y="0" type="GridTree"/>
-    <Tile x="10" y="0" type="GridTree"/>
-    <Tile x="11" y="0" type="GridTree"/>
-    <Tile x="12" y="0" type="GridTree"/>
-    <Tile x="13" y="0" type="GridTree"/>
-    <Tile x="14" y="0" type="GridTree"/>
-    <Tile x="15" y="0" type="GridTree"/>
-    <Tile x="16" y="0" type="GridTree"/>
-    <Tile x="0" y="1" type="GridTree"/>
-    <Tile x="1" y="1" type="GridTree"/>
-    <Tile x="2" y="1" type="GridTree"/>
-    <Tile x="3" y="1" type="GridFence"/>
-    <Tile x="4" y="1" type="GridFence"/>
-    <Tile x="5" y="1" type="GridFence"/>
-    <Tile x="6" y="1" type="GridFence"/>
-    <Tile x="7" y="1" type="GridFence"/>
-    <Tile x="8" y="1" type="GridTree"/>
-    <Tile x="9" y="1" type="GridFence"/>
-    <Tile x="10" y="1" type="GridFence"/>
-    <Tile x="11" y="1" type="GridFence"/>
-    <Tile x="12" y="1" type="GridFence"/>
-    <Tile x="13" y="1" type="GridFence"/>
-    <Tile x="14" y="1" type="TileGrass"/>
-    <Tile x="15" y="1" type="GridTree"/>
-    <Tile x="16" y="1" type="GridTree"/>
-    <Tile x="0" y="2" type="GridTree"/>
-    <Tile x="1" y="2" type="GridTree"/>
-    <Tile x="2" y="2" type="TileGrass"/>
-    <Tile x="3" y="2" type="GridFence"/>
-    <Tile x="4" y="2" type="TileGrass"/>
-    <Tile x="5" y="2" type="TileGrass"/>
-    <Tile x="6" y="2" type="TileGrass"/>
-    <Tile x="7" y="2" type="GridFence"/>
-    <Tile x="8" y="2" type="GridFence"/>
-    <Tile x="9" y="2" type="GridFence"/>
-    <Tile x="10" y="2" type="TileGrass"/>
-    <Tile x="11" y="2" type="TileGrass"/>
-    <Tile x="12" y="2" type="TileGrass"/>
-    <Tile x="13" y="2" type="GridFence"/>
-    <Tile x="14" y="2" type="TileGrass"/>
-    <Tile x="15" y="2" type="TileGrass"/>
-    <Tile x="16" y="2" type="GridTree"/>
-    <Tile x="0" y="3" type="GridTree"/>
-    <Tile x="1" y="3" type="TileGrass"/>
-    <Tile x="2" y="3" type="TileGrass"/>
-    <Tile x="3" y="3" type="GridFence"/>
-    <Tile x="4" y="3" type="TileGrass"/>
-    <Tile x="5" y="3" type="TileGrass"/>
-    <Tile x="6" y="3" type="TileGrass"/>
-    <Tile x="7" y="3" type="GridFence"/>
-    <Tile x="8" y="3" type="TileExit"/>
-    <Tile x="9" y="3" type="GridFence"/>
-    <Tile x="10" y="3" type="TileGrass"/>
-    <Tile x="11" y="3" type="TileGrass"/>
-    <Tile x="12" y="3" type="TileGrass"/>
-    <Tile x="13" y="3" type="GridFence"/>
-    <Tile x="14" y="3" type="TileGrass"/>
-    <Tile x="15" y="3" type="TileGrass"/>
-    <Tile x="16" y="3" type="GridTree"/>
-    <Tile x="0" y="4" type="GridTree"/>
-    <Tile x="1" y="4" type="GridFence"/>
-    <Tile x="2" y="4" type="GridFence"/>
-    <Tile x="3" y="4" type="GridFence"/>
-    <Tile x="4" y="4" type="GridFence"/>
-    <Tile x="5" y="4" type="GridFence"/>
-    <Tile x="6" y="4" type="TileGrass"/>
-    <Tile x="7" y="4" type="GridFence"/>
-    <Tile x="8" y="4" type="TileGrass"/>
-    <Tile x="9" y="4" type="GridFence"/>
-    <Tile x="10" y="4" type="TileGrass"/>
-    <Tile x="11" y="4" type="GridFence"/>
-    <Tile x="12" y="4" type="GridFence"/>
-    <Tile x="13" y="4" type="GridFence"/>
-    <Tile x="14" y="4" type="GridFence"/>
-    <Tile x="15" y="4" type="GridFence"/>
-    <Tile x="16" y="4" type="GridTree"/>
-    <Tile x="0" y="5" type="GridTree"/>
-    <Tile x="1" y="5" type="GridFence"/>
-    <Tile x="2" y="5" type="TileGrass"/>
-    <Tile x="3" y="5" type="TileGrass"/>
-    <Tile x="4" y="5" type="TileGrass"/>
-    <Tile x="5" y="5" type="GridLockBlue"/>
-    <Tile x="6" y="5" type="TilePath"/>
-    <Tile x="7" y="5" type="TilePath"/>
-    <Tile x="8" y="5" type="TilePath"/>
-    <Tile x="9" y="5" type="TilePath"/>
-    <Tile x="10" y="5" type="TilePath"/>
-    <Tile x="11" y="5" type="GridLockRed"/>
-    <Tile x="12" y="5" type="TileGrass"/>
-    <Tile x="13" y="5" type="TileGrass"/>
-    <Tile x="14" y="5" type="TileGrass"/>
-    <Tile x="15" y="5" type="GridFence"/>
-    <Tile x="16" y="5" type="GridTree"/>
-    <Tile x="0" y="6" type="GridTree"/>
-    <Tile x="1" y="6" type="GridFence"/>
-    <Tile x="2" y="6" type="TileGrass"/>
-    <Tile x="3" y="6" type="TileGrass"/>
-    <Tile x="4" y="6" type="TileGrass"/>
-    <Tile x="5" y="6" type="GridFence"/>
-    <Tile x="6" y="6" type="TileGrass"/>
-    <Tile x="7" y="6" type="TileGrass"/>
-    <Tile x="8" y="6" type="TileInfo"/>
-    <Tile x="9" y="6" type="TileGrass"/>
-    <Tile x="10" y="6" type="TileGrass"/>
-    <Tile x="11" y="6" type="GridFence"/>
-    <Tile x="12" y="6" type="TileGrass"/>
-    <Tile x="13" y="6" type="TileGrass"/>
-    <Tile x="14" y="6" type="TileGrass"/>
-    <Tile x="15" y="6" type="GridFence"/>
-    <Tile x="16" y="6" type="GridTree"/>
-    <Tile x="0" y="7" type="GridTree"/>
-    <Tile x="1" y="7" type="GridFence"/>
-    <Tile x="2" y="7" type="GridFence"/>
-    <Tile x="3" y="7" type="GridFence"/>
-    <Tile x="4" y="7" type="GridFence"/>
-    <Tile x="5" y="7" type="GridFence"/>
-    <Tile x="6" y="7" type="TileGrass"/>
-    <Tile x="7" y="7" type="TileGrass"/>
-    <Tile x="8" y="7" type="TilePath"/>
-    <Tile x="9" y="7" type="TileGrass"/>
-    <Tile x="10" y="7" type="TileGrass"/>
-    <Tile x="11" y="7" type="GridFence"/>
-    <Tile x="12" y="7" type="GridFence"/>
-    <Tile x="13" y="7" type="GridFence"/>
-    <Tile x="14" y="7" type="GridFence"/>
-    <Tile x="15" y="7" type="GridFence"/>
-    <Tile x="16" y="7" type="GridTree"/>
-    <Tile x="0" y="8" type="GridTree"/>
-    <Tile x="1" y="8" type="GridFence"/>
-    <Tile x="2" y="8" type="TileGrass"/>
-    <Tile x="3" y="8" type="TileGrass"/>
-    <Tile x="4" y="8" type="TileGrass"/>
-    <Tile x="5" y="8" type="GridFence"/>
-    <Tile x="6" y="8" type="TileGrass"/>
-    <Tile x="7" y="8" type="TileGrass"/>
-    <Tile x="8" y="8" type="TilePath"/>
-    <Tile x="9" y="8" type="TileGrass"/>
-    <Tile x="10" y="8" type="TileGrass"/>
-    <Tile x="11" y="8" type="GridFence"/>
-    <Tile x="12" y="8" type="TileGrass"/>
-    <Tile x="13" y="8" type="TileGrass"/>
-    <Tile x="14" y="8" type="TileGrass"/>
-    <Tile x="15" y="8" type="GridFence"/>
-    <Tile x="16" y="8" type="GridTree"/>
-    <Tile x="0" y="9" type="GridTree"/>
-    <Tile x="1" y="9" type="GridFence"/>
-    <Tile x="2" y="9" type="TileGrass"/>
-    <Tile x="3" y="9" type="TileGrass"/>
-    <Tile x="4" y="9" type="TileGrass"/>
-    <Tile x="5" y="9" type="GridLockRed"/>
-    <Tile x="6" y="9" type="TilePath"/>
-    <Tile x="7" y="9" type="TilePath"/>
-    <Tile x="8" y="9" type="TilePath"/>
-    <Tile x="9" y="9" type="TilePath"/>
-    <Tile x="10" y="9" type="TilePath"/>
-    <Tile x="11" y="9" type="GridLockBlue"/>
-    <Tile x="12" y="9" type="TileGrass"/>
-    <Tile x="13" y="9" type="TileGrass"/>
-    <Tile x="14" y="9" type="TileGrass"/>
-    <Tile x="15" y="9" type="GridFence"/>
-    <Tile x="16" y="9" type="GridTree"/>
-    <Tile x="0" y="10" type="GridTree"/>
-    <Tile x="1" y="10" type="GridFence"/>
-    <Tile x="2" y="10" type="GridFence"/>
-    <Tile x="3" y="10" type="GridFence"/>
-    <Tile x="4" y="10" type="GridFence"/>
-    <Tile x="5" y="10" type="GridFence"/>
-    <Tile x="6" y="10" type="GridFence"/>
-    <Tile x="7" y="10" type="GridLockYellow"/>
-    <Tile x="8" y="10" type="GridFence"/>
-    <Tile x="9" y="10" type="GridLockYellow"/>
-    <Tile x="10" y="10" type="GridFence"/>
-    <Tile x="11" y="10" type="GridFence"/>
-    <Tile x="12" y="10" type="GridFence"/>
-    <Tile x="13" y="10" type="GridFence"/>
-    <Tile x="14" y="10" type="GridFence"/>
-    <Tile x="15" y="10" type="GridFence"/>
-    <Tile x="16" y="10" type="GridTree"/>
-    <Tile x="0" y="11" type="GridTree"/>
-    <Tile x="1" y="11" type="TileGrass"/>
-    <Tile x="2" y="11" type="TileGrass"/>
-    <Tile x="3" y="11" type="TileGrass"/>
-    <Tile x="4" y="11" type="TileGrass"/>
-    <Tile x="5" y="11" type="GridFence"/>
-    <Tile x="6" y="11" type="TileGrass"/>
-    <Tile x="7" y="11" type="TileGrass"/>
-    <Tile x="8" y="11" type="GridFence"/>
-    <Tile x="9" y="11" type="TileGrass"/>
-    <Tile x="10" y="11" type="TileGrass"/>
-    <Tile x="11" y="11" type="GridFence"/>
-    <Tile x="12" y="11" type="TileGrass"/>
-    <Tile x="13" y="11" type="TileGrass"/>
-    <Tile x="14" y="11" type="TileGrass"/>
-    <Tile x="15" y="11" type="GridTree"/>
-    <Tile x="16" y="11" type="GridTree"/>
-    <Tile x="0" y="12" type="GridTree"/>
-    <Tile x="1" y="12" type="GridTree"/>
-    <Tile x="2" y="12" type="TileGrass"/>
-    <Tile x="3" y="12" type="TileGrass"/>
-    <Tile x="4" y="12" type="TileGrass"/>
-    <Tile x="5" y="12" type="GridFence"/>
-    <Tile x="6" y="12" type="TileGrass"/>
-    <Tile x="7" y="12" type="TileGrass"/>
-    <Tile x="8" y="12" type="GridFence"/>
-    <Tile x="9" y="12" type="TileGrass"/>
-    <Tile x="10" y="12" type="TileGrass"/>
-    <Tile x="11" y="12" type="GridFence"/>
-    <Tile x="12" y="12" type="TileGrass"/>
-    <Tile x="13" y="12" type="TileGrass"/>
-    <Tile x="14" y="12" type="GridTree"/>
-    <Tile x="15" y="12" type="GridTree"/>
-    <Tile x="16" y="12" type="GridTree"/>
-    <Tile x="0" y="13" type="GridTree"/>
-    <Tile x="1" y="13" type="GridTree"/>
-    <Tile x="2" y="13" type="GridTree"/>
-    <Tile x="3" y="13" type="TileGrass"/>
-    <Tile x="4" y="13" type="TileGrass"/>
-    <Tile x="5" y="13" type="GridFence"/>
-    <Tile x="6" y="13" type="TileGrass"/>
-    <Tile x="7" y="13" type="TileGrass"/>
-    <Tile x="8" y="13" type="GridFence"/>
-    <Tile x="9" y="13" type="TileGrass"/>
-    <Tile x="10" y="13" type="TileGrass"/>
-    <Tile x="11" y="13" type="GridFence"/>
-    <Tile x="12" y="13" type="TileGrass"/>
-    <Tile x="13" y="13" type="TileGrass"/>
-    <Tile x="14" y="13" type="GridTree"/>
-    <Tile x="15" y="13" type="GridTree"/>
-    <Tile x="16" y="13" type="GridTree"/>
-    <Tile x="0" y="14" type="GridTree"/>
-    <Tile x="1" y="14" type="GridTree"/>
-    <Tile x="2" y="14" type="GridTree"/>
-    <Tile x="3" y="14" type="TileGrass"/>
-    <Tile x="4" y="14" type="TileGrass"/>
-    <Tile x="5" y="14" type="GridFence"/>
-    <Tile x="6" y="14" type="GridFence"/>
-    <Tile x="7" y="14" type="GridFence"/>
-    <Tile x="8" y="14" type="GridFence"/>
-    <Tile x="9" y="14" type="GridFence"/>
-    <Tile x="10" y="14" type="GridFence"/>
-    <Tile x="11" y="14" type="GridFence"/>
-    <Tile x="12" y="14" type="TileGrass"/>
-    <Tile x="13" y="14" type="GridTree"/>
-    <Tile x="14" y="14" type="GridTree"/>
-    <Tile x="15" y="14" type="GridTree"/>
-    <Tile x="16" y="14" type="GridTree"/>
-    <Tile x="0" y="15" type="GridTree"/>
-    <Tile x="1" y="15" type="GridTree"/>
-    <Tile x="2" y="15" type="GridTree"/>
-    <Tile x="3" y="15" type="GridTree"/>
-    <Tile x="4" y="15" type="TileGrass"/>
-    <Tile x="5" y="15" type="TileGrass"/>
-    <Tile x="6" y="15" type="TileGrass"/>
-    <Tile x="7" y="15" type="TileGrass"/>
-    <Tile x="8" y="15" type="GridTree"/>
-    <Tile x="9" y="15" type="GridTree"/>
-    <Tile x="10" y="15" type="GridTree"/>
-    <Tile x="11" y="15" type="GridTree"/>
-    <Tile x="12" y="15" type="GridTree"/>
-    <Tile x="13" y="15" type="GridTree"/>
-    <Tile x="14" y="15" type="GridTree"/>
-    <Tile x="15" y="15" type="GridTree"/>
-    <Tile x="16" y="15" type="GridTree"/>
-    <Tile x="0" y="16" type="GridTree"/>
-    <Tile x="1" y="16" type="GridTree"/>
-    <Tile x="2" y="16" type="GridTree"/>
-    <Tile x="3" y="16" type="GridTree"/>
-    <Tile x="4" y="16" type="GridTree"/>
-    <Tile x="5" y="16" type="GridTree"/>
-    <Tile x="6" y="16" type="GridTree"/>
-    <Tile x="7" y="16" type="GridTree"/>
-    <Tile x="8" y="16" type="GridTree"/>
-    <Tile x="9" y="16" type="GridTree"/>
-    <Tile x="10" y="16" type="GridTree"/>
-    <Tile x="11" y="16" type="GridTree"/>
-    <Tile x="12" y="16" type="GridTree"/>
-    <Tile x="13" y="16" type="GridTree"/>
-    <Tile x="14" y="16" type="GridTree"/>
-    <Tile x="15" y="16" type="GridTree"/>
-    <Tile x="16" y="16" type="GridTree"/>
+    <Tile type="GridTree" x="0" y="0" />
+    <Tile type="GridTree" x="1" y="0" />
+    <Tile type="GridTree" x="2" y="0" />
+    <Tile type="GridTree" x="3" y="0" />
+    <Tile type="GridTree" x="4" y="0" />
+    <Tile type="GridTree" x="5" y="0" />
+    <Tile type="GridTree" x="6" y="0" />
+    <Tile type="GridTree" x="7" y="0" />
+    <Tile type="GridTree" x="8" y="0" />
+    <Tile type="GridTree" x="9" y="0" />
+    <Tile type="GridTree" x="10" y="0" />
+    <Tile type="GridTree" x="11" y="0" />
+    <Tile type="GridTree" x="12" y="0" />
+    <Tile type="GridTree" x="13" y="0" />
+    <Tile type="GridTree" x="14" y="0" />
+    <Tile type="GridTree" x="15" y="0" />
+    <Tile type="GridTree" x="16" y="0" />
+    <Tile type="GridTree" x="0" y="1" />
+    <Tile type="GridTree" x="1" y="1" />
+    <Tile type="GridTree" x="2" y="1" />
+    <Tile type="GridFence" x="3" y="1" />
+    <Tile type="GridFence" x="4" y="1" />
+    <Tile type="GridFence" x="5" y="1" />
+    <Tile type="GridFence" x="6" y="1" />
+    <Tile type="GridFence" x="7" y="1" />
+    <Tile type="GridTree" x="8" y="1" />
+    <Tile type="GridFence" x="9" y="1" />
+    <Tile type="GridFence" x="10" y="1" />
+    <Tile type="GridFence" x="11" y="1" />
+    <Tile type="GridFence" x="12" y="1" />
+    <Tile type="GridFence" x="13" y="1" />
+    <Tile type="TileGrass" x="14" y="1" />
+    <Tile type="GridTree" x="15" y="1" />
+    <Tile type="GridTree" x="16" y="1" />
+    <Tile type="GridTree" x="0" y="2" />
+    <Tile type="GridTree" x="1" y="2" />
+    <Tile type="TileGrass" x="2" y="2" />
+    <Tile type="GridFence" x="3" y="2" />
+    <Tile type="TileGrass" x="4" y="2" />
+    <Tile type="TileGrass" x="5" y="2" />
+    <Tile type="TileGrass" x="6" y="2" />
+    <Tile type="GridFence" x="7" y="2" />
+    <Tile type="GridFence" x="8" y="2" />
+    <Tile type="GridFence" x="9" y="2" />
+    <Tile type="TileGrass" x="10" y="2" />
+    <Tile type="TileGrass" x="11" y="2" />
+    <Tile type="TileGrass" x="12" y="2" />
+    <Tile type="GridFence" x="13" y="2" />
+    <Tile type="TileGrass" x="14" y="2" />
+    <Tile type="TileGrass" x="15" y="2" />
+    <Tile type="GridTree" x="16" y="2" />
+    <Tile type="GridTree" x="0" y="3" />
+    <Tile type="TileGrass" x="1" y="3" />
+    <Tile type="TileGrass" x="2" y="3" />
+    <Tile type="GridFence" x="3" y="3" />
+    <Tile type="TileGrass" x="4" y="3" />
+    <Tile type="TileGrass" x="5" y="3" />
+    <Tile type="TileGrass" x="6" y="3" />
+    <Tile type="GridFence" x="7" y="3" />
+    <Tile type="TileExit" x="8" y="3" />
+    <Tile type="GridFence" x="9" y="3" />
+    <Tile type="TileGrass" x="10" y="3" />
+    <Tile type="TileGrass" x="11" y="3" />
+    <Tile type="TileGrass" x="12" y="3" />
+    <Tile type="GridFence" x="13" y="3" />
+    <Tile type="TileGrass" x="14" y="3" />
+    <Tile type="TileGrass" x="15" y="3" />
+    <Tile type="GridTree" x="16" y="3" />
+    <Tile type="GridTree" x="0" y="4" />
+    <Tile type="GridFence" x="1" y="4" />
+    <Tile type="GridFence" x="2" y="4" />
+    <Tile type="GridFence" x="3" y="4" />
+    <Tile type="GridFence" x="4" y="4" />
+    <Tile type="GridFence" x="5" y="4" />
+    <Tile type="GridLockSilver" x="6" y="4" />
+    <Tile type="GridFence" x="7" y="4" />
+    <Tile type="TileGrass" x="8" y="4" />
+    <Tile type="GridFence" x="9" y="4" />
+    <Tile type="GridLockSilver" x="10" y="4" />
+    <Tile type="GridFence" x="11" y="4" />
+    <Tile type="GridFence" x="12" y="4" />
+    <Tile type="GridFence" x="13" y="4" />
+    <Tile type="GridFence" x="14" y="4" />
+    <Tile type="GridFence" x="15" y="4" />
+    <Tile type="GridTree" x="16" y="4" />
+    <Tile type="GridTree" x="0" y="5" />
+    <Tile type="GridFence" x="1" y="5" />
+    <Tile type="TileGrass" x="2" y="5" />
+    <Tile type="TileGrass" x="3" y="5" />
+    <Tile type="TileGrass" x="4" y="5" />
+    <Tile type="GridLockBlue" x="5" y="5" />
+    <Tile type="TilePath" x="6" y="5" />
+    <Tile type="TilePath" x="7" y="5" />
+    <Tile type="TilePath" x="8" y="5" />
+    <Tile type="TilePath" x="9" y="5" />
+    <Tile type="TilePath" x="10" y="5" />
+    <Tile type="GridLockRed" x="11" y="5" />
+    <Tile type="TileGrass" x="12" y="5" />
+    <Tile type="TileGrass" x="13" y="5" />
+    <Tile type="TileGrass" x="14" y="5" />
+    <Tile type="GridFence" x="15" y="5" />
+    <Tile type="GridTree" x="16" y="5" />
+    <Tile type="GridTree" x="0" y="6" />
+    <Tile type="GridFence" x="1" y="6" />
+    <Tile type="TileGrass" x="2" y="6" />
+    <Tile type="TileGrass" x="3" y="6" />
+    <Tile type="TileGrass" x="4" y="6" />
+    <Tile type="GridFence" x="5" y="6" />
+    <Tile type="TileGrass" x="6" y="6" />
+    <Tile type="TileGrass" x="7" y="6" />
+    <Tile type="TileInfo" x="8" y="6" />
+    <Tile type="TileGrass" x="9" y="6" />
+    <Tile type="TileGrass" x="10" y="6" />
+    <Tile type="GridFence" x="11" y="6" />
+    <Tile type="TileGrass" x="12" y="6" />
+    <Tile type="TileGrass" x="13" y="6" />
+    <Tile type="TileGrass" x="14" y="6" />
+    <Tile type="GridFence" x="15" y="6" />
+    <Tile type="GridTree" x="16" y="6" />
+    <Tile type="GridTree" x="0" y="7" />
+    <Tile type="GridFence" x="1" y="7" />
+    <Tile type="GridFence" x="2" y="7" />
+    <Tile type="GridFence" x="3" y="7" />
+    <Tile type="GridFence" x="4" y="7" />
+    <Tile type="GridFence" x="5" y="7" />
+    <Tile type="TileGrass" x="6" y="7" />
+    <Tile type="TileGrass" x="7" y="7" />
+    <Tile type="TilePath" x="8" y="7" />
+    <Tile type="TileGrass" x="9" y="7" />
+    <Tile type="TileGrass" x="10" y="7" />
+    <Tile type="GridFence" x="11" y="7" />
+    <Tile type="GridFence" x="12" y="7" />
+    <Tile type="GridFence" x="13" y="7" />
+    <Tile type="GridFence" x="14" y="7" />
+    <Tile type="GridFence" x="15" y="7" />
+    <Tile type="GridTree" x="16" y="7" />
+    <Tile type="GridTree" x="0" y="8" />
+    <Tile type="GridFence" x="1" y="8" />
+    <Tile type="TileGrass" x="2" y="8" />
+    <Tile type="TileGrass" x="3" y="8" />
+    <Tile type="TileGrass" x="4" y="8" />
+    <Tile type="GridFence" x="5" y="8" />
+    <Tile type="TileGrass" x="6" y="8" />
+    <Tile type="TileGrass" x="7" y="8" />
+    <Tile type="TilePath" x="8" y="8" />
+    <Tile type="TileGrass" x="9" y="8" />
+    <Tile type="TileGrass" x="10" y="8" />
+    <Tile type="GridFence" x="11" y="8" />
+    <Tile type="TileGrass" x="12" y="8" />
+    <Tile type="TileGrass" x="13" y="8" />
+    <Tile type="TileGrass" x="14" y="8" />
+    <Tile type="GridFence" x="15" y="8" />
+    <Tile type="GridTree" x="16" y="8" />
+    <Tile type="GridTree" x="0" y="9" />
+    <Tile type="GridFence" x="1" y="9" />
+    <Tile type="TileGrass" x="2" y="9" />
+    <Tile type="TileGrass" x="3" y="9" />
+    <Tile type="TileGrass" x="4" y="9" />
+    <Tile type="GridLockRed" x="5" y="9" />
+    <Tile type="TilePath" x="6" y="9" />
+    <Tile type="TilePath" x="7" y="9" />
+    <Tile type="TilePath" x="8" y="9" />
+    <Tile type="TilePath" x="9" y="9" />
+    <Tile type="TilePath" x="10" y="9" />
+    <Tile type="GridLockBlue" x="11" y="9" />
+    <Tile type="TileGrass" x="12" y="9" />
+    <Tile type="TileGrass" x="13" y="9" />
+    <Tile type="TileGrass" x="14" y="9" />
+    <Tile type="GridFence" x="15" y="9" />
+    <Tile type="GridTree" x="16" y="9" />
+    <Tile type="GridTree" x="0" y="10" />
+    <Tile type="GridFence" x="1" y="10" />
+    <Tile type="GridFence" x="2" y="10" />
+    <Tile type="GridFence" x="3" y="10" />
+    <Tile type="GridFence" x="4" y="10" />
+    <Tile type="GridFence" x="5" y="10" />
+    <Tile type="GridFence" x="6" y="10" />
+    <Tile type="GridLockYellow" x="7" y="10" />
+    <Tile type="GridFence" x="8" y="10" />
+    <Tile type="GridLockYellow" x="9" y="10" />
+    <Tile type="GridFence" x="10" y="10" />
+    <Tile type="GridFence" x="11" y="10" />
+    <Tile type="GridFence" x="12" y="10" />
+    <Tile type="GridFence" x="13" y="10" />
+    <Tile type="GridFence" x="14" y="10" />
+    <Tile type="GridFence" x="15" y="10" />
+    <Tile type="GridTree" x="16" y="10" />
+    <Tile type="GridTree" x="0" y="11" />
+    <Tile type="TileGrass" x="1" y="11" />
+    <Tile type="TileGrass" x="2" y="11" />
+    <Tile type="TileGrass" x="3" y="11" />
+    <Tile type="TileGrass" x="4" y="11" />
+    <Tile type="GridFence" x="5" y="11" />
+    <Tile type="TileGrass" x="6" y="11" />
+    <Tile type="TileGrass" x="7" y="11" />
+    <Tile type="GridFence" x="8" y="11" />
+    <Tile type="TileGrass" x="9" y="11" />
+    <Tile type="TileGrass" x="10" y="11" />
+    <Tile type="GridFence" x="11" y="11" />
+    <Tile type="TileGrass" x="12" y="11" />
+    <Tile type="TileGrass" x="13" y="11" />
+    <Tile type="TileGrass" x="14" y="11" />
+    <Tile type="GridTree" x="15" y="11" />
+    <Tile type="GridTree" x="16" y="11" />
+    <Tile type="GridTree" x="0" y="12" />
+    <Tile type="GridTree" x="1" y="12" />
+    <Tile type="TileGrass" x="2" y="12" />
+    <Tile type="TileGrass" x="3" y="12" />
+    <Tile type="TileGrass" x="4" y="12" />
+    <Tile type="GridFence" x="5" y="12" />
+    <Tile type="TileGrass" x="6" y="12" />
+    <Tile type="TileGrass" x="7" y="12" />
+    <Tile type="GridFence" x="8" y="12" />
+    <Tile type="TileGrass" x="9" y="12" />
+    <Tile type="TileGrass" x="10" y="12" />
+    <Tile type="GridFence" x="11" y="12" />
+    <Tile type="TileGrass" x="12" y="12" />
+    <Tile type="TileGrass" x="13" y="12" />
+    <Tile type="GridTree" x="14" y="12" />
+    <Tile type="GridTree" x="15" y="12" />
+    <Tile type="GridTree" x="16" y="12" />
+    <Tile type="GridTree" x="0" y="13" />
+    <Tile type="GridTree" x="1" y="13" />
+    <Tile type="GridTree" x="2" y="13" />
+    <Tile type="TileGrass" x="3" y="13" />
+    <Tile type="TileGrass" x="4" y="13" />
+    <Tile type="GridFence" x="5" y="13" />
+    <Tile type="TileGrass" x="6" y="13" />
+    <Tile type="TileGrass" x="7" y="13" />
+    <Tile type="GridFence" x="8" y="13" />
+    <Tile type="TileGrass" x="9" y="13" />
+    <Tile type="TileGrass" x="10" y="13" />
+    <Tile type="GridFence" x="11" y="13" />
+    <Tile type="TileGrass" x="12" y="13" />
+    <Tile type="TileGrass" x="13" y="13" />
+    <Tile type="GridTree" x="14" y="13" />
+    <Tile type="GridTree" x="15" y="13" />
+    <Tile type="GridTree" x="16" y="13" />
+    <Tile type="GridTree" x="0" y="14" />
+    <Tile type="GridTree" x="1" y="14" />
+    <Tile type="GridTree" x="2" y="14" />
+    <Tile type="TileGrass" x="3" y="14" />
+    <Tile type="TileGrass" x="4" y="14" />
+    <Tile type="GridFence" x="5" y="14" />
+    <Tile type="GridFence" x="6" y="14" />
+    <Tile type="GridFence" x="7" y="14" />
+    <Tile type="GridFence" x="8" y="14" />
+    <Tile type="GridFence" x="9" y="14" />
+    <Tile type="GridFence" x="10" y="14" />
+    <Tile type="GridFence" x="11" y="14" />
+    <Tile type="TileGrass" x="12" y="14" />
+    <Tile type="GridTree" x="13" y="14" />
+    <Tile type="GridTree" x="14" y="14" />
+    <Tile type="GridTree" x="15" y="14" />
+    <Tile type="GridTree" x="16" y="14" />
+    <Tile type="GridTree" x="0" y="15" />
+    <Tile type="GridTree" x="1" y="15" />
+    <Tile type="GridTree" x="2" y="15" />
+    <Tile type="GridTree" x="3" y="15" />
+    <Tile type="TileGrass" x="4" y="15" />
+    <Tile type="TileGrass" x="5" y="15" />
+    <Tile type="TileGrass" x="6" y="15" />
+    <Tile type="TileGrass" x="7" y="15" />
+    <Tile type="GridTree" x="8" y="15" />
+    <Tile type="GridTree" x="9" y="15" />
+    <Tile type="GridTree" x="10" y="15" />
+    <Tile type="GridTree" x="11" y="15" />
+    <Tile type="GridTree" x="12" y="15" />
+    <Tile type="GridTree" x="13" y="15" />
+    <Tile type="GridTree" x="14" y="15" />
+    <Tile type="GridTree" x="15" y="15" />
+    <Tile type="GridTree" x="16" y="15" />
+    <Tile type="GridTree" x="0" y="16" />
+    <Tile type="GridTree" x="1" y="16" />
+    <Tile type="GridTree" x="2" y="16" />
+    <Tile type="GridTree" x="3" y="16" />
+    <Tile type="GridTree" x="4" y="16" />
+    <Tile type="GridTree" x="5" y="16" />
+    <Tile type="GridTree" x="6" y="16" />
+    <Tile type="GridTree" x="7" y="16" />
+    <Tile type="GridTree" x="8" y="16" />
+    <Tile type="GridTree" x="9" y="16" />
+    <Tile type="GridTree" x="10" y="16" />
+    <Tile type="GridTree" x="11" y="16" />
+    <Tile type="GridTree" x="12" y="16" />
+    <Tile type="GridTree" x="13" y="16" />
+    <Tile type="GridTree" x="14" y="16" />
+    <Tile type="GridTree" x="15" y="16" />
+    <Tile type="GridTree" x="16" y="16" />
   </TileGrid>
   <Entities>
-    <Entity x="8.0" y="7.0" type="Player"/>
+    <Player x="6.0" y="6.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="0" />
+    <Player x="8.0" y="9.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="11.0" y="3.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="6.0" y="7.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="9.0" y="12.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="6.0" y="8.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="0" />
+    <Player x="9.0" y="13.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="3" />
+    <Player x="13.0" y="5.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="2" />
+    <Player x="7.0" y="12.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="3.0" y="5.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="2" />
+    <Player x="13.0" y="6.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="3.0" y="6.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="5.0" y="3.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="10.0" y="6.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="1" />
+    <Player x="13.0" y="8.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="10.0" y="7.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="3.0" y="8.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="4" />
+    <Player x="8.0" y="7.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player" />
+    <Player x="10.0" y="8.0" type="nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup" item="1" />
   </Entities>
 </Level>

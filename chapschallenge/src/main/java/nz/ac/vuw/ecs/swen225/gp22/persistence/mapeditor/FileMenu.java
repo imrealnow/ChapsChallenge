@@ -36,7 +36,7 @@ public class FileMenu extends JMenu {
         JMenuItem loadMenuItem = new JMenuItem("Load");
         loadMenuItem.addActionListener(e -> {
             levelEditor.setLevel(xmlSerializer.loadObjectFromXML(this, "Load level", levelFactory));
-            levelEditor.updateTileGrid();
+            levelEditor.updateTileGrid(levelEditor.getLevel().getTiles());
         });
         return loadMenuItem;
     }

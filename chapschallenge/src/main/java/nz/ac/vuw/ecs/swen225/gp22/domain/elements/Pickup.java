@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp22.domain.elements;
 
+import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
 import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
@@ -8,9 +9,17 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 /**
  * Represents an instance that can be picked up.
  */
-public class Pickup implements Entity, Interactable {
-    private Vector position;
+public class Pickup extends Entity implements Interactable {
     private Item item;
+
+    public Pickup(Vector position, Item item) {
+        super(position);
+        this.item = item;
+    }
+
+    public Item getItem() {
+        return item;
+    }
 
     @Override
     public void update() {
@@ -30,6 +39,7 @@ public class Pickup implements Entity, Interactable {
     public void onInteract(Entity e) {
         if (e instanceof Player p) {
             p.inventory().put(item, p.inventory().getOrDefault(item, 0) + 1);
+            Game.getInstance().getLevel().removeEntity(this);
         }
     }
 
@@ -42,11 +52,6 @@ public class Pickup implements Entity, Interactable {
     @Override
     public Sprite getSprite() {
         return item.sprite();
-    }
-
-    @Override
-    public Vector getPosition() {
-        return position;
     }
 
     public Item getItemType() {

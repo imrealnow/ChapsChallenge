@@ -34,13 +34,13 @@ public class TileElementFactoryRegistry {
      * @return the class of the tile
      */
     @SuppressWarnings("unchecked")
-    public static Class<Tile> getClassFromElement(Element element) {
+    public static Class<? extends Tile> getClassFromElement(Element element) {
         String className = element.attributeValue("type");
         if (className == null) {
             throw new IllegalArgumentException("Element has no type attribute");
         }
         try {
-            return (Class<Tile>) Class
+            return (Class<? extends Tile>) Class
                     .forName("nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids." + className);
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found: " + className);
