@@ -45,7 +45,7 @@ public enum Sprite {
 
     // Special
     Friend("Friend.png"),
-    George("George.png");
+    GridGeorge("George.png");
 
     public BufferedImage sprite;
 
