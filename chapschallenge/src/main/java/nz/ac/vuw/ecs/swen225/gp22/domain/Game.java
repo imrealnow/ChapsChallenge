@@ -28,12 +28,10 @@ public class Game {
         return INSTANCE;
     }
 
-    public Game(Level level) {
+    public Game() {
         if (INSTANCE != null)
             throw new IllegalStateException("Game already instantiated");
         INSTANCE = this;
-        currentLevel = level;
-        Time.INSTANCE.loop(UPDATE_KEY, UPDATE_PER_SECOND, () -> update());
     }
 
     /**
@@ -58,7 +56,11 @@ public class Game {
      * 
      */
     public void setLevel(Level newLevel) {
+        if (Time.INSTANCE.isLoopRunning(UPDATE_KEY)) {
+            Time.INSTANCE.stop(UPDATE_KEY);
+        }
         currentLevel = newLevel;
+        Time.INSTANCE.loop(UPDATE_KEY, UPDATE_PER_SECOND, () -> update());
     }
 
     /**
