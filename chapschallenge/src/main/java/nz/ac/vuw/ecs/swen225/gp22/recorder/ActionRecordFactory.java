@@ -5,6 +5,9 @@ import org.dom4j.Element;
 
 import nz.ac.vuw.ecs.swen225.gp22.persistence.ElementFactory;
 
+/**
+ * TODO: Add Javadoc
+ */
 public class ActionRecordFactory implements ElementFactory<ActionRecord>{
 
     @Override
@@ -17,8 +20,9 @@ public class ActionRecordFactory implements ElementFactory<ActionRecord>{
 
     @Override
     public ActionRecord createFromElement(Element element) {
-        // TODO Auto-generated method stub
-        return null;
+        String actionKey = element.attributeValue("action");
+        int time = Integer.parseInt(element.attributeValue("time"));
+        return new ActionRecord(actionKey, time);
     }
     
 }
