@@ -64,7 +64,7 @@ public class ActionRecord {
     public static String getActionKey(Bindings action){
         for(Entry<String, Bindings> entry : actionBinding.entrySet()){
             if(entry.getValue().equals(action)){
-             return entry.getValue().name();
+                return entry.getValue().name();
             } else {
                 throw new IllegalArgumentException(action.name() + " is not a valid action");
             }
