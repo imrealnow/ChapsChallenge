@@ -11,7 +11,6 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup;
 
 public class Level {
     private List<Entity> entities = new ArrayList<Entity>();
-    private List<Entity> removedEntitiesCache = new ArrayList<Entity>();
     private Tile[][] tiles;
     String title;
     int timelimit;
@@ -49,12 +48,7 @@ public class Level {
     }
 
     public void removeEntity(Entity e){
-        removedEntitiesCache.add(e);
-    }
-
-    public void flushEntityCache(){
-        entities.removeAll(removedEntitiesCache);
-        removedEntitiesCache = new ArrayList<Entity>();
+        entities.remove(e);
     }
 
     /**
