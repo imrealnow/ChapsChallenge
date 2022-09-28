@@ -2,6 +2,7 @@ package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -24,27 +25,28 @@ public class LevelFactory implements XMLFactory<Level> {
     public File createXML(String filePath, Level objectToSave) throws IOException {
         Document document = DocumentHelper.createDocument();
         Element root = document.addElement("Level");
-        // root.addAttribute("name", objectToSave.getName());
-        // root.addAttribute("TimeLimit",
-        // Integer.toString(objectToSave.getTimeLimit()));
-        root.add(entityListElementFactory.createElement(objectToSave.getEntities()));
-        root.add(tileGridElementFactory.createElement(objectToSave.getTiles()));
+        root.addAttribute("Title", objectToSave.getTitle());
+        root.addAttribute("TimeLimit",
+                Integer.toString(objectToSave.getTimeLimit()));
+        Element tileGrid = tileGridElementFactory.createElement(objectToSave.getTiles());
+        Element entityList = entityListElementFactory.createElement(objectToSave.getEntities());
+        System.out.println(tileGrid);
+        System.out.println(entityList);
+        root.add(tileGrid);
+        root.add(entityList);
         return XMLSerializer.writeDocumentToXML(document, filePath);
     }
 
     @Override
-    public Level createFromXML(File xmlFile) throws DocumentException {
+    public Level createFromXML(InputStream xmlStream) throws DocumentException {
         SAXReader reader = new SAXReader();
-        Document document = reader.read(xmlFile);
+        Document document = reader.read(xmlStream);
         Element root = document.getRootElement();
-        // String name = root.attributeValue("name");
-        // int id = Integer.parseInt(root.attributeValue("id"));
-        // int timeLimit = Integer.parseInt(root.attributeValue("TimeLimit"));
-        Element entityListElement = root.element("EntityList");
+        String name = root.attributeValue("Title");
+        int timeLimit = Integer.parseInt(root.attributeValue("TimeLimit"));
+        Element entityListElement = root.element("Entities");
         Element tileGridElement = root.element("TileGrid");
-        // return new
-        // Level(entityListElementFactory.createEntityList(entityListElement),
-        // tileGridElementFactory.createTileGrid(tileGridElement));
-        return null;
+        return new Level(tileGridElementFactory.createFromElement(tileGridElement),
+                entityListElementFactory.createFromElement(entityListElement), name, timeLimit);
     }
 }

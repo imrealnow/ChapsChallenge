@@ -26,8 +26,9 @@ public enum Time {
      * @param name           The name of the loop to be used as a key.
      * @param timesPerSecond how many times per second to call the function.
      * @param callback       The function to call.
+     * @return The timer object that is running the loop.
      */
-    public void loop(String name, int timesPerSecond, Runnable callback) {
+    public Timer loop(String name, int timesPerSecond, Runnable callback) {
         if (loops.containsKey(name)) {
             loops.get(name).cancel();
         }
@@ -35,10 +36,22 @@ public enum Time {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                System.out.println("delayed invoke");
                 callback.run();
             }
         }, 0, 1000 / timesPerSecond);
         loops.put(name, timer);
+        return timer;
+    }
+
+    /**
+     * Checks if a loop of a given key is currently running.
+     * 
+     * @param loopKey the key of the loop to check.
+     * @return true if the loop is running, false otherwise.
+     */
+    public boolean isLoopRunning(String loopKey) {
+        return loops.containsKey(loopKey);
     }
 
     /**

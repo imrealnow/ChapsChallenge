@@ -1,6 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp22.renderer;
 
-import java.awt.image.BufferedImage;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Objects.Entities.Player;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Tile;
-import nz.ac.vuw.ecs.swen225.gp22.domain.Elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
@@ -20,7 +20,7 @@ public class GameView extends JPanel {
 
     Level level;
 
-    GameView(Level level) {
+    public GameView(Level level) {
         this.level = level;
     }
 
@@ -43,10 +43,11 @@ public class GameView extends JPanel {
 
     }
 
-    public void draw(Sprite image, Graphics g, Vector c, double x, double y) {
+    private void draw(Sprite image, Graphics g, Vector c, double x, double y) {
 
-        double screenX = (x - c.x()) * imgSize;
-        double screenY = (x - c.y()) * imgSize;
+        Dimension s = getSize();
+        double screenX = (x - c.x()) * imgSize + s.getWidth()/2 - imgSize/2;
+        double screenY = (y - c.y()) * imgSize + s.getHeight()/2 - imgSize/2;
 
         g.drawImage(image.sprite, (int) screenX, (int) screenY, null);
     }

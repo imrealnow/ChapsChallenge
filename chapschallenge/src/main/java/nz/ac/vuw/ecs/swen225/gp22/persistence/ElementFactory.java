@@ -4,8 +4,7 @@ import org.dom4j.Element;
 
 /**
  * Interface used for creating an XML element for an object, and loading an
- * object
- * from an XML element.
+ * object from an XML element.
  * 
  * @author Liam Green - greenliam
  */

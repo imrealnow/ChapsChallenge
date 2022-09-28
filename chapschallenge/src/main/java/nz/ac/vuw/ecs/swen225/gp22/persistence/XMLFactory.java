@@ -2,6 +2,7 @@ package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.dom4j.DocumentException;
 
@@ -19,7 +20,7 @@ public interface XMLFactory<T> {
      * @return the object created from the XML file
      * @throws DocumentException if the XML file is invalid
      */
-    public T createFromXML(File xmlFile) throws DocumentException;
+    public T createFromXML(InputStream xmlStream) throws DocumentException;
 
     /**
      * Save an object of type T to an XML file.
