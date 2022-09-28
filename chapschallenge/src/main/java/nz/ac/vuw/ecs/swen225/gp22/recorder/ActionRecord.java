@@ -25,7 +25,33 @@ public class ActionRecord {
             put("PlayerRight", Bindings.Right);
         }
     };
+    private int time;
+    private Bindings action;
 
-    private String action;
-    private Time time;
+    /**
+     * TO-DO: fill javadoc
+     * 
+     * @param action
+     * @param time
+     */
+    public ActionRecord(Bindings action, int time){
+        this.action = action;
+        this.time = time;
+    }
+
+    /**
+     * TODO: Fill javadoc
+     * 
+     * @param actionString
+     * @param time
+     */
+    public ActionRecord(String actionString, int time){
+        Bindings actionCurrent = actionBinding.get(actionString);
+        if(action == null){
+            throw new IllegalArgumentException("Invalid action key");
+        }
+        this.action = actionCurrent;
+        this.time = time;
+    }
+    
 }
