@@ -81,7 +81,7 @@ public class Game {
             }
         });
 
-        if (currentLevel.getTiles()[(int) pos.x()][(int) pos.y()] instanceof Interactable intTile)
+        if (currentLevel.getTiles()[(int) pos.y()][(int) pos.x()] instanceof Interactable intTile)
             is.add(intTile);
 
         return is;

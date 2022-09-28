@@ -36,7 +36,6 @@ public enum Time {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                System.out.println("delayed invoke");
                 callback.run();
             }
         }, 0, 1000 / timesPerSecond);

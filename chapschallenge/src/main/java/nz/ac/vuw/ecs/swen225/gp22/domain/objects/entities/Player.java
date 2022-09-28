@@ -1,11 +1,14 @@
 package nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities;
 
 import java.util.HashMap;
+import java.util.List;
+
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Item;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Interactable;
 
@@ -52,35 +55,31 @@ public class Player extends Entity {
 
         Vector newPos = getPosition().add(dir.vector());
 
-        //Case 0: The player is moving to a valid positon
-        if (Game.getInstance().getLevel().getTiles().length < newPos.x() 
-            || newPos.x() < 0) 
-            throw new IndexOutOfBoundsException(
-                "Attempted to move player out of bounds: X=" + newPos.x());
-        if (Game.getInstance().getLevel().getTiles()[0].length < newPos.y() 
-            || newPos.y() < 0) 
-            throw new IndexOutOfBoundsException(
-                "Attempted to move player out of bounds: Y=" + newPos.y());
+        Tile[][] tiles = Game.getInstance().getLevel().getTiles();
+        int levelHeight = tiles.length;
+        int levelWidth = tiles[0].length;
 
-        //Case 1: There are no grids or entities at the desired position.
-        if (Game.getInstance().getInteractablesAt(newPos).size() == 0) {
-            setPosition(newPos);
-            facing = Direction.fromVector(newPos);
-            return true;
+        // Case 0: The player is moving to a invalid positon
+        if (newPos.x() < 0 || newPos.x() >= levelWidth || newPos.y() < 0 || newPos.y() >= levelHeight) {
+            throw new IndexOutOfBoundsException("Player tried to move out of bounds");
         }
 
-        //Case 2: There are grids/entities at the desired position
-        //Therefore, we need to check if we can step on all of them
-        for (Interactable i: Game.getInstance().getInteractablesAt(newPos)){
-            if (i.entityCanStep(this) == false) return false;
+        List<Interactable> interactables = Game.getInstance().getInteractablesAt(newPos);
+
+        // if any interactables block movement, return false
+        if (interactables.stream().anyMatch(i -> !i.entityCanStep(this))) {
+            return false;
         }
 
-        //Case 3: There are grids/entities at the desired position
-        //But we can step on them
-        for (Interactable i: Game.getInstance().getInteractablesAt(newPos)){
-            i.onInteract(this);
-        }
+        // otherwise, move the player
+        applyMove(dir, interactables);
         Game.getInstance().getLevel().flushEntityCache();
         return true;
+    }
+
+    private void applyMove(Direction dir, List<Interactable> interactables) {
+        interactables.stream().forEach(i -> i.onInteract(this));
+        setPosition(getPosition().add(dir.vector()));
+        facing = dir;
     }
 }
