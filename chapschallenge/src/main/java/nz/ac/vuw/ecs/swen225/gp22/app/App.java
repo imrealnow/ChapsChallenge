@@ -11,28 +11,41 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
+import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
+import nz.ac.vuw.ecs.swen225.gp22.renderer.GameView;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Class used for setting up the application interface
  *
  * @author Jack Harrisson - harrisjack1
  */
-public class App extends JFrame {
+public class App extends JFrame implements KeyListener {
     public static App INSTANCE;
+    public ActionController actionController;
     Level selectedLevel;
+    int time = 100;
+    Runnable closeStart = () -> {
+    };
 
     App() {
         assert SwingUtilities.isEventDispatchThread();
         assert INSTANCE == null : "App instance already exists";
+        actionController = new ActionController();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         startScreen();
         setJMenuBar(createMenuBar());
         setVisible(true);
         INSTANCE = this;
+    }
+
+    public void callAction(int keyCode) {
+        actionController.tryExcecutefromKeyCode(keyCode, this, selectedLevel);
     }
 
     /**
@@ -44,11 +57,19 @@ public class App extends JFrame {
         var start = new JButton("Start!");
         var Level1 = new JButton("Level 1");
         var Level2 = new JButton("Level 2");
+
         add(BorderLayout.CENTER, welcome);
         add(BorderLayout.SOUTH, start);
         JPanel panel = new JPanel();
+
+        Bindings.setKeyBinding(Bindings.Up, KeyEvent.VK_UP);
+        Bindings.setKeyBinding(Bindings.Down, KeyEvent.VK_DOWN);
+        Bindings.setKeyBinding(Bindings.Left, KeyEvent.VK_LEFT);
+        Bindings.setKeyBinding(Bindings.Right, KeyEvent.VK_RIGHT);
+
         panel.add(Level1);
         panel.add(Level2);
+
         add(panel, BoxLayout.X_AXIS);
         Level1.addActionListener(e -> {// Set selectedLevel to level1
             Level1.setBackground(Color.GREEN);
@@ -59,7 +80,56 @@ public class App extends JFrame {
             Level2.setBackground(Color.GREEN);
             Level1.setBackground(Color.RED);
         });
+
+        start.addActionListener(e -> {
+            startLevel();
+        });
+        closeStart.run();
+        closeStart = () -> {
+            remove(start);
+            remove(panel);
+            panel.remove(Level1);
+            panel.remove(Level2);
+            repaint();
+        };
         setPreferredSize(new Dimension(800, 400));
+        pack();
+    }
+
+    private void startLevel() {
+        closeStart.run();
+        selectedLevel = LevelLoader.Level1.load();
+        GameView game = new GameView(selectedLevel);
+
+        addKeyListener(this);
+        setFocusable(true);
+        requestFocusInWindow();
+        add(game);
+        pack();
+        setVisible(true);
+        JPanel sidePanel = new JPanel();
+        JLabel level = new JLabel() {
+            {
+                setText("LEVEL");
+            }
+        };
+
+        JLabel Time = new JLabel() {
+            {
+                setText("TIME");
+            }
+        };
+
+        JLabel Chips = new JLabel() {
+            {
+                setText("CHIPS LEFT");
+            }
+        };
+
+        sidePanel.add(level, BoxLayout.X_AXIS);
+        sidePanel.add(Time, BoxLayout.X_AXIS);
+        sidePanel.add(Chips, BoxLayout.X_AXIS);
+        add(BorderLayout.EAST, sidePanel);
         pack();
     }
 
@@ -92,5 +162,22 @@ public class App extends JFrame {
             }
         });
         return menu;
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.print("Key Pressed: " + e.getKeyCode());
+        callAction(e.getKeyCode());
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
     }
 }
