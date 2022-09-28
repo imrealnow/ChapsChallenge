@@ -69,6 +69,24 @@ public class ActionRecord {
                 throw new IllegalArgumentException(action.name() + " is not a valid action");
             }
         }
-    }   
+    }  
+    
+    /**
+     * TODO: Fill javadoc
+     * 
+     * @return
+     */
+    public Bindings getAction(){
+        return action;
+    }
+
+    /**
+     * TODO: Fill javadoc
+     * 
+     * @return
+     */
+    public int getTime(){
+        return time;
+    }
 
 }
