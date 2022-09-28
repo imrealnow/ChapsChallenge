@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
 import nz.ac.vuw.ecs.swen225.gp22.renderer.GameView;
@@ -29,6 +30,8 @@ public class App extends JFrame implements KeyListener {
     public static App INSTANCE;
     public ActionController actionController;
     Level selectedLevel;
+    private Game game;
+    private GameView gameView;
     int time = 100;
     Runnable closeStart = () -> {
     };
@@ -37,6 +40,7 @@ public class App extends JFrame implements KeyListener {
         assert SwingUtilities.isEventDispatchThread();
         assert INSTANCE == null : "App instance already exists";
         actionController = new ActionController();
+        game = new Game();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         startScreen();
         setJMenuBar(createMenuBar());
@@ -45,7 +49,7 @@ public class App extends JFrame implements KeyListener {
     }
 
     public void callAction(int keyCode) {
-        actionController.tryExcecutefromKeyCode(keyCode, this, selectedLevel);
+        actionController.tryExcecutefromKeyCode(keyCode, this, game.getLevel());
     }
 
     /**
@@ -82,7 +86,7 @@ public class App extends JFrame implements KeyListener {
         });
 
         start.addActionListener(e -> {
-            startLevel();
+            startLevel(LevelLoader.Level1.load());
         });
         closeStart.run();
         closeStart = () -> {
@@ -96,15 +100,16 @@ public class App extends JFrame implements KeyListener {
         pack();
     }
 
-    private void startLevel() {
+    private void startLevel(Level selectedLevel) {
         closeStart.run();
-        selectedLevel = LevelLoader.Level1.load();
-        GameView game = new GameView(selectedLevel);
+        game.setLevel(selectedLevel);
+        GameView level1 = new GameView(game.getLevel());
+        gameView = level1;
 
         addKeyListener(this);
         setFocusable(true);
         requestFocusInWindow();
-        add(game);
+        add(level1);
         pack();
         setVisible(true);
         JPanel sidePanel = new JPanel();
