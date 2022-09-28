@@ -69,6 +69,7 @@ public class ActionRecord {
                 throw new IllegalArgumentException(action.name() + " is not a valid action");
             }
         }
+        return null;
     }  
     
     /**
