@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Grid;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Item;
@@ -11,23 +12,22 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup;
 
 public class Level {
     private List<Entity> entities = new ArrayList<Entity>();
-    private List<Entity> removedEntitiesCache = new ArrayList<Entity>();
     private Tile[][] tiles;
-    String title;
-    int timelimit;
-    int friendsNeeded;
-    Player player;
+    private String title;
+    private int timelimit;
+    private int totalFriendsNeeded;
+    private Player player;
 
     public Level(Tile[][] tiles, List<Entity> entities, String title, int time) {
         timelimit = time;
-        friendsNeeded = 0;
+        totalFriendsNeeded = 0;
         this.tiles = tiles;
         this.title = title;
         this.entities = new ArrayList<Entity>();
         entities.forEach(e -> {
             this.entities.add(e);
             if (e instanceof Pickup p && p.getItemType() == Item.ItemFriend)
-                friendsNeeded++;
+                totalFriendsNeeded++;
             if (e instanceof Player p) {
                 if (this.player != null) throw new IllegalArgumentException(
                     "Cannot have more than one instance of player in Level");
@@ -48,13 +48,51 @@ public class Level {
         }    
     }
 
-    public void removeEntity(Entity e){
-        removedEntitiesCache.add(e);
+    public void validateLevelState(){
+        //Initialise Data
+        int playerCount = 0;
+        int collectedFriends = 0;
+        int remainingFriends = 0;
+        List<Entity> entitiesOnGrids = new ArrayList<Entity>();
+        List<Entity> entitiesOutOfBounds = new ArrayList<Entity>(); 
+        
+        //Collect Data
+        for(Entity e: entities){
+            if (e instanceof Player p) {
+                playerCount++;
+                collectedFriends = p.inventory().getOrDefault(Item.ItemFriend, 0);
+            }
+            if (e.getPosition().x() > tiles.length
+                || e.getPosition().y() > tiles[0].length
+                || e.getPosition().x() < 0
+                || e.getPosition().y() < 0) 
+                entitiesOutOfBounds.add(e);
+
+            if (tiles[(int)e.getPosition().x()][(int)e.getPosition().y()] instanceof Grid) 
+                entitiesOnGrids.add(e);
+        }
+
+        //Verify Data
+        String output = "VALIDATION LOG:\n";
+        if (playerCount != 0) 
+            output += "Error: Invalid number of players! "
+            +"(Expected 1, found " + playerCount +".)\n";
+        if (collectedFriends + remainingFriends != totalFriendsNeeded) 
+            output += "Error: Invalid sum of friends on board and friends collected! "
+            +"( Expected: " + totalFriendsNeeded + ", found " + collectedFriends + remainingFriends
+            +". C: "+ collectedFriends + " || R: " + remainingFriends + ".)\n";
+        if (entitiesOnGrids.size() != 0) 
+            output += "Error: Found entities on grid! "
+            + "(Found: " + entitiesOnGrids.toString() + ", Expected none.)\n";
+        if (entitiesOutOfBounds.size() != 0) 
+            output += "Error: Found entities out of bounds! "
+            + "(Found: " + entitiesOutOfBounds.toString() + ", Expected none.)\n";
+
+        if (!output.equals("VALIDATION LOG:\n")) throw new IllegalStateException(output);
     }
 
-    public void flushEntityCache(){
-        entities.removeAll(removedEntitiesCache);
-        removedEntitiesCache = new ArrayList<Entity>();
+    public void removeEntity(Entity e){
+        entities.remove(e);
     }
 
     /**
@@ -96,7 +134,7 @@ public class Level {
      * Returns the number of friends needed to complete the level
      */
     public int getFriendsNeeded() {
-        return friendsNeeded;
+        return totalFriendsNeeded;
     }
 
     @Override
