@@ -51,9 +51,9 @@ public class FuzzTest {
       this.game = Game.getInstance();
       this.actionController = app.getController();
 
-      long t = System.currentTimeMillis();
-      long end = t + 60000;
-      while (System.currentTimeMillis() < end) {
+      long systemTime = System.currentTimeMillis();
+      long endTime = systemTime + 60000;
+      while (System.currentTimeMillis() < endTime) {
          // call random methods from app with randomised input a set amount of times.
          int random = (int) (Math.random() * 4);
          int keyCode = 0;
@@ -73,6 +73,12 @@ public class FuzzTest {
          }
          // Pass in randomly generated keystroke into callAction method
          app.callAction(keyCode);
+         // Slowing down keystrokes so it's easier to see - delete later
+         try {
+            Thread.sleep(100);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
       }
    }
 }
