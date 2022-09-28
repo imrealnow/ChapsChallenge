@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import nz.ac.vuw.ecs.swen225.gp22.app.ActionController;
 import nz.ac.vuw.ecs.swen225.gp22.app.Bindings;
@@ -53,5 +54,21 @@ public class ActionRecord {
         this.action = actionCurrent;
         this.time = time;
     }
-    
+
+    /**
+     * TODO - fill javadoc
+     * 
+     * @param action
+     * @return
+     */
+    public static Bindings getActionKey(Bindings action){
+        for(Entry<String, Bindings> entry : actionBinding.entrySet()){
+            if(entry.getValue().equals(action)){
+             return entry.getValue();
+            } else {
+                throw new IllegalArgumentException(action.getName() + " is not a valid action");
+            }
+        }
+    }   
+
 }
