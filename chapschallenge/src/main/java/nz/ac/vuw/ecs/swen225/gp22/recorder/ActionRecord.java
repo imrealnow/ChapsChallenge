@@ -11,22 +11,21 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
 
 /**
- * ActionRecord records the move of the character as well as the time that move took place
+ * ActionRecord records the move of the character as well as the time that move
+ * took place
  * 
  * @author Julia Huijser - huijsejuli
  */
 public class ActionRecord {
-    private String action;
-    private static final Map<String, Bindings> actionBinding = new HashMap<String, Bindings>(){
-        put("PlayerUp",Bindings.Up);
-        put("PlayerDown",Bindings.Down);
-        put("PlayerLeft",Bindings.Left);
-        put("PlayerRight",Bindings.Right);
+    private static final Map<String, Bindings> actionBinding = new HashMap<String, Bindings>() {
+        {
+            put("PlayerUp", Bindings.Up);
+            put("PlayerDown", Bindings.Down);
+            put("PlayerLeft", Bindings.Left);
+            put("PlayerRight", Bindings.Right);
+        }
     };
-    
+
+    private String action;
     private Time time;
-
-
-
-    
 }
