@@ -21,7 +21,7 @@ public class GridLockYellow extends Grid {
     @Override
     public void onInteract(Entity e) {
         if (e instanceof Player p){
-            p.inventory().put(Item.ItemKeyRed,p.inventory().get(Item.ItemKeyRed)-1);
+            p.inventory().put(Item.ItemKeyYellow,p.inventory().get(Item.ItemKeyYellow)-1);
             Game.getInstance().getLevel().morphTile(this,new TileGrass());
         }
     }
