@@ -31,6 +31,8 @@ public class App extends JFrame implements KeyListener {
     private ActionController actionController;
     private Game game;
     private StartScreen startScreen;
+    private GameView gameView;
+    private Sidebar sidebar;
 
     public App() {
         // Set title
@@ -39,7 +41,7 @@ public class App extends JFrame implements KeyListener {
         assert SwingUtilities.isEventDispatchThread();
         assert INSTANCE == null : "App instance already exists";
         // Setup JFrame
-        setJMenuBar(createMenuBar());
+        // setJMenuBar(createMenuBar());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDefaultBindings();
         // Setup instance
@@ -82,13 +84,20 @@ public class App extends JFrame implements KeyListener {
     public void startLevel(Level selectedLevel) {
         // Clear screen and set level
         remove(startScreen);
+
         game.setLevel(selectedLevel);
         // Add Keylistener and make focusable
         addKeyListener(this);
         requestFocusInWindow();
         // Setup UI
-        setPreferredSize(new Dimension(800, 600));
-        add(new GameView(selectedLevel));
+        setSize(new Dimension(800, 600));
+        setMinimumSize(getSize());
+        gameView = new GameView(selectedLevel);
+        gameView.setMinimumSize(new Dimension(600, 600));
+        getContentPane().add((gameView));
+        getContentPane().setBackground(Color.darkGray);
+        sidebar = new Sidebar(selectedLevel);
+        add(sidebar, BorderLayout.EAST);
         setVisible(true);
         pack();
     }
