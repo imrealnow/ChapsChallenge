@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
+import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Grid;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Item;
@@ -45,6 +46,49 @@ public class Level {
                 }
             }
         }    
+    }
+
+    public void validateLevelState(){
+        //Initialise Data
+        int playerCount = 0;
+        int collectedFriends = 0;
+        int remainingFriends = 0;
+        List<Entity> entitiesOnGrids = new ArrayList<Entity>();
+        List<Entity> entitiesOutOfBounds = new ArrayList<Entity>(); 
+        
+        //Collect Data
+        for(Entity e: entities){
+            if (e instanceof Player p) {
+                playerCount++;
+                collectedFriends = p.inventory().getOrDefault(Item.ItemFriend, 0);
+            }
+            if (e.getPosition().x() > tiles.length
+                || e.getPosition().y() > tiles[0].length
+                || e.getPosition().x() < 0
+                || e.getPosition().y() < 0) 
+                entitiesOutOfBounds.add(e);
+
+            if (tiles[(int)e.getPosition().x()][(int)e.getPosition().y()] instanceof Grid) 
+                entitiesOnGrids.add(e);
+        }
+
+        //Verify Data
+        String output = "VALIDATION LOG:\n";
+        if (playerCount != 0) 
+            output += "Error: Invalid number of players! "
+            +"(Expected 1, found " + playerCount +".)\n";
+        if (collectedFriends + remainingFriends != friendsNeeded) 
+            output += "Error: Invalid sum of friends on board and friends collected! "
+            +"( Expected: " + friendsNeeded + ", found " + collectedFriends + remainingFriends
+            +". C: "+ collectedFriends + " || R: " + remainingFriends + ".)\n";
+        if (entitiesOnGrids.size() != 0) 
+            output += "Error: Found entities on grid! "
+            + "(Found: " + entitiesOnGrids.toString() + ", Expected none.)\n";
+        if (entitiesOutOfBounds.size() != 0) 
+            output += "Error: Found entities out of bounds! "
+            + "(Found: " + entitiesOutOfBounds.toString() + ", Expected none.)\n";
+
+        if (!output.equals("VALIDATION LOG:\n")) throw new IllegalStateException(output);
     }
 
     public void removeEntity(Entity e){
