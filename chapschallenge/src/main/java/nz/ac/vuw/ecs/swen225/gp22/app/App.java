@@ -30,111 +30,66 @@ public class App extends JFrame implements KeyListener {
     public static App INSTANCE;
     private ActionController actionController;
     private Game game;
-    private Runnable closeStart = () -> {
-    };
+    private StartScreen startScreen;
 
     public App() {
+        // Set title
+        super("Chaps Challenge");
+        // Assertions
         assert SwingUtilities.isEventDispatchThread();
         assert INSTANCE == null : "App instance already exists";
+        // Setup JFrame
+        setJMenuBar(createMenuBar());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultBindings();
+        // Setup instance
         actionController = new ActionController();
         game = new Game();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        startScreen();
-        setJMenuBar(createMenuBar());
-        setVisible(true);
         INSTANCE = this;
+        // Setup UI
+        startScreen = new StartScreen();
+        add(startScreen);
+        setVisible(true);
+        pack();
+    }
+
+    /*
+     * Sets bindings for all movement keys.
+     */
+    private void setDefaultBindings() {
+        Bindings.setKeyBinding(Bindings.Up, KeyEvent.VK_UP);
+        Bindings.setKeyBinding(Bindings.Down, KeyEvent.VK_DOWN);
+        Bindings.setKeyBinding(Bindings.Left, KeyEvent.VK_LEFT);
+        Bindings.setKeyBinding(Bindings.Right, KeyEvent.VK_RIGHT);
     }
 
     public ActionController getController() {
         return actionController;
     }
 
+    /*
+     * Calls the action associated with the keycode
+     */
     public void callAction(int keyCode) {
         actionController.tryExcecutefromKeyCode(keyCode, this, game.getLevel());
     }
 
     /**
-     * Creates start screen GUI. Currently has
-     * start button and buttons to select levels
+     * Creates and starts the selected level
+     * 
+     * @param selectedLevel the Level that has been selected by the player
      */
-    private void startScreen() {
-        var welcome = new JLabel("Welcome to ChapsChallenge!");
-        var start = new JButton("Start!");
-        var Level1 = new JButton("Level 1");
-        var Level2 = new JButton("Level 2");
-
-        add(BorderLayout.CENTER, welcome);
-        add(BorderLayout.SOUTH, start);
-        JPanel panel = new JPanel();
-
-        Bindings.setKeyBinding(Bindings.Up, KeyEvent.VK_UP);
-        Bindings.setKeyBinding(Bindings.Down, KeyEvent.VK_DOWN);
-        Bindings.setKeyBinding(Bindings.Left, KeyEvent.VK_LEFT);
-        Bindings.setKeyBinding(Bindings.Right, KeyEvent.VK_RIGHT);
-
-        panel.add(Level1);
-        panel.add(Level2);
-
-        add(panel, BoxLayout.X_AXIS);
-        Level1.addActionListener(e -> {// Set selectedLevel to level1
-            Level1.setBackground(Color.GREEN);
-            Level2.setBackground(Color.RED);
-        });
-
-        Level2.addActionListener(e -> {// Set selectedLevel to level2
-            Level2.setBackground(Color.GREEN);
-            Level1.setBackground(Color.RED);
-        });
-
-        start.addActionListener(e -> {
-            startLevel(LevelLoader.Level1.load());
-        });
-        closeStart.run();
-        closeStart = () -> {
-            remove(start);
-            remove(panel);
-            panel.remove(Level1);
-            panel.remove(Level2);
-            repaint();
-        };
-        setPreferredSize(new Dimension(800, 400));
-        pack();
-    }
-
     public void startLevel(Level selectedLevel) {
-        closeStart.run();
+        // Clear screen and set level
+        remove(startScreen);
         game.setLevel(selectedLevel);
-        GameView level1 = new GameView(game.getLevel());
-
+        // Add Keylistener and make focusable
         addKeyListener(this);
-        setFocusable(true);
         requestFocusInWindow();
-        add(level1);
-        pack();
+        // Setup UI
+        setPreferredSize(new Dimension(800, 600));
+        add(new GameView(selectedLevel));
         setVisible(true);
-        JPanel sidePanel = new JPanel();
-        JLabel level = new JLabel() {
-            {
-                setText("LEVEL");
-            }
-        };
-
-        JLabel Time = new JLabel() {
-            {
-                setText("TIME");
-            }
-        };
-
-        JLabel Chips = new JLabel() {
-            {
-                setText("CHIPS LEFT");
-            }
-        };
-
-        sidePanel.add(level, BoxLayout.X_AXIS);
-        sidePanel.add(Time, BoxLayout.X_AXIS);
-        sidePanel.add(Chips, BoxLayout.X_AXIS);
-        add(BorderLayout.EAST, sidePanel);
         pack();
     }
 
@@ -171,9 +126,7 @@ public class App extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.print("Key Pressed: " + e.getKeyCode());
         callAction(e.getKeyCode());
-
     }
 
     @Override
