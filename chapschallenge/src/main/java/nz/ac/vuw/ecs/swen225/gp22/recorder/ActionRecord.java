@@ -1,11 +1,13 @@
 package nz.ac.vuw.ecs.swen225.gp22.recorder;
 
-import nz.ac.vuw.ecs.swen225.gp22.app.*;
+import java.util.ArrayList;
+import java.util.List;
+import nz.ac.vuw.ecs.swen225.gp22.app.Main;
 import nz.ac.vuw.ecs.swen225.gp22.util.Direction;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
 
 /**
- * ActionRecord records the different moves of the different characters as well as the time that move took place
+ * ActionRecord records the move of the character as well as the time that move took place
  * 
  * @author Julia Huijser - huijsejuli
  */
