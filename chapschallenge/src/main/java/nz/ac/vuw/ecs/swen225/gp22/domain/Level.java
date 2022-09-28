@@ -13,21 +13,21 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup;
 public class Level {
     private List<Entity> entities = new ArrayList<Entity>();
     private Tile[][] tiles;
-    String title;
-    int timelimit;
-    int friendsNeeded;
-    Player player;
+    private String title;
+    private int timelimit;
+    private int totalFriendsNeeded;
+    private Player player;
 
     public Level(Tile[][] tiles, List<Entity> entities, String title, int time) {
         timelimit = time;
-        friendsNeeded = 0;
+        totalFriendsNeeded = 0;
         this.tiles = tiles;
         this.title = title;
         this.entities = new ArrayList<Entity>();
         entities.forEach(e -> {
             this.entities.add(e);
             if (e instanceof Pickup p && p.getItemType() == Item.ItemFriend)
-                friendsNeeded++;
+                totalFriendsNeeded++;
             if (e instanceof Player p) {
                 if (this.player != null) throw new IllegalArgumentException(
                     "Cannot have more than one instance of player in Level");
@@ -77,9 +77,9 @@ public class Level {
         if (playerCount != 0) 
             output += "Error: Invalid number of players! "
             +"(Expected 1, found " + playerCount +".)\n";
-        if (collectedFriends + remainingFriends != friendsNeeded) 
+        if (collectedFriends + remainingFriends != totalFriendsNeeded) 
             output += "Error: Invalid sum of friends on board and friends collected! "
-            +"( Expected: " + friendsNeeded + ", found " + collectedFriends + remainingFriends
+            +"( Expected: " + totalFriendsNeeded + ", found " + collectedFriends + remainingFriends
             +". C: "+ collectedFriends + " || R: " + remainingFriends + ".)\n";
         if (entitiesOnGrids.size() != 0) 
             output += "Error: Found entities on grid! "
@@ -134,7 +134,7 @@ public class Level {
      * Returns the number of friends needed to complete the level
      */
     public int getFriendsNeeded() {
-        return friendsNeeded;
+        return totalFriendsNeeded;
     }
 
     @Override
