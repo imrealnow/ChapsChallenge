@@ -15,8 +15,7 @@ import java.util.List;
 public enum Time {
     INSTANCE;
 
-    Map<String, Timer> loops = new HashMap<>();
-    Map<String, Integer> loopTimeSteps = new HashMap<>();
+    Map<String, LoopRecord> loops = Collections.synchronizedMap(new HashMap<>());
     Long startTime = System.currentTimeMillis();
 
     /**
@@ -30,16 +29,12 @@ public enum Time {
      */
     public Timer loop(String name, int timesPerSecond, Runnable callback) {
         if (loops.containsKey(name)) {
-            loops.get(name).cancel();
+            loops.get(name).timer().cancel();
         }
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                callback.run();
-            }
-        }, 0, 1000 / timesPerSecond);
-        loops.put(name, timer);
+        TickedTask task = new TickedTask(callback);
+        timer.scheduleAtFixedRate(task, 0, 1000 / timesPerSecond);
+        loops.put(name, new LoopRecord(name, timer, task));
         return timer;
     }
 
@@ -60,9 +55,10 @@ public enum Time {
      */
     public void stop(String name) {
         if (loops.containsKey(name)) {
-            loops.get(name).cancel();
+            loops.get(name).timer().cancel();
             loops.remove(name);
         }
+        throw new IllegalArgumentException("No loop with name " + name + " exists.");
     }
 
     /**
@@ -70,9 +66,16 @@ public enum Time {
      */
     public void stopAll() {
         for (String name : loops.keySet()) {
-            loops.get(name).cancel();
+            loops.get(name).timer().cancel();
         }
         loops.clear();
+    }
+
+    public int getLoopTicks(String name) {
+        if (loops.containsKey(name)) {
+            return loops.get(name).task().getTickCount();
+        }
+        throw new IllegalArgumentException("No loop with name " + name + " exists.");
     }
 
     /**
@@ -89,20 +92,6 @@ public enum Time {
                 callback.run();
             }
         }, milliseconds);
-    }
-
-    /**
-     * Gets the time step of a loop.
-     * 
-     * @param name The name of the loop.
-     * @return The time step of the loop.
-     *         If the loop does not exist, returns -1.
-     */
-    public int getLoopTimeStep(String name) {
-        if (loopTimeSteps.containsKey(name)) {
-            return loopTimeSteps.get(name);
-        }
-        return -1;
     }
 
     /**
@@ -129,5 +118,33 @@ public enum Time {
             delayedInvoke(Math.toIntExact(delay), command);
             lastCommand = command;
         }
+    }
+
+    /**
+     * Extension of timer task that keeps track of how many times it has been run.
+     */
+    class TickedTask extends TimerTask {
+        private int tickCount = 0;
+        private Runnable callback;
+
+        public TickedTask(Runnable callback) {
+            this.callback = callback;
+        }
+
+        @Override
+        public void run() {
+            tickCount++;
+            callback.run();
+        }
+
+        public int getTickCount() {
+            return tickCount;
+        }
+    }
+
+    /**
+     * Record for saving info about a loop
+     */
+    record LoopRecord(String key, Timer timer, TickedTask task) {
     }
 }
