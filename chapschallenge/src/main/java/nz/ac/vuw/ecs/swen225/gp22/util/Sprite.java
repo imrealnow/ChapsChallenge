@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.*;
 
 import javax.imageio.ImageIO;
 
@@ -48,6 +49,7 @@ public enum Sprite {
     GridGeorge("George.png"),
 
     //Info Tile Hints
+    InfoError("info/Level-1.png"),
     Info1("info/Level1.png"),
     Info2("info/Level2.png");
 
