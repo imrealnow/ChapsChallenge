@@ -2,8 +2,10 @@ package nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids;
 
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
+import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Interactable;
+import nz.ac.vuw.ecs.swen225.gp22.util.GameEvent;
 
 public class TileExit extends Tile implements Interactable {
     @Override
@@ -19,7 +21,6 @@ public class TileExit extends Tile implements Interactable {
 
     @Override
     public void onInteract(Entity e) {
-        // TODO Auto-generated method stub
-
+        Game.getInstance().broadcastEvent(GameEvent.LevelCompleted);
     }
 }

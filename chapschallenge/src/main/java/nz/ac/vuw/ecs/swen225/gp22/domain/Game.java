@@ -6,23 +6,16 @@ import java.util.List;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Interactable;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
+import nz.ac.vuw.ecs.swen225.gp22.util.GameEvent;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 import nz.ac.vuw.ecs.swen225.gp22.util.observer.Subject;
-
-enum GameEvent{
-    LevelStarted,
-    LevelChanged,
-    LevelCompleted,
-    GameOver
-  }
 /**
  * Represents the Game object, which contains the current level and various
  * stats related to the game.
  */
 public class Game extends Subject<Game, GameEvent> {
 
-    
     public static final String UPDATE_KEY = "updateLoop";
     public static final int UPDATE_PER_SECOND = 3;
 
@@ -49,7 +42,7 @@ public class Game extends Subject<Game, GameEvent> {
     }
 
 
-    private void broadcastEvent(GameEvent event){
+    public void broadcastEvent(GameEvent event){
         lastEvent = event;
         notifyObservers();
       }
