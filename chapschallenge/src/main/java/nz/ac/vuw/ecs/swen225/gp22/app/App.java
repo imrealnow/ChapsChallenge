@@ -14,6 +14,7 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
 import nz.ac.vuw.ecs.swen225.gp22.renderer.GameView;
+import nz.ac.vuw.ecs.swen225.gp22.util.Time;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,6 +34,7 @@ public class App extends JFrame implements KeyListener {
     private StartScreen startScreen;
     private GameView gameView;
     private Sidebar sidebar;
+    private int levelTime;
 
     public App() {
         // Set title
@@ -84,8 +86,9 @@ public class App extends JFrame implements KeyListener {
     public void startLevel(Level selectedLevel) {
         // Clear screen and set level
         remove(startScreen);
-
         game.setLevel(selectedLevel);
+        levelTime = selectedLevel.getTimeLimit();
+        Time.INSTANCE.loop("Level Time", 1, () -> changeTime(-1));
         // Add Keylistener and make focusable
         addKeyListener(this);
         requestFocusInWindow();
@@ -96,7 +99,7 @@ public class App extends JFrame implements KeyListener {
         gameView.setMinimumSize(new Dimension(600, 600));
         getContentPane().add((gameView));
         getContentPane().setBackground(Color.darkGray);
-        sidebar = new Sidebar(selectedLevel);
+        sidebar = new Sidebar(selectedLevel, this);
         add(sidebar, BorderLayout.EAST);
         setVisible(true);
         pack();
@@ -131,6 +134,18 @@ public class App extends JFrame implements KeyListener {
             }
         });
         return menu;
+    }
+
+    public void changeTime(int toChange) {
+        levelTime += toChange;
+        if (sidebar != null) {
+            sidebar.updateText();
+            repaint();
+        }
+    }
+
+    public int getTime() {
+        return levelTime;
     }
 
     @Override
