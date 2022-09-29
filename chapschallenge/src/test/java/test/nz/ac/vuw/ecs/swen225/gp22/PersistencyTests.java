@@ -36,7 +36,7 @@ public class PersistencyTests {
         }
         List<Entity> entities = new ArrayList<Entity>();
         entities.add(new Player(new Vector(0, 0)));
-        Level level = new Level(tiles, entities, "test", 10);
+        Level level = new Level(-1, tiles, entities, "test", 10);
         // serialize level
         LevelFactory factory = new LevelFactory();
         Level level2 = null;

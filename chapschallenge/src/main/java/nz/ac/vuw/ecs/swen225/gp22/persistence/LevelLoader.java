@@ -1,6 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp22.persistence;
 
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -24,7 +25,7 @@ public enum LevelLoader {
 
     private String resourcePath;
     private static LevelFactory levelFactory = new LevelFactory();
-    private static Map<Level, LevelLoader> loadedLevels;
+    private static Map<Integer, LevelLoader> loadedLevels;
 
     /**
      * Loads a predefined game level.
@@ -56,27 +57,11 @@ public enum LevelLoader {
         if (loadedLevels == null) {
             loadedLevels = new HashMap<>();
             for (LevelLoader levelLoader : LevelLoader.values()) {
-                loadedLevels.put(levelLoader.load(), levelLoader);
+                loadedLevels.put(levelLoader.load().getLevelID(), levelLoader);
             }
         }
-        return Set.copyOf(loadedLevels.keySet());
-    }
-
-    /**
-     * Gets the index of a level in the predefined levels.
-     * 
-     * @param level the level to get the index of
-     * @return the index of the level
-     */
-    public static int getLevelIndex(Level level) {
-        if (loadedLevels == null) {
-            loadAll();
-        }
-        LevelLoader levelLoader = loadedLevels.get(level);
-        if (levelLoader == null) {
-            throw new RuntimeException("Level not found");
-        }
-        return levelLoader.ordinal();
+        return loadedLevels.values().stream().map(LevelLoader::load).collect(HashSet::new,
+                Set::add, Set::addAll);
     }
 
     /**
@@ -86,10 +71,13 @@ public enum LevelLoader {
      * @return the level loaded from the XML file
      */
     public static Level getLevel(int index) {
-        LevelLoader[] values = LevelLoader.values();
-        if (index < 0 || index >= values.length) {
-            throw new RuntimeException("Invalid level index");
+        if (loadedLevels == null) {
+            loadAll();
         }
-        return LevelLoader.values()[index].load();
+        LevelLoader levelLoader = loadedLevels.get(index);
+        if (levelLoader == null) {
+            throw new RuntimeException("Could not find level: " + index);
+        }
+        return levelLoader.load();
     }
 }

@@ -17,13 +17,13 @@ public class LevelReplay {
     private int levelIndex;
 
     public LevelReplay(int levelIndex, List<ActionRecord> actions) {
-        this.levelIndex = LevelLoader.getLevelIndex(Game.getInstance().getLevel());
+        this.levelIndex = Game.getInstance().getLevel().getLevelID();
         this.actions = actions;
     }
 
     // blank constructor for making an new file
     public LevelReplay() {
-        this.levelIndex = LevelLoader.getLevelIndex(Game.getInstance().getLevel());
+        this.levelIndex = Game.getInstance().getLevel().getLevelID();
         this.actions = new ArrayList<>();
     }
 

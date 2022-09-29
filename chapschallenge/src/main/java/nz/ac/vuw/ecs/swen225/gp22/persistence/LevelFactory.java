@@ -25,6 +25,7 @@ public class LevelFactory implements XMLFactory<Level> {
     public File createXML(String filePath, Level objectToSave) throws IOException {
         Document document = DocumentHelper.createDocument();
         Element root = document.addElement("Level");
+        root.addAttribute("Id", Integer.toString(objectToSave.getLevelID()));
         root.addAttribute("Title", objectToSave.getTitle());
         root.addAttribute("TimeLimit",
                 Integer.toString(objectToSave.getTimeLimit()));
@@ -40,11 +41,12 @@ public class LevelFactory implements XMLFactory<Level> {
         SAXReader reader = new SAXReader();
         Document document = reader.read(xmlStream);
         Element root = document.getRootElement();
+        int levelID = Integer.parseInt(root.attributeValue("Id"));
         String name = root.attributeValue("Title");
         int timeLimit = Integer.parseInt(root.attributeValue("TimeLimit"));
         Element entityListElement = root.element("Entities");
         Element tileGridElement = root.element("TileGrid");
-        return new Level(tileGridElementFactory.createFromElement(tileGridElement),
+        return new Level(levelID, tileGridElementFactory.createFromElement(tileGridElement),
                 entityListElementFactory.createFromElement(entityListElement), name, timeLimit);
     }
 }
