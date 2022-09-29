@@ -13,22 +13,27 @@ import javax.swing.SwingUtilities;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
+import nz.ac.vuw.ecs.swen225.gp22.persistence.XMLSerializer;
 import nz.ac.vuw.ecs.swen225.gp22.recorder.LevelRecorder;
 import nz.ac.vuw.ecs.swen225.gp22.renderer.GameView;
+import nz.ac.vuw.ecs.swen225.gp22.util.GameEvent;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
+import nz.ac.vuw.ecs.swen225.gp22.util.observer.Observer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Class used for setting up the application interface
  *
  * @author Jack Harrisson - harrisjack1
  */
-public class App extends JFrame implements KeyListener {
+public class App extends JFrame implements KeyListener, Observer<Game, GameEvent> {
     public static App INSTANCE;
     private ActionController actionController;
     private Game game;
@@ -36,7 +41,7 @@ public class App extends JFrame implements KeyListener {
     private GameView gameView;
     private Sidebar sidebar;
     private int levelTime;
-    private LevelRecorder recorder;
+    private LevelRecorder levelRecorder;
 
     public App() {
         // Set title
@@ -89,7 +94,7 @@ public class App extends JFrame implements KeyListener {
         // Clear screen and set level
         remove(startScreen);
         game.setLevel(selectedLevel);
-        recorder = new LevelRecorder();
+        levelRecorder = new LevelRecorder();
         levelTime = selectedLevel.getTimeLimit();
         Time.INSTANCE.loop("Level Time", 1, () -> changeTime(-1));
         // Add Keylistener and make focusable
@@ -106,6 +111,7 @@ public class App extends JFrame implements KeyListener {
         add(sidebar, BorderLayout.EAST);
         setVisible(true);
         pack();
+
     }
 
     public JMenuBar createMenuBar() {
@@ -163,6 +169,22 @@ public class App extends JFrame implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void notify(Game t, GameEvent r) {
+        if (r == GameEvent.LevelCompleted) {
+            String replayFilePath = new XMLSerializer().showFileChooser(getContentPane(), "Save Level Replay",
+                    XMLSerializer.FileAction.SAVE).getPath();
+            if (replayFilePath != null) {
+                try {
+                    levelRecorder.saveCurrentReplay(replayFilePath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
     }
 }
