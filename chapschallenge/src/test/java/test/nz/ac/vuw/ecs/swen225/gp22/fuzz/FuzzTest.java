@@ -19,7 +19,7 @@ public class FuzzTest {
    private ActionController actionController;
 
    /**
-    * Loading the game and setting up the app.
+    * Loading the game and setting up the app. Testing the game's level 1 with randomly generated keystrokes.
     */
    @Test
    public void test1() {
@@ -36,7 +36,7 @@ public class FuzzTest {
    }
 
    /**
-    * Testing the game with randomly generated keystrokes.
+    * Testing the game's level 2 with randomly generated keystrokes.
     */
    @Test
    public void test2() {
@@ -50,12 +50,14 @@ public class FuzzTest {
       this.game = Game.getInstance();
       this.actionController = app.getController();
 
+      // get system's current time in milliseconds and add 60000 milliseconds (60 seconds) to it
       long systemTime = System.currentTimeMillis();
       long endTime = systemTime + 60000;
       while (System.currentTimeMillis() < endTime) {
-         // call random methods from app with randomised input a set amount of times.
+         // Generate random number between 0 and 4
          int random = (int) (Math.random() * 4);
          int keyCode = 0;
+         // setting keycode up, down, left or right depending on random number
          switch (random) {
             case 0: // up
                keyCode = 37;
@@ -74,7 +76,7 @@ public class FuzzTest {
          app.callAction(keyCode);
          // Slowing down keystrokes so it's easier to see - delete later
          try {
-            Thread.sleep(100);
+            Thread.sleep(10);
          } catch (InterruptedException e) {
             e.printStackTrace();
          }

@@ -1,7 +1,5 @@
 package test.nz.ac.vuw.ecs.swen225.gp22.fuzz;
 
-import javax.swing.SwingUtilities;
-
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
 
 public class Main {
