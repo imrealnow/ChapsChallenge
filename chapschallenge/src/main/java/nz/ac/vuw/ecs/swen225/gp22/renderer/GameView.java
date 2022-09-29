@@ -17,7 +17,7 @@ import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 
 public class GameView extends JPanel {
 
-    int imgSize = 32;
+    int imgSize = 64;
 
     Level level;
 
@@ -51,6 +51,6 @@ public class GameView extends JPanel {
         double screenX = (x - c.x()) * imgSize + s.getWidth() / 2 - imgSize / 2;
         double screenY = (y - c.y()) * imgSize + s.getHeight() / 2 - imgSize / 2;
 
-        g.drawImage(image.sprite, (int) screenX, (int) screenY, null);
+        g.drawImage(image.sprite, (int) screenX, (int) screenY, imgSize, imgSize, null);
     }
 }
