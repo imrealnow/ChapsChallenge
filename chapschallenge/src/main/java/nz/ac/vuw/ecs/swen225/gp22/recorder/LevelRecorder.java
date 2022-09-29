@@ -9,6 +9,13 @@ public class LevelRecorder implements Observer<ActionController, Bindings>{
 
     private LevelReplay currentLevelInProgress = new LevelReplay();
 
+    /**
+     * TOOD: Add Javadoc
+     */
+    public LevelRecorder() {
+        App.INSTANCE.getController().addObserver(this);
+      }
+
     @Override
     public void notify(ActionController t, Bindings r) {
         ActionRecord action = new ActionRecord(r, 0);
