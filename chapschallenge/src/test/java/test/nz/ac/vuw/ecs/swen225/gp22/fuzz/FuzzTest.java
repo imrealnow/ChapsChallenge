@@ -19,7 +19,8 @@ public class FuzzTest {
    private ActionController actionController;
 
    /**
-    * Loading the game and setting up the app.
+    * Loading the game and setting up the app. Testing the game's level 1 with
+    * randomly generated keystrokes.
     */
    @Test
    public void test1() {
@@ -36,26 +37,50 @@ public class FuzzTest {
    }
 
    /**
-    * Testing the game with randomly generated keystrokes.
+    * Testing the game's level 2 with randomly generated keystrokes.
     */
    @Test
    public void test2() {
+      // start game then wait until it has started
+      // try {
+      //    SwingUtilities.invokeAndWait(() -> fuzzTestGame(LevelLoader.Level2.load()));
+      // } catch (InterruptedException e) {
+      //    System.out.println("Game start interrupted");
+      //    e.printStackTrace();
+      // } catch (InvocationTargetException e) {
+      //    System.out.println("Game start failed");
+      //    e.printStackTrace();
+      // }
    }
 
+   /**
+    * Helper method to load in game levels and generate random keystrokes.
+    */
    public void fuzzTestGame(Level level) {
       // Starting game
       this.app = new App();
-      Level firstLevel = LevelLoader.Level1.load();
-      app.startLevel(firstLevel);
+
+      // validate level state
+      try {
+         level.validateLevelState();
+      } catch (Exception e) {
+         System.out.println("Level validation failed");
+         e.printStackTrace();
+      }
+      
+      app.startLevel(level);
       this.game = Game.getInstance();
       this.actionController = app.getController();
 
+      // get system's current time in milliseconds and add 60000 milliseconds (60
+      // seconds) to it
       long systemTime = System.currentTimeMillis();
       long endTime = systemTime + 60000;
       while (System.currentTimeMillis() < endTime) {
-         // call random methods from app with randomised input a set amount of times.
+         // Generate random number between 0 and 4
          int random = (int) (Math.random() * 4);
          int keyCode = 0;
+         // setting keycode up, down, left or right depending on random number
          switch (random) {
             case 0: // up
                keyCode = 37;
@@ -74,7 +99,7 @@ public class FuzzTest {
          app.callAction(keyCode);
          // Slowing down keystrokes so it's easier to see - delete later
          try {
-            Thread.sleep(100);
+            Thread.sleep(10);
          } catch (InterruptedException e) {
             e.printStackTrace();
          }
