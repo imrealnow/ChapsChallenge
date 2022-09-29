@@ -13,6 +13,7 @@ import javax.swing.SwingUtilities;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
+import nz.ac.vuw.ecs.swen225.gp22.recorder.LevelRecorder;
 import nz.ac.vuw.ecs.swen225.gp22.renderer.GameView;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
 
@@ -35,6 +36,7 @@ public class App extends JFrame implements KeyListener {
     private GameView gameView;
     private Sidebar sidebar;
     private int levelTime;
+    private LevelRecorder recorder;
 
     public App() {
         // Set title
@@ -87,6 +89,7 @@ public class App extends JFrame implements KeyListener {
         // Clear screen and set level
         remove(startScreen);
         game.setLevel(selectedLevel);
+        recorder = new LevelRecorder();
         levelTime = selectedLevel.getTimeLimit();
         Time.INSTANCE.loop("Level Time", 1, () -> changeTime(-1));
         // Add Keylistener and make focusable
