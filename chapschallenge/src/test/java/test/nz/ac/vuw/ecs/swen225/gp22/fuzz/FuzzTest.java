@@ -77,32 +77,25 @@ public class FuzzTest {
       long systemTime = System.currentTimeMillis();
       long endTime = systemTime + 60000;
       while (System.currentTimeMillis() < endTime) {
-         // Generate random number between 0 and 4
-         int random = (int) (Math.random() * 4);
+         int random = (int) (Math.random() * 4); // Generate random number between 0 and 4
          int keyCode = 0;
-         // Get current key bindings
-         Bindings[] keyBindings = Bindings.values();
+         Bindings[] keyBindings = Bindings.values(); // Get current key bindings
          // setting keycode up, down, left or right depending on random number
          switch (random) {
             case 0: // up
-               //keyCode = 37;
                keyCode = Bindings.getKeyBinding(keyBindings[0]);
                break;
             case 1: // down
-               //keyCode = 38;
                keyCode = Bindings.getKeyBinding(keyBindings[1]);
                break;
             case 2: // left
-               //keyCode = 39;
                keyCode = Bindings.getKeyBinding(keyBindings[2]);
                break;
             case 3: // right
-               //keyCode = 40;
                keyCode = Bindings.getKeyBinding(keyBindings[3]);
                break;
          }
-         // Pass in randomly generated keystroke into callAction method
-         app.callAction(keyCode);
+         app.callAction(keyCode);// Pass in randomly generated keystroke into callAction method
          // Slowing down keystrokes so it's easier to see - delete later
          try {
             Thread.sleep(10);
