@@ -148,6 +148,10 @@ public class Level {
         return totalFriendsNeeded;
     }
 
+    public int getLevelID(){
+        return levelID;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
