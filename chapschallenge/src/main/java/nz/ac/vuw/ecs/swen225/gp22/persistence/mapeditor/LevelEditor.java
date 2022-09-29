@@ -65,7 +65,7 @@ public class LevelEditor extends JFrame {
     }
 
     public void updateLevel() {
-        level = new Level(tileGrid.getTiles(), tileGrid.getEntities(), levelName, levelTime);
+        level = new Level(level.getLevelID(), tileGrid.getTiles(), tileGrid.getEntities(), levelName, levelTime);
         toolbar.updateToolbar();
     }
 
