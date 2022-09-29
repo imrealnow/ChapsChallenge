@@ -3,6 +3,7 @@ package nz.ac.vuw.ecs.swen225.gp22.util;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,16 @@ public enum Time {
         timer.scheduleAtFixedRate(task, 0, 1000 / timesPerSecond);
         loops.put(name, new LoopRecord(name, timer, task));
         return timer;
+    }
+
+    /**
+     * Gets the timer running the loop with the given name.
+     * 
+     * @param name The name of the loop.
+     * @return The timer running the loop.
+     */
+    public Optional<TickedTask> getLoopTask(String name) {
+        return Optional.ofNullable(loops.get(name)).map(LoopRecord::task);
     }
 
     /**
@@ -117,28 +128,6 @@ public enum Time {
             long delay = command.getCreationTime() - lastCommand.getCreationTime();
             delayedInvoke(Math.toIntExact(delay), command);
             lastCommand = command;
-        }
-    }
-
-    /**
-     * Extension of timer task that keeps track of how many times it has been run.
-     */
-    class TickedTask extends TimerTask {
-        private int tickCount = 0;
-        private Runnable callback;
-
-        public TickedTask(Runnable callback) {
-            this.callback = callback;
-        }
-
-        @Override
-        public void run() {
-            tickCount++;
-            callback.run();
-        }
-
-        public int getTickCount() {
-            return tickCount;
         }
     }
 
