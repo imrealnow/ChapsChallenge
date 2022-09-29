@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import nz.ac.vuw.ecs.swen225.gp22.app.ActionController;
 import nz.ac.vuw.ecs.swen225.gp22.app.Bindings;
@@ -25,7 +26,68 @@ public class ActionRecord {
             put("PlayerRight", Bindings.Right);
         }
     };
+    private int time;
+    private Bindings action;
 
-    private String action;
-    private Time time;
+    /**
+     * TO-DO: fill javadoc
+     * 
+     * @param action
+     * @param time
+     */
+    public ActionRecord(Bindings action, int time){
+        this.action = action;
+        this.time = time;
+    }
+
+    /**
+     * TODO: Fill javadoc
+     * 
+     * @param actionString
+     * @param time
+     */
+    public ActionRecord(String actionString, int time){
+        Bindings actionCurrent = actionBinding.get(actionString);
+        if(action == null){
+            throw new IllegalArgumentException("Invalid action key");
+        }
+        this.action = actionCurrent;
+        this.time = time;
+    }
+
+    /**
+     * TODO - fill javadoc
+     * 
+     * @param action
+     * @return
+     */
+    public static String getActionKey(Bindings action){
+        for(Entry<String, Bindings> entry : actionBinding.entrySet()){
+            if(entry.getValue().equals(action)){
+                return entry.getValue().name();
+            } else {
+                throw new IllegalArgumentException(action.name() + " is not a valid action");
+            }
+        }
+        return null;
+    }  
+    
+    /**
+     * TODO: Fill javadoc
+     * 
+     * @return
+     */
+    public Bindings getAction(){
+        return action;
+    }
+
+    /**
+     * TODO: Fill javadoc
+     * 
+     * @return
+     */
+    public int getTime(){
+        return time;
+    }
+
 }
