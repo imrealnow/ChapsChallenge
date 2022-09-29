@@ -26,7 +26,7 @@ public class ActionRecord {
             put("PlayerRight", Bindings.Right);
         }
     };
-    private int time;
+    private Long time = Time.INSTANCE.getTimeSinceStart();
     private Bindings action;
 
     /**
@@ -35,7 +35,7 @@ public class ActionRecord {
      * @param action
      * @param time
      */
-    public ActionRecord(Bindings action, int time){
+    public ActionRecord(Bindings action, Long time){
         this.action = action;
         this.time = time;
     }
@@ -46,7 +46,7 @@ public class ActionRecord {
      * @param actionString
      * @param time
      */
-    public ActionRecord(String actionString, int time){
+    public ActionRecord(String actionString, Long time){
         Bindings actionCurrent = actionBinding.get(actionString);
         if(action == null){
             throw new IllegalArgumentException("Invalid action key");
@@ -86,7 +86,7 @@ public class ActionRecord {
      * 
      * @return
      */
-    public int getTime(){
+    public Long getTime(){
         return time;
     }
 
