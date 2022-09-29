@@ -48,8 +48,8 @@ public enum Sprite {
     GridGeorge("George.png"),
 
     //Info Tile Hints
-    Info1("Info/Level1.png"),
-    Info2("Info/Level2.png");
+    Info1("info/Level1.png"),
+    Info2("info/Level2.png");
 
     public BufferedImage sprite;
 
