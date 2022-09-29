@@ -14,14 +14,14 @@ public class ActionRecordFactory implements ElementFactory<ActionRecord>{
     public Element createElement(ActionRecord record) {
         Element root = DocumentHelper.createElement("ActionRecord");
         root.addAttribute("action", ActionRecord.getActionKey(record.getAction()));
-        root.addAttribute("time", Integer.toString(record.getTime()));
+        root.addAttribute("time", Long.toString(record.getTime()));
         return root;
     }
 
     @Override
     public ActionRecord createFromElement(Element element) {
         String actionKey = element.attributeValue("action");
-        int time = Integer.parseInt(element.attributeValue("time"));
+        Long time = Long.parseLong(element.attributeValue("time"));
         return new ActionRecord(actionKey, time);
     }
     
