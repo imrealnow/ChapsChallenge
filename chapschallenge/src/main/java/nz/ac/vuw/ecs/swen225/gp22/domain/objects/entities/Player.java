@@ -68,7 +68,8 @@ public class Player extends Entity {
 
         // if any interactables block movement, return false
         if (interactables.stream().anyMatch(i -> !i.entityCanStep(this))) {
-            applyMove(dir, interactables);
+            // can't move, so don't apply move
+            // applyMove(dir, interactables);
             return false;
         }
 
