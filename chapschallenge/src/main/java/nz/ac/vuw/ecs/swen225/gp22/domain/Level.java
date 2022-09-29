@@ -58,16 +58,21 @@ public class Level {
         
         //Collect Data
         for(Entity e: entities){
+            //Count players
             if (e instanceof Player p) {
                 playerCount++;
                 collectedFriends = p.inventory().getOrDefault(Item.ItemFriend, 0);
             }
+
+            //If entity is out of bounds
             if (e.getPosition().x() > tiles.length
                 || e.getPosition().y() > tiles[0].length
                 || e.getPosition().x() < 0
                 || e.getPosition().y() < 0) 
                 entitiesOutOfBounds.add(e);
 
+            //If entity is on a grid (invalid position)
+            if (entitiesOutOfBounds.contains(e)) continue;
             if (tiles[(int)e.getPosition().x()][(int)e.getPosition().y()] instanceof Grid) 
                 entitiesOnGrids.add(e);
         }
