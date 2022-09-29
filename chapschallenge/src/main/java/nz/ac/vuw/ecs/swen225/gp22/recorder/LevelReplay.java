@@ -21,6 +21,9 @@ public class LevelReplay {
 
     }
 
+    public LevelReplay(List<ActionRecord> actionList) {
+    }
+
     /**
      * Add ActionRecord to the list of actions
      * 
@@ -28,6 +31,10 @@ public class LevelReplay {
      */
     public void add(ActionRecord a){
         actions.add(a);
+    }
+
+    public Iterable<ActionRecord> getActions() {
+        return actions;
     }
     
 }
