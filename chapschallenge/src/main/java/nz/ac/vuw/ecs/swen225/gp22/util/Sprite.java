@@ -45,7 +45,11 @@ public enum Sprite {
 
     // Special
     Friend("Friend.png"),
-    GridGeorge("George.png");
+    GridGeorge("George.png"),
+
+    //Info Tile Hints
+    Info1("Info/Level1.png"),
+    Info2("Info/Level2.png");
 
     public BufferedImage sprite;
 

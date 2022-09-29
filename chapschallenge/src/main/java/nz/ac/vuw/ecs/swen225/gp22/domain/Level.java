@@ -17,8 +17,10 @@ public class Level {
     private int timelimit;
     private int totalFriendsNeeded;
     private Player player;
+    private final int levelID;
 
-    public Level(Tile[][] tiles, List<Entity> entities, String title, int time) {
+    public Level(int ID, Tile[][] tiles, List<Entity> entities, String title, int time) {
+        this.levelID = ID;
         timelimit = time;
         totalFriendsNeeded = 0;
         this.tiles = tiles;
