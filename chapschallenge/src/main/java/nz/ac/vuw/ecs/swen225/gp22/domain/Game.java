@@ -8,18 +8,28 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Interactable;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
+import nz.ac.vuw.ecs.swen225.gp22.util.observer.Subject;
 
+enum GameEvent{
+    LevelStarted,
+    LevelChanged,
+    LevelCompleted,
+    GameOver
+  }
 /**
  * Represents the Game object, which contains the current level and various
  * stats related to the game.
  */
-public class Game {
+public class Game extends Subject<Game, GameEvent> {
+
+    
     public static final String UPDATE_KEY = "updateLoop";
     public static final int UPDATE_PER_SECOND = 3;
 
     private static Game INSTANCE;
 
     private Level currentLevel;
+    private GameEvent lastEvent;
 
     public static Game getInstance() {
         if (INSTANCE == null) {
@@ -33,6 +43,16 @@ public class Game {
             throw new IllegalStateException("Game already instantiated");
         INSTANCE = this;
     }
+
+    public GameEvent getObservableData(){
+        return lastEvent;
+    }
+
+
+    private void broadcastEvent(GameEvent event){
+        lastEvent = event;
+        notifyObservers();
+      }
 
     /**
      * Called every frame, causing all of the relevant game elements to call their
