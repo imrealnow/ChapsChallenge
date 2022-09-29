@@ -28,7 +28,7 @@ public final class App {
         }
         List<Entity> entities = new ArrayList<>();
         entities.add(new Player(new Vector(5, 5)));
-        LevelEditor editor = new LevelEditor(new Level(tiles, entities, "Untitled", 100));
+        LevelEditor editor = new LevelEditor(new Level(-1, tiles, entities, "Untitled", 100));
         editor.initialiseGUI();
         editor.setVisible(true);
         editor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
