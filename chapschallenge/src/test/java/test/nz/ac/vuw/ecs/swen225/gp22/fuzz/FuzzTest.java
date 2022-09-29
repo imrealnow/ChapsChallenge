@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import nz.ac.vuw.ecs.swen225.gp22.app.*;
 import nz.ac.vuw.ecs.swen225.gp22.domain.*;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
-import nz.ac.vuw.ecs.swen225.gp22.renderer.*;
 
 /**
  * This class is for testing the ChapsChallenge game using randomly automated
