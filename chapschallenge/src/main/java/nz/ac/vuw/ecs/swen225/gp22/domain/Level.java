@@ -63,6 +63,10 @@ public class Level {
                 playerCount++;
                 collectedFriends = p.inventory().getOrDefault(Item.ItemFriend, 0);
             }
+            //Count friends remaining
+            if (e instanceof Pickup p){
+                if (p.getItem() == Item.ItemFriend) remainingFriends++;
+            }
 
             //If entity is out of bounds
             if (e.getPosition().x() > tiles.length
@@ -79,12 +83,12 @@ public class Level {
 
         //Verify Data
         String output = "VALIDATION LOG:\n";
-        if (playerCount != 0) 
+        if (playerCount != 1) 
             output += "Error: Invalid number of players! "
             +"(Expected 1, found " + playerCount +".)\n";
         if (collectedFriends + remainingFriends != totalFriendsNeeded) 
             output += "Error: Invalid sum of friends on board and friends collected! "
-            +"( Expected: " + totalFriendsNeeded + ", found " + collectedFriends + remainingFriends
+            +"( Expected: " + totalFriendsNeeded + ", found " + (collectedFriends + remainingFriends)
             +". C: "+ collectedFriends + " || R: " + remainingFriends + ".)\n";
         if (entitiesOnGrids.size() != 0) 
             output += "Error: Found entities on grid! "
