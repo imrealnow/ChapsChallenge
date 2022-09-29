@@ -10,7 +10,7 @@ import nz.ac.vuw.ecs.swen225.gp22.app.Bindings;
 import nz.ac.vuw.ecs.swen225.gp22.persistence.ElementFactory;
 
 /**
- * TODO: Add Javadoc
+ * ActionRecordFactory that created ActionRecords from an XML Document
  */
 public class ActionRecordFactory implements ElementFactory<ActionRecord> {
     // can be used to find:
