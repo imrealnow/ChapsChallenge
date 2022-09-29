@@ -73,7 +73,7 @@ public class Level {
 
             //If entity is on a grid (invalid position)
             if (entitiesOutOfBounds.contains(e)) continue;
-            if (tiles[(int)e.getPosition().x()][(int)e.getPosition().y()] instanceof Grid) 
+            if (tiles[(int)e.getPosition().y()][(int)e.getPosition().x()] instanceof Grid) 
                 entitiesOnGrids.add(e);
         }
 

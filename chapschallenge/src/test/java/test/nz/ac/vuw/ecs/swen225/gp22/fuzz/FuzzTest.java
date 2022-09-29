@@ -80,19 +80,25 @@ public class FuzzTest {
          // Generate random number between 0 and 4
          int random = (int) (Math.random() * 4);
          int keyCode = 0;
+         // Get current key bindings
+         Bindings[] keyBindings = Bindings.values();
          // setting keycode up, down, left or right depending on random number
          switch (random) {
             case 0: // up
-               keyCode = 37;
+               //keyCode = 37;
+               keyCode = Bindings.getKeyBinding(keyBindings[0]);
                break;
             case 1: // down
-               keyCode = 38;
+               //keyCode = 38;
+               keyCode = Bindings.getKeyBinding(keyBindings[1]);
                break;
             case 2: // left
-               keyCode = 39;
+               //keyCode = 39;
+               keyCode = Bindings.getKeyBinding(keyBindings[2]);
                break;
             case 3: // right
-               keyCode = 40;
+               //keyCode = 40;
+               keyCode = Bindings.getKeyBinding(keyBindings[3]);
                break;
          }
          // Pass in randomly generated keystroke into callAction method
