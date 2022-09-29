@@ -13,15 +13,18 @@ import nz.ac.vuw.ecs.swen225.gp22.persistence.LevelLoader;
  */
 public class LevelReplay {
 
-    private List<ActionRecord> actions = new ArrayList<ActionRecord>();
-   private int levelIndex;
-    
-    public LevelReplay(int levelIndex){
-        this.levelIndex = LevelLoader.getLevelIndex(Game.getInstance().getLevel());
+    private List<ActionRecord> actions;
+    private int levelIndex;
 
+    public LevelReplay(int levelIndex, List<ActionRecord> actions) {
+        this.levelIndex = LevelLoader.getLevelIndex(Game.getInstance().getLevel());
+        this.actions = actions;
     }
 
-    public LevelReplay(List<ActionRecord> actionList) {
+    // blank constructor for making an new file
+    public LevelReplay() {
+        this.levelIndex = LevelLoader.getLevelIndex(Game.getInstance().getLevel());
+        this.actions = new ArrayList<>();
     }
 
     /**
@@ -29,12 +32,15 @@ public class LevelReplay {
      * 
      * @param a
      */
-    public void add(ActionRecord a){
+    public void add(ActionRecord a) {
         actions.add(a);
     }
 
     public Iterable<ActionRecord> getActions() {
         return actions;
     }
-    
+
+    public int getLevelIndex() {
+        return levelIndex;
+    }
 }

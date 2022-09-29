@@ -9,7 +9,10 @@ import java.io.InputStream;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
+
+import java.awt.Container;
 
 import org.dom4j.Document;
 import org.dom4j.io.OutputFormat;
@@ -59,7 +62,7 @@ public class XMLSerializer {
      * @param action          the action to perform
      * @return the file to load or save to
      */
-    public File showFileChooser(JComponent parentComponent, String windowTitle, FileAction action) {
+    public File showFileChooser(Container parentComponent, String windowTitle, FileAction action) {
         // Create file chooser
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(windowTitle);
@@ -97,7 +100,7 @@ public class XMLSerializer {
      * @param factory         the xml factory for the type of object to save
      * @return the file that was saved
      */
-    public <T> File saveObjectToXML(JComponent parentComponent, String windowTitle, XMLFactory<T> factory,
+    public <T> File saveObjectToXML(Container parentComponent, String windowTitle, XMLFactory<T> factory,
             T objectToSave) {
         String path = showFileChooser(parentComponent, windowTitle, FileAction.SAVE).getAbsolutePath();
         if (path != null) {
@@ -121,7 +124,7 @@ public class XMLSerializer {
      * @param factory         the xml factory for the type of object to load
      * @return the object loaded from the file
      */
-    public <T> T loadObjectFromXML(JComponent parentComponent, String windowTitle, XMLFactory<T> factory) {
+    public <T> T loadObjectFromXML(Container parentComponent, String windowTitle, XMLFactory<T> factory) {
         try {
             FileInputStream xmlStream = new FileInputStream(
                     showFileChooser(parentComponent, windowTitle, FileAction.LOAD));
