@@ -30,10 +30,10 @@ public class ActionRecord {
     private Bindings action;
 
     /**
-     * TO-DO: fill javadoc
+     * Action record constructor
      * 
-     * @param action
-     * @param time
+     * @param action the binding of the action of the entity
+     * @param time the time the action took place
      */
     public ActionRecord(Bindings action, Long time){
         this.action = action;
@@ -41,10 +41,10 @@ public class ActionRecord {
     }
 
     /**
-     * TODO: Fill javadoc
+     * Action record constructor
      * 
-     * @param actionString
-     * @param time
+     * @param actionString the action of the entity
+     * @param time the time the action took place
      */
     public ActionRecord(String actionString, Long time){
         Bindings actionCurrent = actionBinding.get(actionString);
@@ -56,9 +56,9 @@ public class ActionRecord {
     }
 
     /**
-     * TODO - fill javadoc
+     * Method to get the key of the action that the entity took
      * 
-     * @param action
+     * @param action the binding of the action of the entity
      * @return
      */
     public static String getActionKey(Bindings action){
@@ -73,7 +73,7 @@ public class ActionRecord {
     }  
     
     /**
-     * TODO: Fill javadoc
+     * Getter for the action the entity took
      * 
      * @return
      */
@@ -82,7 +82,7 @@ public class ActionRecord {
     }
 
     /**
-     * TODO: Fill javadoc
+     * Getter for the time of the move that took place
      * 
      * @return
      */
