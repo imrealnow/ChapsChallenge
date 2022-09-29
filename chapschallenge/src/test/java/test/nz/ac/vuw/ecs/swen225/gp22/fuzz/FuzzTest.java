@@ -19,7 +19,8 @@ public class FuzzTest {
    private ActionController actionController;
 
    /**
-    * Loading the game and setting up the app. Testing the game's level 1 with randomly generated keystrokes.
+    * Loading the game and setting up the app. Testing the game's level 1 with
+    * randomly generated keystrokes.
     */
    @Test
    public void test1() {
@@ -40,17 +41,28 @@ public class FuzzTest {
     */
    @Test
    public void test2() {
+      // start game then wait until it has started
+      // try {
+      //    SwingUtilities.invokeAndWait(() -> fuzzTestGame(LevelLoader.Level2.load()));
+      // } catch (InterruptedException e) {
+      //    System.out.println("Game start interrupted");
+      //    e.printStackTrace();
+      // } catch (InvocationTargetException e) {
+      //    System.out.println("Game start failed");
+      //    e.printStackTrace();
+      // }
    }
 
    public void fuzzTestGame(Level level) {
       // Starting game
       this.app = new App();
-      Level firstLevel = LevelLoader.Level1.load();
-      app.startLevel(firstLevel);
+      // Level firstLevel = LevelLoader.Level1.load();
+      app.startLevel(level);
       this.game = Game.getInstance();
       this.actionController = app.getController();
 
-      // get system's current time in milliseconds and add 60000 milliseconds (60 seconds) to it
+      // get system's current time in milliseconds and add 60000 milliseconds (60
+      // seconds) to it
       long systemTime = System.currentTimeMillis();
       long endTime = systemTime + 60000;
       while (System.currentTimeMillis() < endTime) {
