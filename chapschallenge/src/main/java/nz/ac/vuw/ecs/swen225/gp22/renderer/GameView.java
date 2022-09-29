@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import nz.ac.vuw.ecs.swen225.gp22.domain.Game;
 import nz.ac.vuw.ecs.swen225.gp22.domain.Level;
 import nz.ac.vuw.ecs.swen225.gp22.domain.objects.entities.Player;
+import nz.ac.vuw.ecs.swen225.gp22.domain.objects.grids.TileInfo;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Tile;
 import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Entity;
 import nz.ac.vuw.ecs.swen225.gp22.util.Sprite;
@@ -55,18 +55,23 @@ public class GameView extends JPanel {
 
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[0].length; y++) {
-                draw(tiles[y][x].getSprite(), g, camera, (double) x, (double) y);
+                draw(tiles[y][x].getSprite(), g, camera, (double) x, (double) y, imgSize, imgSize);
             }
         }
 
-        entities.forEach((e) -> draw(e.getSprite(), g, camera, e.getPosition().x(), e.getPosition().y()));
+        entities.forEach((e) -> draw(e.getSprite(), g, camera, e.getPosition().x(), e.getPosition().y(), imgSize, imgSize));
+        
+        Tile playerTile = tiles[(int)player.getPosition().y()][(int)player.getPosition().x()];
+        if (playerTile instanceof TileInfo infoTile) {
+            draw(infoTile.getInfoGraphic(), g, camera, camera.x(), camera.y()-1, imgSize*6, imgSize*2);
+        }
     }
 
-    private void draw(Sprite image, Graphics g, Vector c, double x, double y) {
+    private void draw(Sprite image, Graphics g, Vector c, double x, double y, int imgX, int imgY) {
         Dimension s = getSize();
-        double screenX = (x - c.x()) * imgSize + s.getWidth() / 2 - imgSize / 2;
-        double screenY = (y - c.y()) * imgSize + s.getHeight() / 2 - imgSize / 2;
+        double screenX = (x - c.x()) * imgX + s.getWidth() / 2 - imgX / 2;
+        double screenY = (y - c.y()) * imgY + s.getHeight() / 2 - imgY / 2;
 
-        g.drawImage(image.sprite, (int) screenX, (int) screenY, imgSize, imgSize, null);
+        g.drawImage(image.sprite, (int) screenX, (int) screenY, imgX, imgY, null);
     }
 }
