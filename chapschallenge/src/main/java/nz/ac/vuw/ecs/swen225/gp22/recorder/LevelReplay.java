@@ -11,6 +11,7 @@ import java.util.List;
 public class LevelReplay {
 
     private List<ActionRecord> actions = new ArrayList<ActionRecord>();
+    
 
     /**
      * Add ActionRecord to the list of actions
