@@ -10,6 +10,7 @@ import nz.ac.vuw.ecs.swen225.gp22.util.GameEvent;
 import nz.ac.vuw.ecs.swen225.gp22.util.Time;
 import nz.ac.vuw.ecs.swen225.gp22.util.Vector;
 import nz.ac.vuw.ecs.swen225.gp22.util.observer.Subject;
+
 /**
  * Represents the Game object, which contains the current level and various
  * stats related to the game.
@@ -17,7 +18,7 @@ import nz.ac.vuw.ecs.swen225.gp22.util.observer.Subject;
 public class Game extends Subject<Game, GameEvent> {
 
     public static final String UPDATE_KEY = "updateLoop";
-    public static final int UPDATE_PER_SECOND = 3;
+    public static final int UPDATE_PER_SECOND = 30;
 
     private static Game INSTANCE;
 
@@ -37,15 +38,14 @@ public class Game extends Subject<Game, GameEvent> {
         INSTANCE = this;
     }
 
-    public GameEvent getObservableData(){
+    public GameEvent getObservableData() {
         return lastEvent;
     }
 
-
-    public void broadcastEvent(GameEvent event){
+    public void broadcastEvent(GameEvent event) {
         lastEvent = event;
         notifyObservers();
-      }
+    }
 
     /**
      * Called every frame, causing all of the relevant game elements to call their
@@ -53,6 +53,7 @@ public class Game extends Subject<Game, GameEvent> {
      */
     public void update() {
         currentLevel.getEntities().forEach(entity -> entity.update());
+        currentLevel.flushEntities();
     }
 
     /**

@@ -12,6 +12,7 @@ import nz.ac.vuw.ecs.swen225.gp22.domain.elements.Pickup;
 
 public class Level {
     private List<Entity> entities = new ArrayList<Entity>();
+    private List<Entity> entityflushQueue = new ArrayList<Entity>();
     private Tile[][] tiles;
     private String title;
     private int timelimit;
@@ -31,15 +32,17 @@ public class Level {
             if (e instanceof Pickup p && p.getItemType() == Item.ItemFriend)
                 totalFriendsNeeded++;
             if (e instanceof Player p) {
-                if (this.player != null) throw new IllegalArgumentException(
-                    "Cannot have more than one instance of player in Level");
+                if (this.player != null)
+                    throw new IllegalArgumentException(
+                            "Cannot have more than one instance of player in Level");
                 this.player = p;
             }
         });
-        if (player == null) throw new IllegalArgumentException("No player found in Level");
+        if (player == null)
+            throw new IllegalArgumentException("No player found in Level");
     }
 
-    public void morphTile(Tile oldTile, Tile newTile){
+    public void morphTile(Tile oldTile, Tile newTile) {
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[0].length; y++) {
                 if (tiles[x][y] == oldTile) {
@@ -47,63 +50,71 @@ public class Level {
                     return;
                 }
             }
-        }    
+        }
     }
 
-    public void validateLevelState(){
-        //Initialise Data
+    public void validateLevelState() {
+        // Initialise Data
         int playerCount = 0;
         int collectedFriends = 0;
         int remainingFriends = 0;
         List<Entity> entitiesOnGrids = new ArrayList<Entity>();
-        List<Entity> entitiesOutOfBounds = new ArrayList<Entity>(); 
-        
-        //Collect Data
-        for(Entity e: entities){
-            //Count players
+        List<Entity> entitiesOutOfBounds = new ArrayList<Entity>();
+
+        // Collect Data
+        for (Entity e : entities) {
+            // Count players
             if (e instanceof Player p) {
                 playerCount++;
                 collectedFriends = p.inventory().getOrDefault(Item.ItemFriend, 0);
             }
-            //Count friends remaining
-            if (e instanceof Pickup p){
-                if (p.getItem() == Item.ItemFriend) remainingFriends++;
+            // Count friends remaining
+            if (e instanceof Pickup p) {
+                if (p.getItem() == Item.ItemFriend)
+                    remainingFriends++;
             }
 
-            //If entity is out of bounds
+            // If entity is out of bounds
             if (e.getPosition().x() > tiles.length
-                || e.getPosition().y() > tiles[0].length
-                || e.getPosition().x() < 0
-                || e.getPosition().y() < 0) 
+                    || e.getPosition().y() > tiles[0].length
+                    || e.getPosition().x() < 0
+                    || e.getPosition().y() < 0)
                 entitiesOutOfBounds.add(e);
 
-            //If entity is on a grid (invalid position)
-            if (entitiesOutOfBounds.contains(e)) continue;
-            if (tiles[(int)e.getPosition().y()][(int)e.getPosition().x()] instanceof Grid) 
+            // If entity is on a grid (invalid position)
+            if (entitiesOutOfBounds.contains(e))
+                continue;
+            if (tiles[(int) e.getPosition().y()][(int) e.getPosition().x()] instanceof Grid)
                 entitiesOnGrids.add(e);
         }
 
-        //Verify Data
+        // Verify Data
         String output = "VALIDATION LOG:\n";
-        if (playerCount != 1) 
+        if (playerCount != 1)
             output += "Error: Invalid number of players! "
-            +"(Expected 1, found " + playerCount +".)\n";
-        if (collectedFriends + remainingFriends != totalFriendsNeeded) 
+                    + "(Expected 1, found " + playerCount + ".)\n";
+        if (collectedFriends + remainingFriends != totalFriendsNeeded)
             output += "Error: Invalid sum of friends on board and friends collected! "
-            +"( Expected: " + totalFriendsNeeded + ", found " + (collectedFriends + remainingFriends)
-            +". C: "+ collectedFriends + " || R: " + remainingFriends + ".)\n";
-        if (entitiesOnGrids.size() != 0) 
+                    + "( Expected: " + totalFriendsNeeded + ", found " + (collectedFriends + remainingFriends)
+                    + ". C: " + collectedFriends + " || R: " + remainingFriends + ".)\n";
+        if (entitiesOnGrids.size() != 0)
             output += "Error: Found entities on grid! "
-            + "(Found: " + entitiesOnGrids.toString() + ", Expected none.)\n";
-        if (entitiesOutOfBounds.size() != 0) 
+                    + "(Found: " + entitiesOnGrids.toString() + ", Expected none.)\n";
+        if (entitiesOutOfBounds.size() != 0)
             output += "Error: Found entities out of bounds! "
-            + "(Found: " + entitiesOutOfBounds.toString() + ", Expected none.)\n";
+                    + "(Found: " + entitiesOutOfBounds.toString() + ", Expected none.)\n";
 
-        if (!output.equals("VALIDATION LOG:\n")) throw new IllegalStateException(output);
+        if (!output.equals("VALIDATION LOG:\n"))
+            throw new IllegalStateException(output);
     }
 
-    public void removeEntity(Entity e){
-        entities.remove(e);
+    public void flushEntities() {
+        entities.removeAll(entityflushQueue);
+        entityflushQueue.clear();
+    }
+
+    public void removeEntity(Entity e) {
+        entityflushQueue.add(e);
     }
 
     /**
@@ -148,7 +159,7 @@ public class Level {
         return totalFriendsNeeded;
     }
 
-    public int getLevelID(){
+    public int getLevelID() {
         return levelID;
     }
 
