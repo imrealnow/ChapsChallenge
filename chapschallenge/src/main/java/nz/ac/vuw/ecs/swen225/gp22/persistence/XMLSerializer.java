@@ -24,7 +24,7 @@ import org.dom4j.io.XMLWriter;
  * @author Liam Green - greenliam
  */
 public class XMLSerializer {
-    enum FileAction {
+    public enum FileAction {
         SAVE, LOAD
     }
 

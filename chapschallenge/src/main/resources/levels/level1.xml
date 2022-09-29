@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Level Title="Level 1" TimeLimit="100">
+<Level Id="1" Title="Level 1" TimeLimit="100">
   <TileGrid width="17" height="17">
     <Tile type="GridTree" x="0" y="0" />
     <Tile type="GridTree" x="1" y="0" />
