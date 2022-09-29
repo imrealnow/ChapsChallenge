@@ -53,10 +53,21 @@ public class FuzzTest {
       // }
    }
 
+   /**
+    * Helper method to load in game levels and generate random keystrokes.
+    */
    public void fuzzTestGame(Level level) {
       // Starting game
       this.app = new App();
-      // Level firstLevel = LevelLoader.Level1.load();
+
+      // validate level state
+      try {
+         level.validateLevelState();
+      } catch (Exception e) {
+         System.out.println("Level validation failed");
+         e.printStackTrace();
+      }
+      
       app.startLevel(level);
       this.game = Game.getInstance();
       this.actionController = app.getController();
