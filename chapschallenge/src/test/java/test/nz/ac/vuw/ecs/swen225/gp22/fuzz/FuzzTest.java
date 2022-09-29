@@ -43,18 +43,19 @@ public class FuzzTest {
    public void test2() {
       // start game then wait until it has started
       // try {
-      //    SwingUtilities.invokeAndWait(() -> fuzzTestGame(LevelLoader.Level2.load()));
+      // SwingUtilities.invokeAndWait(() -> fuzzTestGame(LevelLoader.Level2.load()));
       // } catch (InterruptedException e) {
-      //    System.out.println("Game start interrupted");
-      //    e.printStackTrace();
+      // System.out.println("Game start interrupted");
+      // e.printStackTrace();
       // } catch (InvocationTargetException e) {
-      //    System.out.println("Game start failed");
-      //    e.printStackTrace();
+      // System.out.println("Game start failed");
+      // e.printStackTrace();
       // }
    }
 
    /**
     * Helper method to load in game levels and generate random keystrokes.
+    * This will run for 60 seconds.
     */
    public void fuzzTestGame(Level level) {
       // Starting game
@@ -67,7 +68,7 @@ public class FuzzTest {
          System.out.println("Level validation failed");
          e.printStackTrace();
       }
-      
+
       app.startLevel(level);
       this.game = Game.getInstance();
       this.actionController = app.getController();
