@@ -27,7 +27,7 @@ Chap’s challenge is a creative clone of the (first level of the) 1989 Atari ga
 |**Renderer**	|	Michael King		|		kingmich4                 |
 |**Domain**		|	Bradley Cave		|		cavebrad                  |
 |**App**		|	Jack Harrisson	    |		harrisjack1               |
-|**Persistency**|	Liam Green		    |		greenliam                 |
+|**Persistency / Map Editor**|	Liam Green		    |		greenliam                 |
 |**Recorder**	|	Julia Huijser		|		huijsejuli                |
 |**Fuzz**		|	Janelle Lim-Ranola	|		limrajane                 |
 
